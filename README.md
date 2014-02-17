@@ -2,10 +2,12 @@ JIPProjectMPosth
 ================
 Project which involves:
 
-Maven building;
-SQL Database Management;
-CRUD SQL Database Management;
-J-Unit testing;
-Error logger;
-Internationalization;
-GUI and SWING;
+<ul>
+<li>Maven building;</li>
+<li>SQL Database Management;</li>
+<li>CRUD SQL Database Management;</li>
+<li>J-Unit testing;</li>
+<li>Error logger;</li>
+<li>Internationalization;</li>
+<li>GUI and SWING;</li>
+</ul>
