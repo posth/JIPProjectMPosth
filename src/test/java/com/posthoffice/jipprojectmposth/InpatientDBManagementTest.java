@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class InpatientDBManagementTest {
+public class InpatientDBManagementTest{
 
     private final InpatientDBManagement InpatientDBManagement = new InpatientDBManagement();
     private final InpatientBean inpatient = new InpatientBean();
@@ -18,8 +18,9 @@ public class InpatientDBManagementTest {
     private PatientDBInit patientDBInit;
     
     @Before
-    public void initDB() {
+    public void initDB() throws SQLException {
         patientDBInit = new PatientDBInit();
+        patientDBInit.initDB();
     }
 
     @Test

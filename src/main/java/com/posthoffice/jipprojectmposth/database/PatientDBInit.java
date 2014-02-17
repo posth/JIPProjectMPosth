@@ -8,10 +8,10 @@ import java.sql.Statement;
 public class PatientDBInit {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
-    private static final String user = "TheUser";
-    private static final String password = "concordia";
+    private static final String user = "root";
+    private static final String password = "Johnny23";
 
-    public static void initDB() throws SQLException {
+    public void initDB() throws SQLException {
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
                 Statement stmt = connection.createStatement();) {
@@ -21,13 +21,13 @@ public class PatientDBInit {
         }
     }
 
-    public static void main(String args[]) {
-        try {
-            initDB();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+//    public static void main(String args[]) {
+//        try {
+//            initDB();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
     
 
 

@@ -12,10 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.MedicationBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
+import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
 import java.sql.Date;
 
 
-public class InpatientDBManagement {
+public class InpatientDBManagement{
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
@@ -78,4 +81,6 @@ public class InpatientDBManagement {
         }
         return result;
     }
+
+
 }
