@@ -19,7 +19,7 @@ public class InpatientDBManagement {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
-    private static final String password = "concordia";
+    private static final String password = "Johnny23";
 
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
 

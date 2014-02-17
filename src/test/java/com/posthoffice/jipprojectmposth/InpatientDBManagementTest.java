@@ -2,15 +2,25 @@ package com.posthoffice.jipprojectmposth;
 
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.database.PatientDBInit;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 
 public class InpatientDBManagementTest {
 
     private final InpatientDBManagement InpatientDBManagement = new InpatientDBManagement();
     private final InpatientBean inpatient = new InpatientBean();
+    
+    private PatientDBInit patientDBInit;
+    
+    @Before
+    public void initDB() {
+        patientDBInit = new PatientDBInit();
+    }
 
     @Test
     public void selectInpatientData() throws SQLException {
