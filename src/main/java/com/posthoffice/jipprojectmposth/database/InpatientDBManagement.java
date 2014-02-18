@@ -67,6 +67,7 @@ public class InpatientDBManagement {
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+            
             ps.setInt(1, inpatient.getPatientID());
             ps.setTimestamp(2, inpatient.getDateOfStay());
             ps.setString(3, inpatient.getRoomNumber());
@@ -85,6 +86,7 @@ public class InpatientDBManagement {
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+            
             ps.setInt(1, inpatient.getPatientID());
             ps.setTimestamp(2, inpatient.getDateOfStay());
             ps.setString(3, inpatient.getRoomNumber());

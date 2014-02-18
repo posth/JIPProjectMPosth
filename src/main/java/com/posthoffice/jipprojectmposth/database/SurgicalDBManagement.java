@@ -17,7 +17,7 @@ public class SurgicalDBManagement {
     private static final String user = "root";
     private static final String password = "Johnny23";
 
-    final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
+    final Logger logger = LoggerFactory.getLogger(SurgicalDBManagement.class);
 
     public SurgicalDBManagement() {
         super();
