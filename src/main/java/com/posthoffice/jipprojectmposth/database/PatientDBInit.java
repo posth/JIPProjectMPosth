@@ -11,7 +11,7 @@ public class PatientDBInit {
     private static final String user = "root";
     private static final String password = "Johnny23";
 
-    public void initDB() throws SQLException {
+    public static void initDB() throws SQLException {
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
                 Statement stmt = connection.createStatement();) {
@@ -21,13 +21,13 @@ public class PatientDBInit {
         }
     }
 
-//    public static void main(String args[]) {
-//        try {
-//            initDB();
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
+    public static void main(String args[]) {
+        try {
+            initDB();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 
 

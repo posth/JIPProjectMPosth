@@ -17,16 +17,18 @@ public class InpatientDBManagementTest{
     
     private PatientDBInit patientDBInit;
     
-    @Before
-    public void initDB() throws SQLException {
-        patientDBInit = new PatientDBInit();
-        patientDBInit.initDB();
-    }
+//    @Before
+//    public void initDB() throws SQLException {
+//        patientDBInit = new PatientDBInit();
+//        patientDBInit.initDB();
+//    }
 
     @Test
     public void selectInpatientData() throws SQLException {
+        
+        inpatient.setPatientID(1);
 
-        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.read(1);
+        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(inpatient);
         assertEquals(inpatientList.size(), 3);
 
     }
@@ -34,9 +36,16 @@ public class InpatientDBManagementTest{
     @Test
     public void insertInpatientData() throws SQLException {
 
-        int test = InpatientDBManagement.create(inpatient);
+        int test = InpatientDBManagement.createInpatient(inpatient);
         assertEquals(test, 1);
 
     }
+    
+//    @Test
+//    public void updateInpatientData() throws SQLException {
+//        
+//        inpatient.setPatientID(99);
+//        
+//    }
 
 }
