@@ -26,9 +26,9 @@ public class InpatientDBManagementTest {
     @Test
     public void readInpatientTest() throws SQLException {
 
-        inpatient.setPatientID(1);
+        int patientID = 1;
 
-        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(inpatient);
+        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(patientID);
         assertEquals(inpatientList.size(), 3);
 
     }
@@ -48,7 +48,9 @@ public class InpatientDBManagementTest {
 
         InpatientDBManagement.deleteInpatient(inpatient);
 
-        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(inpatient);
+        int patientID = 1;
+
+        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(patientID);
 
         assertEquals(inpatientList.size(), 0);
 
@@ -57,15 +59,29 @@ public class InpatientDBManagementTest {
     @Test
     public void updateInpatientData() throws SQLException {
 
-        inpatient.setPatientID(1);
+        int patientID = 1;
+
+        ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(patientID);
+        InpatientBean testBean = inpatientList.get(0);
         
-        InpatientDBManagement.readInpatient(inpatient);
+        System.out.println("list" + inpatientList);
+        System.out.println("testBean " + testBean);
         
-        inpatient.setDateOfStay();
-        inpatient.setRoomNumber();
-        inpatient.setDailyRate();
-        inpatient.setRoomSupplies();
-        inpatient.setRoomServices();
+        testBean.setRoomNumber("A2");
+        
+        //System.out.println("testbean with a2 " + testBean);
+
+        InpatientDBManagement.updateInpatient(testBean);
+
+        ArrayList<InpatientBean> inpatientList2 = InpatientDBManagement.readInpatient(patientID);
+        InpatientBean updatedTestBean = inpatientList2.get(0);
+        
+        System.out.println("updated test bean" + updatedTestBean);
+        System.out.println("list 2" + inpatientList2);
+
+        String updatedRoomNumber = updatedTestBean.getRoomNumber();
+
+        assertEquals(updatedRoomNumber, "A2");
 
     }
 }

@@ -32,13 +32,13 @@ public class PatientDBInit {
         }
     }
 
-    public static void main(String args[]) {
-        try {
-            initDB();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+//    public static void main(String args[]) {
+//        try {
+//            initDB();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     static final String dropPatientDB = "DROP DATABASE PATIENTDB";
     static final String createPatientDB = "CREATE DATABASE PATIENTDB";

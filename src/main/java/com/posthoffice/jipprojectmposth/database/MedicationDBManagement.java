@@ -24,7 +24,7 @@ public class MedicationDBManagement {
     }
 
     //works
-    public ArrayList<MedicationBean> readMedication(MedicationBean medication) throws SQLException {
+    public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM MEDICATION WHERE PATIENTID = ?";
 
@@ -33,7 +33,7 @@ public class MedicationDBManagement {
         try (Connection connection = DriverManager.getConnection(url, user,
                 password);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
-            pStatement.setInt(1, medication.getPatientID());
+            pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
 
                 while (resultSet.next()) {

@@ -27,7 +27,7 @@ public class InpatientDBManagement {
 
     //works
     //only time primary key is used is when it is read?
-    public ArrayList<InpatientBean> readInpatient(InpatientBean inpatient) throws SQLException {
+    public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM INPATIENT WHERE PATIENTID = ?";
 
@@ -36,7 +36,7 @@ public class InpatientDBManagement {
         try (Connection connection = DriverManager.getConnection(url, user,
                 password);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
-            pStatement.setInt(1, inpatient.getPatientID());
+            pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
 
                 while (resultSet.next()) {
@@ -83,18 +83,17 @@ public class InpatientDBManagement {
     
     public void updateInpatient(InpatientBean inpatient) throws SQLException {
 
-        String preparedQuery = "UPDATE INPATIENT (PATIENTID, DATEOFSTAY, ROOMNUMBER, DAILTYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?,?)";
+        String preparedQuery = "UPDATE INPATIENT SET (DATEOFSTAY, ROOMNUMBER, DAILYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?) WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             
-            ps.setInt(1, inpatient.getPatientID());
-            ps.setTimestamp(2, inpatient.getDateOfStay());
-            ps.setString(3, inpatient.getRoomNumber());
-            ps.setBigDecimal(4, inpatient.getDailyRate());
-            ps.setBigDecimal(5, inpatient.getRoomSupplies());
-            ps.setBigDecimal(6, inpatient.getRoomServices());
-
+            ps.setTimestamp(1, inpatient.getDateOfStay());
+            ps.setString(2, inpatient.getRoomNumber());
+            ps.setBigDecimal(3, inpatient.getDailyRate());
+            ps.setBigDecimal(4, inpatient.getRoomSupplies());
+            ps.setBigDecimal(5, inpatient.getRoomServices());
+            ps.setInt(6, inpatient.getPatientID());
         }
     }
     

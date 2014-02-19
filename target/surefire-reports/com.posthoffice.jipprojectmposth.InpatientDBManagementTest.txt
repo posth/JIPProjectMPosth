@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.InpatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.065 sec - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 8.407 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+updateInpatientData(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 2.092 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<A[1]> but was:<A[2]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.updateInpatientData(InpatientDBManagementTest.java:84)
+

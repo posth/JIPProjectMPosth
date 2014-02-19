@@ -25,7 +25,7 @@ public class SurgicalDBManagement {
 
     //works
     //only time primary key is used is when it is read?
-    public ArrayList<SurgicalBean> readSurgical(SurgicalBean surgical) throws SQLException {
+    public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM SURGICAL WHERE PATIENTID = ?";
 
@@ -34,7 +34,7 @@ public class SurgicalDBManagement {
         try (Connection connection = DriverManager.getConnection(url, user,
                 password);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
-            pStatement.setInt(1, surgical.getPatientID());
+            pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
 
                 while (resultSet.next()) {
