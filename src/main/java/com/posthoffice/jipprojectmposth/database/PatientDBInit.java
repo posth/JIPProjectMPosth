@@ -15,9 +15,20 @@ public class PatientDBInit {
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
                 Statement stmt = connection.createStatement();) {
-            stmt.executeUpdate(drop);
-            stmt.executeUpdate(create);
-            stmt.executeUpdate(insert);
+            stmt.executeUpdate(dropPatientDB);
+            stmt.executeUpdate(createPatientDB);
+            stmt.executeUpdate(usePatientDB);
+
+            stmt.executeUpdate(createPatientTable);
+            stmt.executeUpdate(createInpatientTable);
+            stmt.executeUpdate(createSurgicalTable);
+            stmt.executeUpdate(createMedicationTable);
+
+            stmt.executeUpdate(insertPatientData);
+            stmt.executeUpdate(insertInpatientData);
+            stmt.executeUpdate(insertSurgicalData);
+            stmt.executeUpdate(insertMedicationData);
+
         }
     }
 
@@ -28,21 +39,21 @@ public class PatientDBInit {
             ex.printStackTrace();
         }
     }
-    
 
+    static final String dropPatientDB = "DROP DATABASE PATIENTDB";
+    static final String createPatientDB = "CREATE DATABASE PATIENTDB";
+    static final String usePatientDB = "USE PATIENTDB";
 
-    static final String drop = "DROP DATABASE IF EXISTS PATIENTDB";
-
-    static final String create = "CREATE DATABASE PATIENTDB;"
-            + "CREATE TABLE PATIENT ("
+    static final String createPatientTable = "CREATE TABLE PATIENT ("
             + "PATIENTID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
             + "LASTNAME varchar(30) NOT NULL DEFAULT '',"
             + "FIRSTNAME varchar(30) NOT NULL DEFAULT '',"
             + "DIAGNOSIS varchar(60) NOT NULL DEFAULT '',"
             + "ADMISSIONDATE timestamp,"
             + "RELEASERATE timestamp"
-            + ") ENGINE=InnoDB;"
-            + "CREATE TABLE INPATIENT ("
+            + ") ENGINE=InnoDB";
+
+    static final String createInpatientTable = "CREATE TABLE INPATIENT ("
             + "ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
             + "PATIENTID int(11),"
             + "DATEOFSTAY timestamp,"
@@ -52,8 +63,9 @@ public class PatientDBInit {
             + "SERVICES decimal(10,2),"
             + "KEY PATIENTID (PATIENTID),"
             + "CONSTRAINT patient_1 FOREIGN KEY (PATIENTID) REFERENCES PATIENT (PATIENTID)"
-            + ") ENGINE=InnoDB;"
-            + "CREATE TABLE SURGICAL ("
+            + ") ENGINE=InnoDB";
+
+    static final String createSurgicalTable = "CREATE TABLE SURGICAL ("
             + "ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
             + "PATIENTID int(11),"
             + "DATEOFSURGERY timestamp,"
@@ -63,8 +75,9 @@ public class PatientDBInit {
             + "SUPPLIES decimal(10,2),"
             + "KEY PATIENTID (PATIENTID),"
             + "CONSTRAINT patient_2 FOREIGN KEY (PATIENTID) REFERENCES PATIENT (PATIENTID)"
-            + ") ENGINE=InnoDB;"
-            + "CREATE TABLE MEDICATION ("
+            + ") ENGINE=InnoDB";
+
+    static final String createMedicationTable = "CREATE TABLE MEDICATION ("
             + "ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,"
             + "PATIENTID int(11),"
             + "DATEOFMED timestamp,"
@@ -73,15 +86,16 @@ public class PatientDBInit {
             + "UNITS decimal(10,2) ,"
             + "KEY PATIENTID (PATIENTID),"
             + "CONSTRAINT patient_3 FOREIGN KEY (PATIENTID) REFERENCES PATIENT (PATIENTID)"
-            + ") ENGINE=InnoDB;";
+            + ") ENGINE=InnoDB";
 
-    static final String insert = "INSERT INTO PATIENT (LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) values "
+    static final String insertPatientData = "INSERT INTO PATIENT (LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) values "
             + "(\"Wayne\",\"Bruce\",\"Asthma\",\"2014-01-23 9:00:00\",\"2014-01-25 13:00:00\"),"
             + "(\"Allen\",\"Barry\",\"Kidney Stones\",\"2014-02-18 9:00:00\",\"2014-02-21 13:00:00\"),"
             + "(\"Kent\",\"Clark\",\"Tonsilitis\",\"2014-05-02 9:00:00\",\"2014-05-07 13:00:00\"),"
             + "(\"Stark\",\"Tony\",\"Appendicitis\",\"2014-07-14 9:00:00\",\"2014-07-15 13:00:00\"),"
-            + "(\"Banner\",\"Bruce\",\"Gall Bladder Disease\",\"2014-11-09 9:00:00\",\"2014-11-12 13:00:00\");"
-            + "INSERT INTO INPATIENT(PATIENTID,DATEOFSTAY,ROOMNUMBER,DAILYRATE,SUPPLIES,SERVICES) values "
+            + "(\"Banner\",\"Bruce\",\"Gall Bladder Disease\",\"2014-11-09 9:00:00\",\"2014-11-12 13:00:00\")";
+
+    static final String insertInpatientData = "INSERT INTO INPATIENT(PATIENTID,DATEOFSTAY,ROOMNUMBER,DAILYRATE,SUPPLIES,SERVICES) values "
             + "(1, \"2014-01-23 9:00:00\",\"A1\",\"250.00\",\"75.24\",\"12.95\"),"
             + "(1, \"2014-01-24 9:00:00\",\"A1\",\"250.00\",\"90.15\",\"58.12\"),"
             + "(1, \"2014-01-25 9:00:00\",\"A1\",\"250.00\",\"120.23\",\"87.05\"),"
@@ -101,18 +115,20 @@ public class PatientDBInit {
             + "(5, \"2014-11-09 9:00:00\",\"E5\",\"150.00\",\"120.23\",\"87.05\"),"
             + "(5, \"2014-11-10 9:00:00\",\"E5\",\"150.00\",\"120.23\",\"87.05\"),"
             + "(5, \"2014-11-11 9:00:00\",\"E5\",\"150.00\",\"120.23\",\"87.05\"),"
-            + "(5, \"2014-11-12 9:00:00\",\"E5\",\"150.00\",\"120.23\",\"87.05\");"
-            + "INSERT INTO SURGICAL(PATIENTID,DATEOFSURGERY,SURGERY,ROOMFEE,SURGEONFEE,SUPPLIES) values "
+            + "(5, \"2014-11-12 9:00:00\",\"E5\",\"150.00\",\"120.23\",\"87.05\")";
+
+    static final String insertSurgicalData = "INSERT INTO SURGICAL(PATIENTID,DATEOFSURGERY,SURGERY,ROOMFEE,SURGEONFEE,SUPPLIES) values "
             + "(1, \"2014-01-24 11:00:00\",\"Lung Transplant\", 2500.12, 4200.00, 934.23),"
             + "(2, \"2014-02-19 07:00:00\",\"Kidney Transplant\", 2500.12, 4200.00, 934.23),"
             + "(3, \"2014-05-03 21:00:00\",\"Tonsil Transplant\", 2500.12, 4200.00, 934.23),"
             + "(4, \"2014-07-14 14:00:00\",\"Appendix Transplant\", 2500.12, 4200.00, 934.23),"
-            + "(5, \"2014-11-11 10:00:00\",\"Gall Bladder Transplant\", 2500.12, 4200.00, 934.23);"
-            + "INSERT INTO MEDICATION(PATIENTID,DATEOFMED,MED,UNITCOST,UNITS) values "
+            + "(5, \"2014-11-11 10:00:00\",\"Gall Bladder Transplant\", 2500.12, 4200.00, 934.23)";
+
+    static final String insertMedicationData = "INSERT INTO MEDICATION(PATIENTID,DATEOFMED,MED,UNITCOST,UNITS) values "
             + "(1, \"2014-01-24 11:00:00\", \"Snickers\", 1.25, 5.0),"
             + "(2, \"2014-02-19 07:00:00\", \"M and M\", 1.10, 15.0),"
             + "(3, \"2014-05-03 21:00:00\", \"O Henry\", 2.49, 11.0),"
             + "(4, \"2014-07-14 14:00:00\", \"Caramilk\", 4.23, 3.0),"
-            + "(5, \"2014-11-11 10:00:00\", \"Aero Bar\", 9.43, 19.0);";
+            + "(5, \"2014-11-11 10:00:00\", \"Aero Bar\", 9.43, 19.0)";
 
 }

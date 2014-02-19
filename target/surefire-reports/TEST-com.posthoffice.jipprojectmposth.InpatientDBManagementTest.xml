@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.372" tests="2" errors="0" skipped="0" failures="1">
+<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="5.977" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
@@ -62,15 +62,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="selectInpatientData" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.303">
-    <failure message="expected:&lt;5&gt; but was:&lt;3&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<5> but was:<3>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.selectInpatientData(InpatientDBManagementTest.java:32)
-]]></failure>
-  </testcase>
-  <testcase name="insertInpatientData" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.069"/>
+  <testcase name="selectInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="2.198"/>
+  <testcase name="insertInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="1.82"/>
+  <testcase name="deleteInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="1.959"/>
 </testsuite>

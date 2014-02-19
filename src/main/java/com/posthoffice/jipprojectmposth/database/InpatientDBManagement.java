@@ -80,6 +80,7 @@ public class InpatientDBManagement {
         return result;
     }
 
+    
     public void updateInpatient(InpatientBean inpatient) throws SQLException {
 
         String preparedQuery = "UPDATE INPATIENT (PATIENTID, DATEOFSTAY, ROOMNUMBER, DAILTYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?,?)";
@@ -96,12 +97,13 @@ public class InpatientDBManagement {
 
         }
     }
-
+    
+    //works
     public int deleteInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
 
-        String preparedQuery = "DELETE * FROM INPATIENT WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM INPATIENT WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {

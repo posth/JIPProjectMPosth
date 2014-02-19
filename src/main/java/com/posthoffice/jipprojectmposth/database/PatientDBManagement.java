@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PatientDBManagement {
+public class PatientDBManagement implements PatientDAO {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
@@ -21,6 +22,7 @@ public class PatientDBManagement {
         super();
     }
 
+    @Override
     public int createPatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -41,6 +43,7 @@ public class PatientDBManagement {
         return result;
     }
 
+    @Override
     public void updatePatient(PatientBean patient) throws SQLException {
 
         String preparedQuery = "UPDATE PATIENT (PATIENTID, LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) VALUES (?,?,?,?,?,?)";
@@ -58,6 +61,7 @@ public class PatientDBManagement {
         }
     }
 
+    @Override
     public int deletePatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -72,6 +76,11 @@ public class PatientDBManagement {
         }
 
         return result;
+    }
+
+    @Override
+    public ArrayList<PatientBean> readPatient(String sql) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
