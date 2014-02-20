@@ -3,7 +3,6 @@ package com.posthoffice.jipprojectmposth;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBInit;
-import java.math.BigDecimal;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,8 +14,6 @@ public class InpatientDBManagementTest {
 
     private final InpatientDBManagement InpatientDBManagement = new InpatientDBManagement();
     private final InpatientBean inpatient = new InpatientBean();
-
-    private PatientDBInit patientDBInit;
 
     @Before
     public void initDB() throws SQLException {
@@ -48,7 +45,7 @@ public class InpatientDBManagementTest {
 
         InpatientDBManagement.deleteInpatient(inpatient);
 
-        int patientID = 1;
+        int patientID = inpatient.getPatientID();
 
         ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(patientID);
 
@@ -57,31 +54,21 @@ public class InpatientDBManagementTest {
     }
 
     @Test
-    public void updateInpatientData() throws SQLException {
+    public void updateInpatientTest() throws SQLException {
 
         int patientID = 1;
 
         ArrayList<InpatientBean> inpatientList = InpatientDBManagement.readInpatient(patientID);
         InpatientBean testBean = inpatientList.get(0);
-        
-        System.out.println("list" + inpatientList);
-        System.out.println("testBean " + testBean);
-        
+
         testBean.setRoomNumber("A2");
-        
-        //System.out.println("testbean with a2 " + testBean);
 
         InpatientDBManagement.updateInpatient(testBean);
 
         ArrayList<InpatientBean> inpatientList2 = InpatientDBManagement.readInpatient(patientID);
         InpatientBean updatedTestBean = inpatientList2.get(0);
-        
-        System.out.println("updated test bean" + updatedTestBean);
-        System.out.println("list 2" + inpatientList2);
 
-        String updatedRoomNumber = updatedTestBean.getRoomNumber();
-
-        assertEquals(updatedRoomNumber, "A2");
+        assertEquals(testBean, updatedTestBean);
 
     }
 }

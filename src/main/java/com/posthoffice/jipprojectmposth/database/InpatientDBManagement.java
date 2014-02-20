@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
-import java.math.BigDecimal;
 
 public class InpatientDBManagement {
 
@@ -81,9 +80,11 @@ public class InpatientDBManagement {
     }
 
     
-    public void updateInpatient(InpatientBean inpatient) throws SQLException {
+    public int updateInpatient(InpatientBean inpatient) throws SQLException {
+        
+        int result;
 
-        String preparedQuery = "UPDATE INPATIENT SET (DATEOFSTAY, ROOMNUMBER, DAILYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?) WHERE PATIENTID = ?";
+        String preparedQuery = "UPDATE INPATIENT SET DATEOFSTAY = ?, ROOMNUMBER = ?, DAILYRATE = ?, SUPPLIES = ?, SERVICES = ? WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
@@ -94,7 +95,11 @@ public class InpatientDBManagement {
             ps.setBigDecimal(4, inpatient.getRoomSupplies());
             ps.setBigDecimal(5, inpatient.getRoomServices());
             ps.setInt(6, inpatient.getPatientID());
+            
+            result = ps.executeUpdate();
         }
+        
+        return result;
     }
     
     //works

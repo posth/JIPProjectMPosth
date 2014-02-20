@@ -78,28 +78,33 @@ public class SurgicalDBManagement {
         return result;
     }
 
-    public void updateSurgical(SurgicalBean surgical) throws SQLException {
+    public int updateSurgical(SurgicalBean surgical) throws SQLException {
 
-        String preparedQuery = "UPDATE INPATIENT (PATIENTID, DATEOFSURGERY, SURGERY, ROOMFEE, SURGEONFEE, SUPPLIES) VALUES (?,?,?,?,?,?)";
+        int result;
+
+        String preparedQuery = "UPDATE SURGICAL SET DATEOFSURGERY = ?, SURGERY = ?, ROOMFEE = ?, SURGEONFEE = ?, SUPPLIES = ? WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
-            ps.setInt(1, surgical.getPatientID());
-            ps.setTimestamp(2, surgical.getDateOfSurgery());
-            ps.setString(3, surgical.getSurgery());
-            ps.setBigDecimal(4, surgical.getRoomFee());
-            ps.setBigDecimal(5, surgical.getSurgeonsFee());
-            ps.setBigDecimal(6, surgical.getSupplies());
+            ps.setTimestamp(1, surgical.getDateOfSurgery());
+            ps.setString(2, surgical.getSurgery());
+            ps.setBigDecimal(3, surgical.getRoomFee());
+            ps.setBigDecimal(4, surgical.getSurgeonsFee());
+            ps.setBigDecimal(5, surgical.getSupplies());
+            ps.setInt(6, surgical.getPatientID());
 
+            result = ps.executeUpdate();
         }
+
+        return result;
     }
 
     public int deleteSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;
 
-        String preparedQuery = "DELETE * FROM SURGICAL WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM SURGICAL WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {

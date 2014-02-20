@@ -63,7 +63,7 @@ public class MedicationDBManagement {
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-                      
+
             ps.setInt(1, medication.getPatientID());
             ps.setTimestamp(2, medication.getDateOfMed());
             ps.setString(3, medication.getMedication());
@@ -75,27 +75,32 @@ public class MedicationDBManagement {
         return result;
     }
 
-    public void updateMedication(MedicationBean medication) throws SQLException {
+    public int updateMedication(MedicationBean medication) throws SQLException {
 
-        String preparedQuery = "UPDATE MEDICATION (PATIENTID, DATEOFMED, MED, UNITCOST, UNITS) VALUES (?,?,?,?,?)";
+        int result;
+
+        String preparedQuery = "UPDATE MEDICATION SET DATEOFMED = ?, MED = ?, UNITCOST = ?, UNITS = ? WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            
-            ps.setInt(1, medication.getPatientID());
-            ps.setTimestamp(2, medication.getDateOfMed());
-            ps.setString(3, medication.getMedication());
-            ps.setBigDecimal(4, medication.getCostPerUnit());
-            ps.setBigDecimal(5, medication.getNumberOfUnits());
 
+            ps.setTimestamp(1, medication.getDateOfMed());
+            ps.setString(2, medication.getMedication());
+            ps.setBigDecimal(3, medication.getCostPerUnit());
+            ps.setBigDecimal(4, medication.getNumberOfUnits());
+            ps.setInt(5, medication.getPatientID());
+
+            result = ps.executeUpdate();
         }
+
+        return result;
     }
 
     public int deleteMedication(MedicationBean medication) throws SQLException {
 
         int result;
 
-        String preparedQuery = "DELETE * FROM MEDICATION WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM MEDICATION WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
@@ -105,7 +110,6 @@ public class MedicationDBManagement {
         }
 
         return result;
-    }    
-    
+    }
 
 }
