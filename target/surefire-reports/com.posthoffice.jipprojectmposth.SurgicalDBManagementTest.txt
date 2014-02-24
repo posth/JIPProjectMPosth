@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.475 sec - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.97 sec - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
