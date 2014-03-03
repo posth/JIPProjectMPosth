@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="8.97" tests="4" errors="0" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="8.361" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
@@ -60,8 +60,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.12"/>
-  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.389"/>
-  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.278"/>
-  <testcase name="updateSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.183"/>
+  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.303"/>
+  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.301"/>
+  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="1.999"/>
+  <testcase name="updateSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="1.758"/>
 </testsuite>
