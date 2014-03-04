@@ -4,8 +4,8 @@
   <Properties>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder justification="2" title="Patient Database">
-          <Font PropertyName="font" name="Tahoma" size="24" style="0"/>
+        <TitledBorder justification="2" position="3" title="Patient Data">
+          <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
         </TitledBorder>
       </Border>
     </Property>
@@ -25,24 +25,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="710" max="32767" attributes="0"/>
+          <Component id="jScrollPane2" alignment="0" pref="710" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="487" max="32767" attributes="0"/>
+          <Component id="jScrollPane2" alignment="0" pref="551" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="patientTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">

@@ -29,14 +29,57 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        inpatientTable1 = new com.posthoffice.jipprojectmposth.presentation.InpatientTable();
-        surgicalTable1 = new com.posthoffice.jipprojectmposth.presentation.SurgicalTable();
-        medicationTable1 = new com.posthoffice.jipprojectmposth.presentation.MedicationTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTabbedPane1.addTab("Inpatient Database", inpatientTable1);
-        jTabbedPane1.addTab("Surgical Database", surgicalTable1);
-        jTabbedPane1.addTab("Medication Database", medicationTable1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTabbedPane1.addTab("tab1", jScrollPane1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jTabbedPane1.addTab("tab2", jScrollPane2);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jTabbedPane1.addTab("tab3", jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,9 +95,12 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.posthoffice.jipprojectmposth.presentation.InpatientTable inpatientTable1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private com.posthoffice.jipprojectmposth.presentation.MedicationTable medicationTable1;
-    private com.posthoffice.jipprojectmposth.presentation.SurgicalTable surgicalTable1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
