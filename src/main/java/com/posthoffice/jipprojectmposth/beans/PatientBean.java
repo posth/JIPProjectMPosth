@@ -12,9 +12,26 @@ public class PatientBean {
     private String diagnosis;
     private Timestamp admissionDate;
     private Timestamp releaseDate;
-    private ArrayList<InpatientBean> InpatientList;
-    private ArrayList<MedicationBean> MedicationList;
-    private ArrayList<SurgicalBean> SurgicalList;
+    private ArrayList<InpatientBean> inpatientList;
+    private ArrayList<MedicationBean> medicationList;
+    private ArrayList<SurgicalBean> surgicalList;
+    private boolean update;
+
+    public PatientBean(int patientID, String lastName, String firstName, String diagnosis, Timestamp admissionDate, Timestamp releaseDate,
+            ArrayList<InpatientBean> inpatientList, ArrayList<MedicationBean> medicationList,
+            ArrayList<SurgicalBean> surgicalList) {
+        super();
+        this.patientID = patientID;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.diagnosis = diagnosis;
+        this.admissionDate = admissionDate;
+        this.releaseDate = releaseDate;
+        this.inpatientList = inpatientList;
+        this.medicationList = medicationList;
+        this.surgicalList = surgicalList;
+        this.update = false;
+    }
 
     public PatientBean() {
         super();
@@ -24,9 +41,10 @@ public class PatientBean {
         this.diagnosis = "";
         this.admissionDate = new Timestamp(new Date().getTime());
         this.releaseDate = new Timestamp(new Date().getTime());
-        this.InpatientList = new ArrayList<>();
-        this.MedicationList = new ArrayList<>();
-        this.SurgicalList = new ArrayList<>();
+        this.inpatientList = new ArrayList<>();
+        this.medicationList = new ArrayList<>();
+        this.surgicalList = new ArrayList<>();
+        this.update = false;
     }
 
     public int getPatientID() {
@@ -78,27 +96,35 @@ public class PatientBean {
     }
 
     public ArrayList<InpatientBean> getInpatientList() {
-        return InpatientList;
+        return inpatientList;
     }
 
-    public void setInpatientList(ArrayList<InpatientBean> InpatientList) {
-        this.InpatientList = InpatientList;
+    public void setInpatientList(ArrayList<InpatientBean> inpatientList) {
+        this.inpatientList = inpatientList;
     }
 
     public ArrayList<MedicationBean> getMedicationList() {
-        return MedicationList;
+        return medicationList;
     }
 
-    public void setMedicationList(ArrayList<MedicationBean> MedicationList) {
-        this.MedicationList = MedicationList;
+    public void setMedicationList(ArrayList<MedicationBean> medicationList) {
+        this.medicationList = medicationList;
     }
 
     public ArrayList<SurgicalBean> getSurgicalList() {
-        return SurgicalList;
+        return surgicalList;
     }
 
-    public void setSurgicalList(ArrayList<SurgicalBean> SurgicalList) {
-        this.SurgicalList = SurgicalList;
+    public void setSurgicalList(ArrayList<SurgicalBean> surgicalList) {
+        this.surgicalList = surgicalList;
+    }
+
+    public boolean getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(boolean update) {
+        this.update = update;
     }
 
     @Override
@@ -129,8 +155,8 @@ public class PatientBean {
                 + lastName + ", firstName=" + firstName + ", diagnosis="
                 + diagnosis + ", admissionDate=" + admissionDate
                 + ", releaseDate=" + releaseDate + ", InpatientList="
-                + InpatientList + ", MedicationList=" + MedicationList
-                + ", SurgicalList=" + SurgicalList + '}';
+                + inpatientList + ", MedicationList=" + medicationList
+                + ", SurgicalList=" + surgicalList + '}';
     }
 
 }
