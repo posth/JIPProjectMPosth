@@ -1,26 +1,25 @@
 package com.posthoffice.jipprojectmposth.model;
 
-import com.posthoffice.jipprojectmposth.beans.PatientBean;
-
+import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PatientDBTableModel extends AbstractTableModel {
+public class InpatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
-    private final ArrayList<PatientBean> data = new ArrayList<>();
+    private final ArrayList<InpatientBean> data = new ArrayList<>();
 
-    public PatientDBTableModel() {
+    public InpatientDBTableModel() {
         super();
-        logger.info("Patient Database Table Model Instantiated");
+        logger.info("Inpatient Database Table Model Instantiated");
     }
 
     public int loadColumnNames(ResultSetMetaData rsmd) {
@@ -46,16 +45,16 @@ public class PatientDBTableModel extends AbstractTableModel {
             while (resultSet.next()) {
                 rowCount++;
 
-                PatientBean patient = new PatientBean();
+                InpatientBean inPatient = new InpatientBean();
 
-                patient.setPatientID(resultSet.getInt("PATIENTID"));
-                patient.setLastName(resultSet.getString("LASTNAME"));
-                patient.setFirstName(resultSet.getString("FIRSTNAME"));
-                patient.setDiagnosis(resultSet.getString("DIAGNOSIS"));
-                patient.setAdmissionDate(resultSet.getTimestamp("ADMISSIONDATE"));
-                patient.setReleaseDate(resultSet.getTimestamp("RELEASERATE"));
+                inPatient.setPatientID(resultSet.getInt("PATIENTID"));
+                inPatient.setDateOfStay(resultSet.getTimestamp("DATEOFSTAY"));
+                inPatient.setRoomNumber(resultSet.getString("ROOMNUMBER"));
+                inPatient.setDailyRate(resultSet.getBigDecimal("DAILYRATE"));
+                inPatient.setRoomSupplies(resultSet.getBigDecimal("SUPPLIES"));
+                inPatient.setRoomServices(resultSet.getBigDecimal("SERVICES"));
 
-                data.add(patient);
+                data.add(inPatient);
             }
         } catch (SQLException e) {
             logger.error("Error loading data", e);
@@ -87,7 +86,7 @@ public class PatientDBTableModel extends AbstractTableModel {
         data.get(row).setUpdate(false);
     }
 
-    public PatientBean getPatientData(int row) {
+    public InpatientBean getinPatientData(int row) {
         return data.get(row);
     }
 
@@ -98,8 +97,8 @@ public class PatientDBTableModel extends AbstractTableModel {
     }
 
     public void addBlankRow() {
-        PatientBean newPatient = new PatientBean();
-        data.add(newPatient);
+        InpatientBean newInpatient = new InpatientBean();
+        data.add(newInpatient);
 
         this.fireTableDataChanged();
     }
@@ -112,19 +111,19 @@ public class PatientDBTableModel extends AbstractTableModel {
                 data.get(row).setPatientID((int) value);
                 break;
             case 1:
-                data.get(row).setLastName((String) value);
+                data.get(row).setDateOfStay((Timestamp) value);
                 break;
             case 2:
-                data.get(row).setFirstName((String) value);
+                data.get(row).setRoomNumber((String) value);
                 break;
             case 3:
-                data.get(row).setDiagnosis((String) value);
+                data.get(row).setDailyRate((BigDecimal) value);
                 break;
             case 4:
-                data.get(row).setAdmissionDate((Timestamp) value);
+                data.get(row).setRoomSupplies((BigDecimal) value);
                 break;
             case 5:
-                data.get(row).setReleaseDate((Timestamp) value);
+                data.get(row).setRoomServices((BigDecimal) value);
                 break;
         }
 
@@ -139,15 +138,15 @@ public class PatientDBTableModel extends AbstractTableModel {
             case 0:
                 return data.get(row).getPatientID();
             case 1:
-                return data.get(row).getLastName();
+                return data.get(row).getDateOfStay();
             case 2:
-                return data.get(row).getFirstName();
+                return data.get(row).getRoomNumber();
             case 3:
-                return data.get(row).getDiagnosis();
+                return data.get(row).getDailyRate();
             case 4:
-                return data.get(row).getAdmissionDate();
+                return data.get(row).getRoomSupplies();
             case 5:
-                return data.get(row).getReleaseDate();
+                return data.get(row).getRoomServices();
         }
         // What kind of exception to catch here?
         return null;
@@ -167,4 +166,5 @@ public class PatientDBTableModel extends AbstractTableModel {
 //        }
         return retVal;
     }
+
 }

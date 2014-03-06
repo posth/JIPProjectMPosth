@@ -28,10 +28,14 @@ public class PatientDBManagement implements PatientDAO {
     private final boolean DEBUG = false;
 
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
+    
+    public PatientDBManagement() {
+        super();
+    }
 
     public PatientDBManagement(PatientDBTableModel patientDBTableModel) {
         super();
-        logger.info("Database instantiated.");
+        logger.info("Patient Database instantiated.");
         this.patientDBTableModel = patientDBTableModel;
     }
 

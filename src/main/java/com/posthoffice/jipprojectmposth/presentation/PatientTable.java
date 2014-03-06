@@ -1,12 +1,18 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class PatientTable extends javax.swing.JPanel {
     
     private PatientDBTableModel patientModel = null;
     private PatientDBManagement patientDBManager = null;
+    
+    private int selectedRow = -1;
 
     public PatientTable() {
         patientModel = new PatientDBTableModel();
@@ -30,10 +36,32 @@ public class PatientTable extends javax.swing.JPanel {
         patientTable.setModel(patientModel);
         patientTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(patientTable);
+        ListSelectionModel rowSM = patientTable.getSelectionModel();
+        rowSM.addListSelectionListener(new RowListener());
 
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+        class RowListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+
+            if (e.getValueIsAdjusting()) {
+                return;
+            }
+
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            if (!lsm.isSelectionEmpty()) {
+                selectedRow = lsm.getMinSelectionIndex();
+            }  
+            System.out.println("selected row is" + selectedRow);
+            
+            //PatientBean selectedPatient = patientTable.getModel().getValueAt(selectedRow);
+        }
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;

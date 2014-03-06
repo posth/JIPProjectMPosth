@@ -11,21 +11,39 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 
 public class InpatientDBManagement {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
     private static final String password = "Johnny23";
+    
+    private InpatientDBTableModel inpatientDBTableModel = null;
+    private final boolean DEBUG = false;
 
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
 
     public InpatientDBManagement() {
         super();
     }
+    
+    public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel) {
+        super();
+        logger.info("Inpatient Database instantiated");
+        this.inpatientDBTableModel = inpatientDBTableModel;
+    }
+    
+    public boolean fillTableModel(ArrayList<InpatientBean> inpatientBeanList) {
+        
+        boolean retVal = true;
+        
+        //fill based on patient selection
+        
+        
+        return retVal;
+    }
 
-    //works
-    //only time primary key is used is when it is read?
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM INPATIENT WHERE PATIENTID = ?";

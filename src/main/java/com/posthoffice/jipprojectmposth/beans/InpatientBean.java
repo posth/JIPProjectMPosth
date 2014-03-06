@@ -13,6 +13,21 @@ public class InpatientBean {
     private BigDecimal dailyRate;
     private BigDecimal roomSupplies;
     private BigDecimal roomServices;
+    private boolean update;
+    
+    public InpatientBean(int patientID, Timestamp dateOfStay, String roomNumber,
+            BigDecimal dailyRate, BigDecimal roomSupplies, BigDecimal roomServices) {
+        
+        super();
+        this.patientID = patientID;
+        this.dateOfStay = dateOfStay;
+        this.roomNumber = roomNumber;
+        this.dailyRate = dailyRate;
+        this.roomSupplies = roomSupplies;
+        this.roomServices = roomServices;
+        this.update = false;
+         
+    }
 
     public InpatientBean() {
         super();
@@ -22,6 +37,7 @@ public class InpatientBean {
         this.dailyRate = new BigDecimal("0");
         this.roomSupplies = new BigDecimal("0");
         this.roomServices = new BigDecimal("0");
+        this.update = false;
     }
 
     public int getPatientID() {
@@ -80,6 +96,15 @@ public class InpatientBean {
         this.roomServices = roomServices;
     }
 
+    public boolean getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(boolean update) {
+        this.update = update;
+    }
+    
+ 
     @Override
     public int hashCode() {
         int hash = 7;
