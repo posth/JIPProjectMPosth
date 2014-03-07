@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PatientDBManagement implements PatientDAO {
+public class PatientDBManagement{
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
@@ -81,9 +81,9 @@ public class PatientDBManagement implements PatientDAO {
                         System.out.println("Updating row: " + theRows);
                     }
                     if (patient.getPatientID() > 0) {
-                        result = updatePatient(connection, patient);
+                        result = updatePatient(patient);
                     } else {
-                        result = createPatient(connection, patient, theRows);
+                        result = createPatient(patient);
                     }
                 }
                 if (DEBUG) {
@@ -102,8 +102,8 @@ public class PatientDBManagement implements PatientDAO {
 
     }
 
-    @Override
-    public int createPatient(Connection connection, PatientBean patient, int theRows) throws SQLException {
+    //@Override
+    public int createPatient(PatientBean patient) throws SQLException {
 
         int result;
 
@@ -111,7 +111,8 @@ public class PatientDBManagement implements PatientDAO {
 
         String preparedQuery = "INSERT INTO PATIENT(LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) VALUES (?,?,?,?,?)";
 
-        try (PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+                PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setString(1, patient.getLastName());
             ps.setString(2, patient.getFirstName());
             ps.setString(3, patient.getDiagnosis());
@@ -124,7 +125,8 @@ public class PatientDBManagement implements PatientDAO {
                     ResultSet rs = statement.executeQuery(primaryKeySQL);) {
                 if (rs.next()) {
                     long key = rs.getLong(1);
-                    patientDBTableModel.setValueAt(key, theRows, 0);
+                    //problem with test points to here
+                    patientDBTableModel.setValueAt(key, 1, 0);
                 }
             }
         }
@@ -132,7 +134,7 @@ public class PatientDBManagement implements PatientDAO {
         return result;
     }
 
-    @Override
+    //@Override
     public ArrayList<PatientBean> readPatient(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM PATIENT WHERE PATIENTID = ?";
@@ -174,14 +176,15 @@ public class PatientDBManagement implements PatientDAO {
 
     }
 
-    @Override
-    public int updatePatient(Connection connection, PatientBean patient) throws SQLException {
+    //@Override
+    public int updatePatient(PatientBean patient) throws SQLException {
 
         int result;
 
         String preparedQuery = "UPDATE PATIENT SET LASTNAME = ?, FIRSTNAME = ?, DIAGNOSIS = ?, ADMISSIONDATE = ?, RELEASERATE = ? WHERE PATIENTID = ?";
 
-        try (PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+                PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setString(1, patient.getLastName());
             ps.setString(2, patient.getFirstName());
@@ -196,7 +199,7 @@ public class PatientDBManagement implements PatientDAO {
         return result;
     }
 
-    @Override
+    //@Override
     public int deletePatient(int selectedRow) throws SQLException {
 
         int result = 0;
@@ -209,6 +212,7 @@ public class PatientDBManagement implements PatientDAO {
                     password);
                     PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
+                //problem with tests is here
                 ps.setInt(1, patientDBTableModel.getPatientData(selectedRow).getPatientID());
 
                 int patientID = patientDBTableModel.getPatientData(selectedRow).getPatientID();
