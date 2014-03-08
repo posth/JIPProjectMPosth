@@ -1,6 +1,9 @@
 package com.posthoffice.jipprojectmposth.model;
 
+import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
+import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -17,6 +20,10 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
+    
+    private String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
+            "Date of Admission"};
+    
 
     public PatientDBTableModel() {
         super();
@@ -37,6 +44,12 @@ public class PatientDBTableModel extends AbstractTableModel {
         }
 
         return colCount;
+    }
+
+    public void addPatientBean(PatientBean p) {
+        data.add(p);
+        this.fireTableDataChanged();
+
     }
 
     public int loadData(ResultSet resultSet) {
@@ -63,6 +76,22 @@ public class PatientDBTableModel extends AbstractTableModel {
 
         return rowCount;
     }
+    
+    public void setChildrenTableModels(PatientBean patientBean) {       
+        
+        //getting the list of each child bean from the patient bean to send them to each children's table model
+        ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
+        ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
+        ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
+        
+        //sending arraylists to the seperate children table models
+        
+        //inpatient list
+        InpatientDBTableModel inpatientModel = new InpatientDBTableModel(inpatientList);
+        
+        
+        
+    }
 
     @Override
     public int getRowCount() {
@@ -76,7 +105,7 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
-        return columnNames.get(col);
+        return patientColumnNames[col];
     }
 
     public boolean getUpdateStatus(int row) {

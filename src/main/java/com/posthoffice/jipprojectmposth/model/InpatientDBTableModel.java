@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -16,12 +17,20 @@ public class InpatientDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<InpatientBean> data = new ArrayList<>();
+    
+    private String [] inpatientColumnNames = {"Patient ID", "Date of Stay", "Room Number", 
+    "Daily Rate", "Supplies", "Services"};
 
     public InpatientDBTableModel() {
-        super();
+        super();     
         logger.info("Inpatient Database Table Model Instantiated");
     }
-
+    
+    public InpatientDBTableModel(ArrayList<InpatientBean> inpatientList) {
+        super();
+        
+    }
+    
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
@@ -37,30 +46,16 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
         return colCount;
     }
-
-    public int loadData(ResultSet resultSet) {
-        int rowCount = 0;
-        try {
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                rowCount++;
-
-                InpatientBean inPatient = new InpatientBean();
-
-                inPatient.setPatientID(resultSet.getInt("PATIENTID"));
-                inPatient.setDateOfStay(resultSet.getTimestamp("DATEOFSTAY"));
-                inPatient.setRoomNumber(resultSet.getString("ROOMNUMBER"));
-                inPatient.setDailyRate(resultSet.getBigDecimal("DAILYRATE"));
-                inPatient.setRoomSupplies(resultSet.getBigDecimal("SUPPLIES"));
-                inPatient.setRoomServices(resultSet.getBigDecimal("SERVICES"));
-
-                data.add(inPatient);
-            }
-        } catch (SQLException e) {
-            logger.error("Error loading data", e);
-        }
-
-        return rowCount;
+    
+    public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
+        
+        //some java algorithms
+        
+        
+        
+        
+        
+        
     }
 
     @Override
@@ -75,7 +70,7 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
-        return columnNames.get(col);
+        return inpatientColumnNames[col];
     }
 
     public boolean getUpdateStatus(int row) {

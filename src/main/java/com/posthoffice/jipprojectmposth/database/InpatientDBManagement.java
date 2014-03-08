@@ -12,35 +12,52 @@ import org.slf4j.LoggerFactory;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 
 public class InpatientDBManagement {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
     private static final String password = "Johnny23";
-    
     private InpatientDBTableModel inpatientDBTableModel = null;
     private final boolean DEBUG = false;
-
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
 
     public InpatientDBManagement() {
         super();
     }
-    
+
     public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel) {
         super();
         logger.info("Inpatient Database instantiated");
         this.inpatientDBTableModel = inpatientDBTableModel;
     }
-    
-    public boolean fillTableModel(ArrayList<InpatientBean> inpatientBeanList) {
-        
+
+    public boolean fillTableModel(String criteria) {
+
         boolean retVal = true;
+        String sql = "SELECT * FROM INPATIENT";
         
-        //fill based on patient selection
-        
-        
+        if (criteria != null) {
+            sql += criteria;
+        }
+
+        try (Connection connection = DriverManager.getConnection(url, user,
+                password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);) {
+
+            if (resultSet.next()) {
+                ResultSetMetaData rsmd = resultSet.getMetaData();
+                inpatientDBTableModel.loadColumnNames(rsmd);         
+            } else {
+                retVal = false;
+            }
+        } catch (SQLException sqlex) {
+            logger.error("Error filling table.", sqlex);
+            retVal = false;
+        }
         return retVal;
     }
 
@@ -84,7 +101,7 @@ public class InpatientDBManagement {
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            
+
             ps.setInt(1, inpatient.getPatientID());
             ps.setTimestamp(2, inpatient.getDateOfStay());
             ps.setString(3, inpatient.getRoomNumber());
@@ -97,29 +114,28 @@ public class InpatientDBManagement {
         return result;
     }
 
-    
     public int updateInpatient(InpatientBean inpatient) throws SQLException {
-        
+
         int result;
 
         String preparedQuery = "UPDATE INPATIENT SET DATEOFSTAY = ?, ROOMNUMBER = ?, DAILYRATE = ?, SUPPLIES = ?, SERVICES = ? WHERE PATIENTID = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user,
                 password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            
+
             ps.setTimestamp(1, inpatient.getDateOfStay());
             ps.setString(2, inpatient.getRoomNumber());
             ps.setBigDecimal(3, inpatient.getDailyRate());
             ps.setBigDecimal(4, inpatient.getRoomSupplies());
             ps.setBigDecimal(5, inpatient.getRoomServices());
             ps.setInt(6, inpatient.getPatientID());
-            
+
             result = ps.executeUpdate();
         }
-        
+
         return result;
     }
-    
+
     //works
     public int deleteInpatient(InpatientBean inpatient) throws SQLException {
 
@@ -136,5 +152,4 @@ public class InpatientDBManagement {
 
         return result;
     }
-
 }

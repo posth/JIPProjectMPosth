@@ -7,12 +7,16 @@ public class InpatientTable extends javax.swing.JPanel {
     
     private InpatientDBTableModel inpatientModel = null;
     private InpatientDBManagement inpatientDBManager = null;
+    
+    private int selectedRow = -1;
 
     public InpatientTable() {
+        
         inpatientModel = new InpatientDBTableModel();
         
         inpatientDBManager = new InpatientDBManagement(inpatientModel);
         inpatientDBManager.fillTableModel(null);
+
         initComponents();
     }
 

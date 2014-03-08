@@ -18,17 +18,15 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PatientDBManagement{
+public class PatientDBManagement {
 
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
     private static final String password = "Johnny23";
-
     private PatientDBTableModel patientDBTableModel = null;
     private final boolean DEBUG = false;
-
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
-    
+
     public PatientDBManagement() {
         super();
     }
@@ -125,9 +123,10 @@ public class PatientDBManagement{
                     ResultSet rs = statement.executeQuery(primaryKeySQL);) {
                 if (rs.next()) {
                     long key = rs.getLong(1);
-                    //problem with test points to here
-                    patientDBTableModel.setValueAt(key, 1, 0);
+                    patient.setPatientID((int) key);
+                    //temporary fix of casting to int,
                 }
+                patientDBTableModel.addPatientBean(patient);
             }
         }
         logger.info("Records inserted: " + result);
@@ -200,22 +199,21 @@ public class PatientDBManagement{
     }
 
     //@Override
-    public int deletePatient(int selectedRow) throws SQLException {
+    public int deletePatient(PatientBean patientBean) throws SQLException {
 
         int result = 0;
 
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
 
-        if (selectedRow > -1) {
 
             try (Connection connection = DriverManager.getConnection(url, user,
                     password);
                     PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
                 //problem with tests is here
-                ps.setInt(1, patientDBTableModel.getPatientData(selectedRow).getPatientID());
+                ps.setInt(1, patientBean.getPatientID());
 
-                int patientID = patientDBTableModel.getPatientData(selectedRow).getPatientID();
+                int patientID = patientBean.getPatientID();
 
                 InpatientDBManagement inpatient = new InpatientDBManagement();
                 MedicationDBManagement medication = new MedicationDBManagement();
@@ -247,14 +245,9 @@ public class PatientDBManagement{
                 }
 
                 result = ps.executeUpdate();
-                patientDBTableModel.deleteRow(selectedRow);
-            } catch (SQLException ex) {
-                logger.error("Error deleting row", ex);
-            }
         }
 
         logger.info("Records deleted: " + result);
         return result;
     }
-
 }
