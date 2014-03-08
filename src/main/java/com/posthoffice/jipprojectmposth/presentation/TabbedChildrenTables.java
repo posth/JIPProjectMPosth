@@ -31,7 +31,7 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         inpatientTable2 = new com.posthoffice.jipprojectmposth.presentation.InpatientTable();
 
-        jTabbedPane1.addTab("tab1", inpatientTable2);
+        jTabbedPane1.addTab("Inpatient Data", inpatientTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
