@@ -4,6 +4,7 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -20,6 +21,8 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
+    
+    private InpatientTable inpatientTable = new InpatientTable();
     
     private String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
             "Date of Admission"};
@@ -77,7 +80,9 @@ public class PatientDBTableModel extends AbstractTableModel {
         return rowCount;
     }
     
-    public void setChildrenTableModels(PatientBean patientBean) {       
+    public void setChildrenTableModels(PatientBean patientBean) {      
+        
+        System.out.println("patientbean is " + patientBean);
         
         //getting the list of each child bean from the patient bean to send them to each children's table model
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
@@ -86,9 +91,12 @@ public class PatientDBTableModel extends AbstractTableModel {
         
         //sending arraylists to the seperate children table models
         
-        //inpatient list
-        InpatientDBTableModel inpatientModel = new InpatientDBTableModel(inpatientList);
+        System.out.println("The inpatientlist is " + inpatientList);
         
+        //inpatient list
+        InpatientDBTableModel inpatientModel = new InpatientDBTableModel(inpatientList);       
+        
+        inpatientTable.setInpatientModel(inpatientModel);
         
         
     }

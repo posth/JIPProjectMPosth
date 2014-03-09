@@ -165,7 +165,7 @@ public class PatientDBManagement {
                     temp.setInpatientList(inpatient.readInpatient(patientID));
                     temp.setMedicationList(medication.readMedication(patientID));
                     temp.setSurgicalList(surgical.readSurgical(patientID));
-
+                   
                     patientList.add(temp);
                 }
             }

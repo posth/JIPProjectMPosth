@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.274" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.887" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,132 +59,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="readInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.234">
-    <error message="Unknown database &apos;patientdb&apos;" type="com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException"><![CDATA[com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'patientdb'
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.Util.getInstance(Util.java:386)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:928)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1750)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1290)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2493)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2526)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2311)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBInit.initDB(PatientDBInit.java:16)
-	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.initDB(InpatientDBManagementTest.java:20)
-]]></error>
-  </testcase>
-  <testcase name="createInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.004">
-    <error message="Unknown database &apos;patientdb&apos;" type="com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException"><![CDATA[com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'patientdb'
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.Util.getInstance(Util.java:386)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:928)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1750)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1290)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2493)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2526)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2311)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBInit.initDB(PatientDBInit.java:16)
-	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.initDB(InpatientDBManagementTest.java:20)
-]]></error>
-  </testcase>
-  <testcase name="deleteInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.011">
-    <error message="Unknown database &apos;patientdb&apos;" type="com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException"><![CDATA[com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'patientdb'
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.Util.getInstance(Util.java:386)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:928)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1750)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1290)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2493)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2526)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2311)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBInit.initDB(PatientDBInit.java:16)
-	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.initDB(InpatientDBManagementTest.java:20)
-]]></error>
-  </testcase>
-  <testcase name="updateInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.025">
-    <error message="Unknown database &apos;patientdb&apos;" type="com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException"><![CDATA[com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'patientdb'
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.Util.getInstance(Util.java:386)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:928)
-	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1750)
-	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1290)
-	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2493)
-	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2526)
-	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2311)
-	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
-	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
-	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
-	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:347)
-	at java.sql.DriverManager.getConnection(DriverManager.java:571)
-	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBInit.initDB(PatientDBInit.java:16)
-	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.initDB(InpatientDBManagementTest.java:20)
-]]></error>
-  </testcase>
+  <testcase name="readInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.466"/>
+  <testcase name="createInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.142"/>
+  <testcase name="deleteInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.123"/>
+  <testcase name="updateInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.156"/>
 </testsuite>

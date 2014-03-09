@@ -1,9 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
-import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -16,21 +14,20 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
-    private final ArrayList<InpatientBean> data = new ArrayList<>();
-    
-    private String [] inpatientColumnNames = {"Patient ID", "Date of Stay", "Room Number", 
-    "Daily Rate", "Supplies", "Services"};
+    private ArrayList<InpatientBean> data = new ArrayList<>();
+    private String[] inpatientColumnNames = {"Patient ID", "Date of Stay", "Room Number",
+        "Daily Rate", "Supplies", "Services"};
 
     public InpatientDBTableModel() {
-        super();     
+        super();
         logger.info("Inpatient Database Table Model Instantiated");
     }
-    
+
     public InpatientDBTableModel(ArrayList<InpatientBean> inpatientList) {
         super();
-        
+        loadInpatientList(inpatientList);
     }
-    
+
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
@@ -45,17 +42,6 @@ public class InpatientDBTableModel extends AbstractTableModel {
         }
 
         return colCount;
-    }
-    
-    public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
-        
-        //some java algorithms
-        
-        
-        
-        
-        
-        
     }
 
     @Override
@@ -96,6 +82,23 @@ public class InpatientDBTableModel extends AbstractTableModel {
         data.add(newInpatient);
 
         this.fireTableDataChanged();
+    }
+
+    private void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
+        
+
+        //System.out.println(inpatientList);
+        //some java algorithms
+        int inpatientListLength = inpatientList.size();
+
+        for (int i = 0; i <= inpatientListLength; i++) {
+            InpatientBean temp = inpatientList.get(i);
+            data.add(temp);
+        }
+
+        System.out.println("at load inpatient list method");
+
+
     }
 
     @Override
@@ -161,5 +164,4 @@ public class InpatientDBTableModel extends AbstractTableModel {
 //        }
         return retVal;
     }
-
 }
