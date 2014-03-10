@@ -78,7 +78,7 @@ public class InpatientDBManagement {
                     InpatientBean temp = new InpatientBean();
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
-                    temp.setiD(resultSet.getInt("ID"));
+                    //temp.setiD(resultSet.getInt("ID"));
                     temp.setDateOfStay(resultSet.getTimestamp("DATEOFSTAY"));
                     temp.setRoomNumber(resultSet.getString("ROOMNUMBER"));
                     temp.setDailyRate(resultSet.getBigDecimal("DAILYRATE"));
@@ -88,7 +88,9 @@ public class InpatientDBManagement {
                     inpatientList.add(temp);
                 }
             }
+
         }
+        logger.info("The Inpatient List from the Inpatient DB Management class is " + inpatientList);
         return inpatientList;
     }
 
@@ -96,6 +98,8 @@ public class InpatientDBManagement {
     public int createInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
+
+        String primaryKeySQL = "SELECT LAST_INSERT_ID()";
 
         String preparedQuery = "INSERT INTO INPATIENT(PATIENTID, DATEOFSTAY, ROOMNUMBER, DAILYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?,?)";
 
@@ -110,6 +114,17 @@ public class InpatientDBManagement {
             ps.setBigDecimal(6, inpatient.getRoomServices());
 
             result = ps.executeUpdate();
+
+            try (Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(primaryKeySQL);) {
+                if (rs.next()) {
+                    long key = rs.getLong(1);
+                    inpatient.setPatientID((int) key);
+                    //temporary fix of casting to int,
+                }
+
+                inpatientDBTableModel.addInpatientBean(inpatient);
+            }
         }
         return result;
     }

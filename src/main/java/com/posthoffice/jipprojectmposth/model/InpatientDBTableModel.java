@@ -23,11 +23,10 @@ public class InpatientDBTableModel extends AbstractTableModel {
         logger.info("Inpatient Database Table Model Instantiated");
     }
 
-    public InpatientDBTableModel(ArrayList<InpatientBean> inpatientList) {
-        super();
-        loadInpatientList(inpatientList);
-    }
-
+//    public InpatientDBTableModel(ArrayList<InpatientBean> inpatientList) {
+//        super();
+//        loadInpatientList(inpatientList);
+//    }
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
@@ -42,6 +41,12 @@ public class InpatientDBTableModel extends AbstractTableModel {
         }
 
         return colCount;
+    }
+    
+        public void addInpatientBean(InpatientBean p) {
+        data.add(p);
+        this.fireTableDataChanged();
+
     }
 
     @Override
@@ -84,20 +89,18 @@ public class InpatientDBTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
-    private void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
-        
+    public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
-        //System.out.println(inpatientList);
-        //some java algorithms
         int inpatientListLength = inpatientList.size();
+
+        System.out.println("at load inpatient list method");
 
         for (int i = 0; i <= inpatientListLength; i++) {
             InpatientBean temp = inpatientList.get(i);
             data.add(temp);
         }
 
-        System.out.println("at load inpatient list method");
-
+        this.fireTableDataChanged();
 
     }
 

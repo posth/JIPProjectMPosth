@@ -23,7 +23,7 @@ public class PatientDBManagement {
     private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
     private static final String user = "root";
     private static final String password = "Johnny23";
-    private PatientDBTableModel patientDBTableModel = null;
+    private PatientDBTableModel patientDBTableModel = new PatientDBTableModel();
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
 
@@ -126,6 +126,7 @@ public class PatientDBManagement {
                     patient.setPatientID((int) key);
                     //temporary fix of casting to int,
                 }
+                
                 patientDBTableModel.addPatientBean(patient);
             }
         }

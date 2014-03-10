@@ -21,12 +21,12 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
-    
+
     private InpatientTable inpatientTable = new InpatientTable();
-    
+    private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
+
     private String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
-            "Date of Admission"};
-    
+        "Date of Admission"};
 
     public PatientDBTableModel() {
         super();
@@ -79,26 +79,27 @@ public class PatientDBTableModel extends AbstractTableModel {
 
         return rowCount;
     }
-    
-    public void setChildrenTableModels(PatientBean patientBean) {      
-        
-        System.out.println("patientbean is " + patientBean);
-        
+
+    public void setChildrenTableModels(int selectedRow) {
+
+        PatientBean patientBean = getPatientData(selectedRow);
+
+        logger.info("The Patient Bean taken from the Patient Model upon user selection" + patientBean);
+        System.out.println("The Patient Bean taken from the Patient Model upon user selection = " + patientBean);
+
         //getting the list of each child bean from the patient bean to send them to each children's table model
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
         ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
+   
+        logger.info("The Inpatient List as taken from the Patient Model class" + inpatientList);
+        System.out.println("The Inpatient List as taken from the Patient Model class = " + inpatientList);
         
-        //sending arraylists to the seperate children table models
-        
-        System.out.println("The inpatientlist is " + inpatientList);
-        
+        //sending arraylists to the seperate children table models 
         //inpatient list
-        InpatientDBTableModel inpatientModel = new InpatientDBTableModel(inpatientList);       
-        
+        inpatientModel.loadInpatientList(inpatientList);
         inpatientTable.setInpatientModel(inpatientModel);
-        
-        
+
     }
 
     @Override

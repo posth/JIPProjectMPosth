@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth;
 
+import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBInit;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;

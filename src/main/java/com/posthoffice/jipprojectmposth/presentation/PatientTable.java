@@ -54,7 +54,7 @@ public class PatientTable extends javax.swing.JPanel {
                 selectedRow = lsm.getMinSelectionIndex();
             }
             
-            patientModel.setChildrenTableModels(patientModel.getPatientData(selectedRow));
+            patientModel.setChildrenTableModels(selectedRow);
             
             
             

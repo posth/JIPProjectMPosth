@@ -1,4 +1,25 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.InpatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.947 sec - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.257 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+createInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 2.209 sec  <<< ERROR!
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`patientdb`.`inpatient`, CONSTRAINT `patient_1` FOREIGN KEY (`PATIENTID`) REFERENCES `patient` (`PATIENTID`))
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1041)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2825)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2441)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2366)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2350)
+	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.createInpatient(InpatientDBManagement.java:116)
+	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.createInpatientTest(InpatientDBManagementTest.java:36)
+

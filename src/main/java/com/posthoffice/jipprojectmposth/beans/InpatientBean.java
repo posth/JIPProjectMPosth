@@ -31,9 +31,9 @@ public class InpatientBean {
 
     public InpatientBean() {
         super();
-        this.patientID = 1;
+        this.patientID = -1;
         this.dateOfStay = new Timestamp(new Date().getTime());
-        this.roomNumber = "A1";
+        this.roomNumber = "";
         this.dailyRate = new BigDecimal("0");
         this.roomSupplies = new BigDecimal("0");
         this.roomServices = new BigDecimal("0");
@@ -48,13 +48,13 @@ public class InpatientBean {
         this.patientID = patientID;
     }
 
-    public int getiD() {
-        return iD;
-    }
-
-    public void setiD(int iD) {
-        this.iD = iD;
-    }
+//    public int getiD() {
+//        return iD;
+//    }
+//
+//    public void setiD(int iD) {
+//        this.iD = iD;
+//    }
 
     public Timestamp getDateOfStay() {
         return dateOfStay;
