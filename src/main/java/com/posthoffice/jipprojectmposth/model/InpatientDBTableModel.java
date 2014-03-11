@@ -160,11 +160,11 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        boolean retVal = false;
+        boolean retVal = true;
 
-//        if (col == 0) {
-//            retVal = false;
-//        }
+        if (col == 0) {
+            retVal = false;
+        }
         return retVal;
     }
 }

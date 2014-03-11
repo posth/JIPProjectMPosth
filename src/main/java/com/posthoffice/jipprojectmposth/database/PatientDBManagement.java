@@ -162,7 +162,7 @@ public class PatientDBManagement {
                     temp.setDiagnosis(resultSet.getString("DIAGNOSIS"));
                     temp.setAdmissionDate(resultSet.getTimestamp("ADMISSIONDATE"));
                     temp.setReleaseDate(resultSet.getTimestamp("RELEASERATE"));
-
+                        
                     temp.setInpatientList(inpatient.readInpatient(patientID));
                     temp.setMedicationList(medication.readMedication(patientID));
                     temp.setSurgicalList(surgical.readSurgical(patientID));

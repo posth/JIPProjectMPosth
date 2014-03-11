@@ -28,24 +28,16 @@ public class SurgicalForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        patientIDLabel = new javax.swing.JLabel();
         surgeryLabel = new javax.swing.JLabel();
         dateOfSurgeryLabel = new javax.swing.JLabel();
         surgeonsFeeLabel = new javax.swing.JLabel();
         roomFeeLabel = new javax.swing.JLabel();
         suppliesLabel = new javax.swing.JLabel();
-        patientIDTextField = new javax.swing.JTextField();
         surgeonsFeeTextField = new javax.swing.JTextField();
         surgeryTextField = new javax.swing.JTextField();
         dateOfSurgeryTextField = new javax.swing.JTextField();
         suppliesTextField = new javax.swing.JTextField();
         roomFeeTextField = new javax.swing.JTextField();
-
-        patientIDLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        patientIDLabel.setText("Patient ID:");
-        patientIDLabel.setMaximumSize(new java.awt.Dimension(80, 20));
-        patientIDLabel.setMinimumSize(new java.awt.Dimension(80, 20));
-        patientIDLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         surgeryLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         surgeryLabel.setText("Surgery:");
@@ -76,12 +68,6 @@ public class SurgicalForm extends javax.swing.JPanel {
         suppliesLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         suppliesLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         suppliesLabel.setPreferredSize(new java.awt.Dimension(80, 20));
-
-        patientIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIDTextFieldActionPerformed(evt);
-            }
-        });
 
         surgeonsFeeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,10 +107,6 @@ public class SurgicalForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(patientIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(patientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(dateOfSurgeryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateOfSurgeryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,10 +133,6 @@ public class SurgicalForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateOfSurgeryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateOfSurgeryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,13 +151,9 @@ public class SurgicalForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(suppliesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(suppliesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void patientIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIDTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientIDTextFieldActionPerformed
 
     private void surgeonsFeeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surgeonsFeeTextFieldActionPerformed
         // TODO add your handling code here:
@@ -205,8 +179,6 @@ public class SurgicalForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateOfSurgeryLabel;
     private javax.swing.JTextField dateOfSurgeryTextField;
-    private javax.swing.JLabel patientIDLabel;
-    private javax.swing.JTextField patientIDTextField;
     private javax.swing.JLabel roomFeeLabel;
     private javax.swing.JTextField roomFeeTextField;
     private javax.swing.JLabel suppliesLabel;

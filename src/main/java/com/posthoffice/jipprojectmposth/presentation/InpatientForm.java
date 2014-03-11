@@ -28,24 +28,16 @@ public class InpatientForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        patientIDLabel = new javax.swing.JLabel();
         dateOfStayLabel = new javax.swing.JLabel();
         roomNumberLabel = new javax.swing.JLabel();
         dailyRateLabel = new javax.swing.JLabel();
         suppliesLabel = new javax.swing.JLabel();
         servicesLabel = new javax.swing.JLabel();
-        patientIDTextField = new javax.swing.JTextField();
         dateOfStayTextField = new javax.swing.JTextField();
         servicesTextField = new javax.swing.JTextField();
         roomNumberTextField = new javax.swing.JTextField();
         dailyRateTextField = new javax.swing.JTextField();
         suppliesTextField = new javax.swing.JTextField();
-
-        patientIDLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        patientIDLabel.setText("Patient ID:");
-        patientIDLabel.setMaximumSize(new java.awt.Dimension(80, 20));
-        patientIDLabel.setMinimumSize(new java.awt.Dimension(80, 20));
-        patientIDLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         dateOfStayLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dateOfStayLabel.setText("Date of Stay:");
@@ -76,12 +68,6 @@ public class InpatientForm extends javax.swing.JPanel {
         servicesLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         servicesLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         servicesLabel.setPreferredSize(new java.awt.Dimension(80, 20));
-
-        patientIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientIDTextFieldActionPerformed(evt);
-            }
-        });
 
         dateOfStayTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,23 +123,15 @@ public class InpatientForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(roomNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dateOfStayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dateOfStayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(patientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateOfStayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(dateOfStayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(patientIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateOfStayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateOfStayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,10 +154,6 @@ public class InpatientForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void patientIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientIDTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patientIDTextFieldActionPerformed
 
     private void dateOfStayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateOfStayTextFieldActionPerformed
         // TODO add your handling code here:
@@ -207,8 +181,6 @@ public class InpatientForm extends javax.swing.JPanel {
     private javax.swing.JTextField dailyRateTextField;
     private javax.swing.JLabel dateOfStayLabel;
     private javax.swing.JTextField dateOfStayTextField;
-    private javax.swing.JLabel patientIDLabel;
-    private javax.swing.JTextField patientIDTextField;
     private javax.swing.JLabel roomNumberLabel;
     private javax.swing.JTextField roomNumberTextField;
     private javax.swing.JLabel servicesLabel;

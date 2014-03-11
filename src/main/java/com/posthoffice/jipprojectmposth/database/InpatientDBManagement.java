@@ -67,8 +67,7 @@ public class InpatientDBManagement {
 
         ArrayList<InpatientBean> inpatientList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(url, user,password);             
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
             pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
@@ -91,6 +90,7 @@ public class InpatientDBManagement {
 
         }
         logger.info("The Inpatient List from the Inpatient DB Management class is " + inpatientList);
+        
         return inpatientList;
     }
 
