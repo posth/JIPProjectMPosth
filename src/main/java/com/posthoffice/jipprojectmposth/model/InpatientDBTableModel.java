@@ -1,10 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
-import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
 import java.math.BigDecimal;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -24,26 +21,9 @@ public class InpatientDBTableModel extends AbstractTableModel {
         logger.info("Inpatient Database Table Model Instantiated");
     }
 
-    public int loadColumnNames(ResultSetMetaData rsmd) {
-
-        int colCount = 0;
-        try {
-            colCount = rsmd.getColumnCount() - 1;
-
-            for (int i = 1; i <= colCount; ++i) {
-                columnNames.add(rsmd.getColumnName(i) + 1);
-            }
-        } catch (SQLException e) {
-            logger.error("Error loading column names", e);
-        }
-
-        return colCount;
-    }
-
     public void addInpatientBean(InpatientBean p) {
         data.add(p);
         this.fireTableDataChanged();
-
     }
 
     @Override
@@ -53,7 +33,7 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.size();
+        return inpatientColumnNames.length;
     }
 
     @Override
@@ -89,18 +69,20 @@ public class InpatientDBTableModel extends AbstractTableModel {
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
         int inpatientListLength = inpatientList.size();
-        
-        //System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
 
+        //System.out.println("row count BEFORE " + getRowCount());
+        //System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
         for (int i = 0; i <= inpatientListLength - 1; i++) {
             InpatientBean temp = inpatientList.get(i);
             data.add(temp);
         }
 
         System.out.println("at load inpatient list method");
-        
-        //System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
 
+        //System.out.println("row count AFTER" + getRowCount());
+       
+        //System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
+        
         this.fireTableDataChanged();
 
     }
