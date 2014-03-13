@@ -4,9 +4,9 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
 
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -22,10 +22,10 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
 
-    private InpatientTable inpatientTable = new InpatientTable();
+    //private InpatientTable inpatientTable = new InpatientTable();
     private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
 
-    private String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
+    private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
         "Date of Admission"};
 
     public PatientDBTableModel() {
@@ -55,29 +55,19 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     }
 
-    public int loadData(ResultSet resultSet) {
-        int rowCount = 0;
-        try {
-            resultSet.beforeFirst();
-            while (resultSet.next()) {
-                rowCount++;
-
-                PatientBean patient = new PatientBean();
-
-                patient.setPatientID(resultSet.getInt("PATIENTID"));
-                patient.setLastName(resultSet.getString("LASTNAME"));
-                patient.setFirstName(resultSet.getString("FIRSTNAME"));
-                patient.setDiagnosis(resultSet.getString("DIAGNOSIS"));
-                patient.setAdmissionDate(resultSet.getTimestamp("ADMISSIONDATE"));
-                patient.setReleaseDate(resultSet.getTimestamp("RELEASERATE"));
-
-                data.add(patient);
-            }
-        } catch (SQLException e) {
-            logger.error("Error loading data", e);
+    public void loadData(ArrayList<PatientBean> patientList) {
+        
+        int patientListSize = patientList.size();
+        
+        for (int i = 0; i <= patientListSize - 1; i++) {
+            
+            PatientBean temp = patientList.get(i);
+            
+            data.add(temp);
+            
+            
         }
-
-        return rowCount;
+        
     }
 
     public void setChildrenTableModels(int selectedRow) {
@@ -98,7 +88,6 @@ public class PatientDBTableModel extends AbstractTableModel {
         //sending arraylists to the seperate children table models 
         //inpatient list
         inpatientModel.loadInpatientList(inpatientList);
-        inpatientTable.setInpatientModel(inpatientModel);
 
     }
 

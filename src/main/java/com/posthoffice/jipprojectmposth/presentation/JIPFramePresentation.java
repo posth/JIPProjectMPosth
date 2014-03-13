@@ -1,6 +1,5 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,6 +9,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 public class JIPFramePresentation extends javax.swing.JFrame implements ActionListener {
+    
+    public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
+    public static final String USER = "root";
+    public static final String PASSWORD = "Johnny23";
 
     public JIPFramePresentation() {
         initComponents();

@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
 import java.math.BigDecimal;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -23,10 +24,6 @@ public class InpatientDBTableModel extends AbstractTableModel {
         logger.info("Inpatient Database Table Model Instantiated");
     }
 
-//    public InpatientDBTableModel(ArrayList<InpatientBean> inpatientList) {
-//        super();
-//        loadInpatientList(inpatientList);
-//    }
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
@@ -42,8 +39,8 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
         return colCount;
     }
-    
-        public void addInpatientBean(InpatientBean p) {
+
+    public void addInpatientBean(InpatientBean p) {
         data.add(p);
         this.fireTableDataChanged();
 
@@ -92,13 +89,17 @@ public class InpatientDBTableModel extends AbstractTableModel {
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
         int inpatientListLength = inpatientList.size();
+        
+        //System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
 
-        System.out.println("at load inpatient list method");
-
-        for (int i = 0; i <= inpatientListLength; i++) {
+        for (int i = 0; i <= inpatientListLength - 1; i++) {
             InpatientBean temp = inpatientList.get(i);
             data.add(temp);
         }
+
+        System.out.println("at load inpatient list method");
+        
+        //System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
 
         this.fireTableDataChanged();
 

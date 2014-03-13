@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SurgicalDBManagement {
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
-    private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
-    private static final String user = "root";
-    private static final String password = "Johnny23";
+public class SurgicalDBManagement {
 
     final Logger logger = LoggerFactory.getLogger(SurgicalDBManagement.class);
 
@@ -31,8 +31,8 @@ public class SurgicalDBManagement {
 
         ArrayList<SurgicalBean> surgicalList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
             pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
@@ -63,8 +63,8 @@ public class SurgicalDBManagement {
 
         String preparedQuery = "INSERT INTO SURGICAL(PATIENTID, DATEOFSURGERY, SURGERY, ROOMFEE, SURGEONFEE, SUPPLIES) VALUES (?,?,?,?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setInt(1, surgical.getPatientID());
             ps.setTimestamp(2, surgical.getDateOfSurgery());
@@ -84,8 +84,8 @@ public class SurgicalDBManagement {
 
         String preparedQuery = "UPDATE SURGICAL SET DATEOFSURGERY = ?, SURGERY = ?, ROOMFEE = ?, SURGEONFEE = ?, SUPPLIES = ? WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setTimestamp(1, surgical.getDateOfSurgery());
             ps.setString(2, surgical.getSurgery());
@@ -106,8 +106,8 @@ public class SurgicalDBManagement {
 
         String preparedQuery = "DELETE FROM SURGICAL WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setInt(1, surgical.getPatientID());
 
             result = ps.executeUpdate();

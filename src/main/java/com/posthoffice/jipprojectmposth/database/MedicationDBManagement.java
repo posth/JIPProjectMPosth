@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MedicationDBManagement {
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
-    private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
-    private static final String user = "root";
-    private static final String password = "Johnny23";
+public class MedicationDBManagement {
 
     final Logger logger = LoggerFactory.getLogger(MedicationDBManagement.class);
 
@@ -30,8 +30,8 @@ public class MedicationDBManagement {
 
         ArrayList<MedicationBean> medicationList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
             pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
@@ -61,8 +61,8 @@ public class MedicationDBManagement {
 
         String preparedQuery = "INSERT INTO MEDICATION(PATIENTID, DATEOFMED, MED, UNITCOST, UNITS) VALUES (?,?,?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setInt(1, medication.getPatientID());
             ps.setTimestamp(2, medication.getDateOfMed());
@@ -81,8 +81,8 @@ public class MedicationDBManagement {
 
         String preparedQuery = "UPDATE MEDICATION SET DATEOFMED = ?, MED = ?, UNITCOST = ?, UNITS = ? WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setTimestamp(1, medication.getDateOfMed());
             ps.setString(2, medication.getMedication());
@@ -102,8 +102,8 @@ public class MedicationDBManagement {
 
         String preparedQuery = "DELETE FROM MEDICATION WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setInt(1, medication.getPatientID());
 
             result = ps.executeUpdate();

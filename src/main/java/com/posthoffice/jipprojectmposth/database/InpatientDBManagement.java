@@ -15,11 +15,12 @@ import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-public class InpatientDBManagement {
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
-    private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
-    private static final String user = "root";
-    private static final String password = "Johnny23";
+public class InpatientDBManagement {
+    
     private InpatientDBTableModel inpatientDBTableModel = null;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
@@ -38,19 +39,15 @@ public class InpatientDBManagement {
 
         boolean retVal = true;
         String sql = "SELECT * FROM INPATIENT";
-        
-        if (criteria != null) {
-            sql += criteria;
-        }
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);) {
 
             if (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
-                inpatientDBTableModel.loadColumnNames(rsmd);         
+                inpatientDBTableModel.loadColumnNames(rsmd); 
             } else {
                 retVal = false;
             }
@@ -60,6 +57,8 @@ public class InpatientDBManagement {
         }
         return retVal;
     }
+    
+    
 
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 
@@ -67,7 +66,7 @@ public class InpatientDBManagement {
 
         ArrayList<InpatientBean> inpatientList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user,password);             
+        try (Connection connection = DriverManager.getConnection(URL, USER,PASSWORD);             
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
             pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
@@ -103,8 +102,8 @@ public class InpatientDBManagement {
 
         String preparedQuery = "INSERT INTO INPATIENT(PATIENTID, DATEOFSTAY, ROOMNUMBER, DAILYRATE, SUPPLIES, SERVICES) VALUES (?,?,?,?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setInt(1, inpatient.getPatientID());
             ps.setTimestamp(2, inpatient.getDateOfStay());
@@ -135,8 +134,8 @@ public class InpatientDBManagement {
 
         String preparedQuery = "UPDATE INPATIENT SET DATEOFSTAY = ?, ROOMNUMBER = ?, DAILYRATE = ?, SUPPLIES = ?, SERVICES = ? WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setTimestamp(1, inpatient.getDateOfStay());
             ps.setString(2, inpatient.getRoomNumber());
@@ -158,8 +157,8 @@ public class InpatientDBManagement {
 
         String preparedQuery = "DELETE FROM INPATIENT WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setInt(1, inpatient.getPatientID());
 
             result = ps.executeUpdate();

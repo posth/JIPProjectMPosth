@@ -18,11 +18,12 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PatientDBManagement {
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
+import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
-    private static final String url = "jdbc:mysql://localhost:3306/PATIENTDB";
-    private static final String user = "root";
-    private static final String password = "Johnny23";
+public class PatientDBManagement {
+    
     private PatientDBTableModel patientDBTableModel = new PatientDBTableModel();
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
@@ -45,15 +46,17 @@ public class PatientDBManagement {
             sql += criteria;
         }
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);) {
 
             if (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
                 patientDBTableModel.loadColumnNames(rsmd);
-                patientDBTableModel.loadData(resultSet);
+                
+                patientDBTableModel.loadData(readPatient());
+
             } else {
                 retVal = false;
             }
@@ -61,6 +64,8 @@ public class PatientDBManagement {
             logger.error("Error filling table.", sqlex);
             retVal = false;
         }
+        
+        
         return retVal;
     }
 
@@ -69,8 +74,8 @@ public class PatientDBManagement {
         PatientBean patient;
         int result = 0;
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);) {
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);) {
 
             for (int theRows = 0; theRows < patientDBTableModel.getRowCount(); ++theRows) {
                 if (patientDBTableModel.getUpdateStatus(theRows)) {
@@ -109,7 +114,7 @@ public class PatientDBManagement {
 
         String preparedQuery = "INSERT INTO PATIENT(LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) VALUES (?,?,?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, user, password);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setString(1, patient.getLastName());
             ps.setString(2, patient.getFirstName());
@@ -135,17 +140,16 @@ public class PatientDBManagement {
     }
 
     //@Override
-    public ArrayList<PatientBean> readPatient(int patientID) throws SQLException {
+    public ArrayList<PatientBean> readPatient() throws SQLException {
 
-        String preparedQuery = "SELECT * FROM PATIENT WHERE PATIENTID = ?";
+        String preparedQuery = "SELECT * FROM PATIENT";
 
         ArrayList<PatientBean> patientList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, user,
-                password);
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
 
-            pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
 
                 while (resultSet.next()) {
@@ -155,6 +159,8 @@ public class PatientDBManagement {
                     InpatientDBManagement inpatient = new InpatientDBManagement();
                     MedicationDBManagement medication = new MedicationDBManagement();
                     SurgicalDBManagement surgical = new SurgicalDBManagement();
+                    
+                    int patientID = resultSet.getInt("PATIENTID");
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
                     temp.setLastName(resultSet.getString("LASTNAME"));
@@ -183,7 +189,7 @@ public class PatientDBManagement {
 
         String preparedQuery = "UPDATE PATIENT SET LASTNAME = ?, FIRSTNAME = ?, DIAGNOSIS = ?, ADMISSIONDATE = ?, RELEASERATE = ? WHERE PATIENTID = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, user, password);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
             ps.setString(1, patient.getLastName());
@@ -207,8 +213,8 @@ public class PatientDBManagement {
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
 
 
-            try (Connection connection = DriverManager.getConnection(url, user,
-                    password);
+            try (Connection connection = DriverManager.getConnection(URL, USER,
+                    PASSWORD);
                     PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
                 //problem with tests is here

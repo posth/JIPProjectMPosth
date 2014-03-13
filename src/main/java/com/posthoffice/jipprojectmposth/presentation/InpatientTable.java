@@ -2,16 +2,16 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 public class InpatientTable extends javax.swing.JPanel {
 
-    private InpatientDBTableModel inpatientModel = null;
+    private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
     private InpatientDBManagement inpatientDBManager = null;
     private int selectedRow = -1;
 
     public InpatientTable() {
-
-        inpatientModel = new InpatientDBTableModel();
 
         inpatientDBManager = new InpatientDBManagement(inpatientModel);
         inpatientDBManager.fillTableModel(null);
@@ -19,13 +19,16 @@ public class InpatientTable extends javax.swing.JPanel {
         initComponents();
     }
 
+//    public InpatientTable(InpatientDBTableModel inpatientModel) {
+//        inpatientDBManager = new InpatientDBManagement(inpatientModel);
+//        inpatientDBManager.fillTableModel(null);
+//        initComponents();
+//    }
 
-    public void setInpatientModel(InpatientDBTableModel inpatientModel) {
-        this.inpatientModel = inpatientModel;
-        System.out.println("Setting model");
-    }
+//    public void setInpatientModel(InpatientDBTableModel inpatientModel) {
+//        this.inpatientModel = inpatientModel;
+//    }
     
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -51,4 +54,5 @@ public class InpatientTable extends javax.swing.JPanel {
     private javax.swing.JTable inpatientTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
 }
