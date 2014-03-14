@@ -61,7 +61,6 @@ public class InpatientDBManagement {
         return inpatientList;
     }
 
-    //works
     public int createInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
@@ -86,7 +85,7 @@ public class InpatientDBManagement {
                     ResultSet rs = statement.executeQuery(primaryKeySQL);) {
                 if (rs.next()) {
                     long key = rs.getLong(1);
-                    inpatient.setPatientID((int) key);
+                    inpatient.setiD((int) key);
                     //temporary fix of casting to int,
                 }
 

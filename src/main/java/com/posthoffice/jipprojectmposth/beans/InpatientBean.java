@@ -48,13 +48,13 @@ public class InpatientBean {
         this.patientID = patientID;
     }
 
-//    public int getiD() {
-//        return iD;
-//    }
-//
-//    public void setiD(int iD) {
-//        this.iD = iD;
-//    }
+    public int getiD() {
+        return iD;
+    }
+
+    public void setiD(int iD) {
+        this.iD = iD;
+    }
 
     public Timestamp getDateOfStay() {
         return dateOfStay;

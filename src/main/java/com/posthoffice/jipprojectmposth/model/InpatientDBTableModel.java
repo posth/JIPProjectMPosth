@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 public class InpatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
-    private final ArrayList<String> columnNames = new ArrayList<>();
     private ArrayList<InpatientBean> data = new ArrayList<>();
     private String[] inpatientColumnNames = {"Patient ID", "Date of Stay", "Room Number",
         "Daily Rate", "Supplies", "Services"};
@@ -59,30 +58,22 @@ public class InpatientDBTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
-    public void addBlankRow() {
-        InpatientBean newInpatient = new InpatientBean();
-        data.add(newInpatient);
-
-        this.fireTableDataChanged();
-    }
-
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
         int inpatientListLength = inpatientList.size();
 
-        //System.out.println("row count BEFORE " + getRowCount());
-        //System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
+        System.out.println("row count BEFORE " + getRowCount());
+        System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
+        
         for (int i = 0; i <= inpatientListLength - 1; i++) {
             InpatientBean temp = inpatientList.get(i);
             data.add(temp);
         }
 
         System.out.println("at load inpatient list method");
+        System.out.println("row count AFTER" + getRowCount());
+        System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
 
-        //System.out.println("row count AFTER" + getRowCount());
-       
-        //System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
-        
         this.fireTableDataChanged();
 
     }
@@ -90,6 +81,7 @@ public class InpatientDBTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object value, int row, int col) {
 
+        
         switch (col) {
             case 0:
                 data.get(row).setPatientID((int) value);

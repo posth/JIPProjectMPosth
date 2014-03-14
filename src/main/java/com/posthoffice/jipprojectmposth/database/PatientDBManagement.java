@@ -23,7 +23,7 @@ import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
 public class PatientDBManagement {
-    
+
     private PatientDBTableModel patientDBTableModel = new PatientDBTableModel();
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
@@ -54,7 +54,7 @@ public class PatientDBManagement {
             if (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
                 patientDBTableModel.loadColumnNames(rsmd);
-                
+
                 patientDBTableModel.loadData(readPatient());
 
             } else {
@@ -64,8 +64,7 @@ public class PatientDBManagement {
             logger.error("Error filling table.", sqlex);
             retVal = false;
         }
-        
-        
+
         return retVal;
     }
 
@@ -131,7 +130,7 @@ public class PatientDBManagement {
                     patient.setPatientID((int) key);
                     //temporary fix of casting to int,
                 }
-                
+
                 patientDBTableModel.addPatientBean(patient);
             }
         }
@@ -159,7 +158,7 @@ public class PatientDBManagement {
                     InpatientDBManagement inpatient = new InpatientDBManagement();
                     MedicationDBManagement medication = new MedicationDBManagement();
                     SurgicalDBManagement surgical = new SurgicalDBManagement();
-                    
+
                     int patientID = resultSet.getInt("PATIENTID");
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
@@ -168,11 +167,11 @@ public class PatientDBManagement {
                     temp.setDiagnosis(resultSet.getString("DIAGNOSIS"));
                     temp.setAdmissionDate(resultSet.getTimestamp("ADMISSIONDATE"));
                     temp.setReleaseDate(resultSet.getTimestamp("RELEASERATE"));
-                        
+
                     temp.setInpatientList(inpatient.readInpatient(patientID));
                     temp.setMedicationList(medication.readMedication(patientID));
                     temp.setSurgicalList(surgical.readSurgical(patientID));
-                   
+
                     patientList.add(temp);
                 }
             }
@@ -212,46 +211,44 @@ public class PatientDBManagement {
 
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
 
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);
+                PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
 
-            try (Connection connection = DriverManager.getConnection(URL, USER,
-                    PASSWORD);
-                    PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
+            ps.setInt(1, patientBean.getPatientID());
 
-                //problem with tests is here
-                ps.setInt(1, patientBean.getPatientID());
+            int patientID = patientBean.getPatientID();
 
-                int patientID = patientBean.getPatientID();
+            InpatientDBManagement inpatient = new InpatientDBManagement();
+            MedicationDBManagement medication = new MedicationDBManagement();
+            SurgicalDBManagement surgical = new SurgicalDBManagement();
 
-                InpatientDBManagement inpatient = new InpatientDBManagement();
-                MedicationDBManagement medication = new MedicationDBManagement();
-                SurgicalDBManagement surgical = new SurgicalDBManagement();
+            ArrayList<InpatientBean> inpatientList = inpatient.readInpatient(patientID);
+            ArrayList<MedicationBean> medicationList = medication.readMedication(patientID);
+            ArrayList<SurgicalBean> surgicalList = surgical.readSurgical(patientID);
 
-                ArrayList<InpatientBean> inpatientList = inpatient.readInpatient(patientID);
-                ArrayList<MedicationBean> medicationList = medication.readMedication(patientID);
-                ArrayList<SurgicalBean> surgicalList = surgical.readSurgical(patientID);
+            //delete each inpatient bean the deleted patient has
+            int inpatientListLength = inpatientList.size();
+            for (int i = 0; i < inpatientListLength; i++) {
+                InpatientBean temp = inpatientList.get(i);
+                inpatient.deleteInpatient(temp);
+            }
 
-                //delete each inpatient bean the deleted patient has
-                int inpatientListLength = inpatientList.size();
-                for (int i = 0; i < inpatientListLength; i++) {
-                    InpatientBean temp = inpatientList.get(i);
-                    inpatient.deleteInpatient(temp);
-                }
+            //delete each medication bean the deleted patient has
+            int medicationListLength = medicationList.size();
+            for (int i = 0; i < medicationListLength; i++) {
+                MedicationBean temp = medicationList.get(i);
+                medication.deleteMedication(temp);
+            }
 
-                //delete each medication bean the deleted patient has
-                int medicationListLength = medicationList.size();
-                for (int i = 0; i < medicationListLength; i++) {
-                    MedicationBean temp = medicationList.get(i);
-                    medication.deleteMedication(temp);
-                }
+            //delete each surgical bean the deleted patient has
+            int surgicalListLength = surgicalList.size();
+            for (int i = 0; i < surgicalListLength; i++) {
+                SurgicalBean temp = surgicalList.get(i);
+                surgical.deleteSurgical(temp);
+            }
 
-                //delete each surgical bean the deleted patient has
-                int surgicalListLength = surgicalList.size();
-                for (int i = 0; i < surgicalListLength; i++) {
-                    SurgicalBean temp = surgicalList.get(i);
-                    surgical.deleteSurgical(temp);
-                }
-
-                result = ps.executeUpdate();
+            result = ps.executeUpdate();
         }
 
         logger.info("Records deleted: " + result);

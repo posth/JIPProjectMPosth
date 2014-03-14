@@ -24,10 +24,8 @@ public class PatientDBManagementTest {
     @Test
     public void readPatientTest() throws SQLException {
 
-        int patientID = 1;
-
-        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient(patientID);
-        assertEquals(patientList.size(), 1);
+        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient();
+        assertEquals(patientList.size(), 5);
 
     }
 
@@ -42,30 +40,28 @@ public class PatientDBManagementTest {
     @Test
     public void deletePatientTest() throws SQLException {
 
-        int patientID = 0;
+        int patientID = 1;
         patient.setPatientID(patientID);
 
         PatientDBManagement.deletePatient(patient);
 
-        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient(patientID);
+        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient();
 
-        assertEquals(patientList.size(), 0);
+        assertEquals(patientList.size(), 4);
 
     }
 
     @Test
     public void updatePatientTest() throws SQLException {
 
-        int patientID = 2;
-
-        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient(patientID);
+        ArrayList<PatientBean> patientList = PatientDBManagement.readPatient();
+        
         PatientBean testBean = patientList.get(0);
-
         testBean.setDiagnosis("Kryptonite");
 
         PatientDBManagement.updatePatient(testBean);
 
-        ArrayList<PatientBean> patientList2 = PatientDBManagement.readPatient(patientID);
+        ArrayList<PatientBean> patientList2 = PatientDBManagement.readPatient();
         PatientBean updatedTestBean = patientList2.get(0);
 
         assertEquals(testBean, updatedTestBean);
