@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -13,7 +14,13 @@ public class PatientTable extends javax.swing.JPanel {
     private int selectedRow = -1;
 
     public PatientTable() {
-        patientModel = new PatientDBTableModel();
+        InpatientDBTableModel t = new InpatientDBTableModel();
+        patientModel = new PatientDBTableModel(t);
+        initComponents();
+    }
+
+    public PatientTable(PatientDBTableModel patientModel) {
+        this.patientModel = patientModel;
 
         patientDBManager = new PatientDBManagement(patientModel);
         patientDBManager.fillTableModel(null);
@@ -53,11 +60,11 @@ public class PatientTable extends javax.swing.JPanel {
             if (!lsm.isSelectionEmpty()) {
                 selectedRow = lsm.getMinSelectionIndex();
             }
-            
+
             patientModel.setChildrenTableModels(selectedRow);
-            
-            
-            
+
+
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

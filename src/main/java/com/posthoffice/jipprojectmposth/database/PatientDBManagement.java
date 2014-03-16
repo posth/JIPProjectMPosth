@@ -24,7 +24,7 @@ import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation
 
 public class PatientDBManagement {
 
-    private PatientDBTableModel patientDBTableModel = new PatientDBTableModel();
+    private PatientDBTableModel patientDBTableModel;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
 

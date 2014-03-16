@@ -21,15 +21,13 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
-
-    //private InpatientTable inpatientTable = new InpatientTable();
     private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
-
     private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
         "Date of Admission"};
 
-    public PatientDBTableModel() {
+    public PatientDBTableModel(InpatientDBTableModel inpatientModel) {
         super();
+        this.inpatientModel = inpatientModel;
         logger.info("Patient Database Table Model Instantiated");
     }
 
@@ -56,18 +54,18 @@ public class PatientDBTableModel extends AbstractTableModel {
     }
 
     public void loadData(ArrayList<PatientBean> patientList) {
-        
+
         int patientListSize = patientList.size();
-        
+
         for (int i = 0; i <= patientListSize - 1; i++) {
-            
+
             PatientBean temp = patientList.get(i);
-            
+
             data.add(temp);
-            
-            
+
+
         }
-        
+
     }
 
     public void setChildrenTableModels(int selectedRow) {
@@ -81,10 +79,10 @@ public class PatientDBTableModel extends AbstractTableModel {
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
         ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
-   
+
         logger.info("The Inpatient List as taken from the Patient Model class" + inpatientList);
         System.out.println("The Inpatient List as taken from the Patient Model class = " + inpatientList);
-        
+
         //sending arraylists to the seperate children table models 
         //inpatient list
         inpatientModel.loadInpatientList(inpatientList);

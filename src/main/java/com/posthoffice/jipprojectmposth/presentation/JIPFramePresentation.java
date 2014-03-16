@@ -1,5 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,8 +17,14 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
+    private PatientDBTableModel patientModel;
+    private InpatientDBTableModel inpatientModel;
 
     public JIPFramePresentation() {
+
+        inpatientModel = new InpatientDBTableModel();
+        patientModel = new PatientDBTableModel(inpatientModel);
+
         initComponents();
     }
 
@@ -25,7 +33,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private void initComponents() {
 
         jToolBar = createToolBar();
-        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel();
+        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -116,7 +124,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             }
 
         }
-
     }
 
     public void createPatientForm() {
@@ -138,11 +145,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void deletePatientForm() {
-
         //to do based on selectedRow
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

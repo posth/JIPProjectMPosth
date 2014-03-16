@@ -8,7 +8,12 @@ public class InpatientTable extends javax.swing.JPanel {
     private int selectedRow = -1;
 
     public InpatientTable() {
+        inpatientModel = new InpatientDBTableModel();
+        initComponents();
+    }
 
+    public InpatientTable(InpatientDBTableModel inpatientModel) {
+        this.inpatientModel = inpatientModel;
         initComponents();
     }
 
@@ -37,5 +42,4 @@ public class InpatientTable extends javax.swing.JPanel {
     private javax.swing.JTable inpatientTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
 }

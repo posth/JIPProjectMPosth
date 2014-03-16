@@ -46,6 +46,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables" name="tabbedChildrenTables1">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel)"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -59,6 +62,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="com.posthoffice.jipprojectmposth.presentation.PatientTable" name="patientTable1">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel)"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
