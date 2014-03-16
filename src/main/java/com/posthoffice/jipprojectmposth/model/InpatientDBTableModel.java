@@ -61,18 +61,20 @@ public class InpatientDBTableModel extends AbstractTableModel {
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
         int inpatientListLength = inpatientList.size();
+        
+        data.clear();
 
-        System.out.println("row count BEFORE " + getRowCount());
-        System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
+//        System.out.println("row count BEFORE " + getRowCount());
+//        System.out.println("What's in the Inpatient model arraylist BEFORE: " + data);
         
         for (int i = 0; i <= inpatientListLength - 1; i++) {
             InpatientBean temp = inpatientList.get(i);
             data.add(temp);
         }
 
-        System.out.println("at load inpatient list method");
-        System.out.println("row count AFTER" + getRowCount());
-        System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
+//        System.out.println("at load inpatient list method");
+//        System.out.println("row count AFTER" + getRowCount());
+//        System.out.println("What's in the Inpatient model arraylist AFTER: " + data);
 
         this.fireTableDataChanged();
 
