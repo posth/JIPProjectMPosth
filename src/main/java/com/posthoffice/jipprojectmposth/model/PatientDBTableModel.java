@@ -4,8 +4,6 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
-import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
-import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -19,9 +17,13 @@ import org.slf4j.LoggerFactory;
 public class PatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
-    private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
+    
+    private InpatientDBTableModel inpatientModel;
+    private MedicationDBTableModel medicationModel;
+    
     private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
         "Date of Admission"};
 
@@ -81,11 +83,11 @@ public class PatientDBTableModel extends AbstractTableModel {
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
 
         logger.info("The Inpatient List as taken from the Patient Model class" + inpatientList);
-        System.out.println("The Inpatient List as taken from the Patient Model class = " + inpatientList);
+        System.out.println("The Medication List as taken from the Patient Model class = " + medicationList);
 
         //sending arraylists to the seperate children table models 
-        //inpatient list
         inpatientModel.loadInpatientList(inpatientList);
+        medicationModel.loadMedicationList(medicationList);
 
     }
 

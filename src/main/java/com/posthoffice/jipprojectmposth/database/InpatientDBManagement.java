@@ -56,7 +56,7 @@ public class InpatientDBManagement {
             }
 
         }
-        logger.info("The Inpatient List from the Inpatient DB Management class is " + inpatientList);
+
         
         return inpatientList;
     }

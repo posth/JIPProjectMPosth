@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.database;
 
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
+import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +15,11 @@ import org.slf4j.LoggerFactory;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
+import java.sql.Statement;
 
 public class MedicationDBManagement {
 
+    private MedicationDBTableModel medicationDBTableModel = null;
     final Logger logger = LoggerFactory.getLogger(MedicationDBManagement.class);
 
     public MedicationDBManagement() {
@@ -41,7 +44,7 @@ public class MedicationDBManagement {
                     MedicationBean temp = new MedicationBean();
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
-                    temp.setiD(resultSet.getInt("ID"));
+                    //temp.setiD(resultSet.getInt("ID"));
                     temp.setDateOfMed(resultSet.getTimestamp("DATEOFMED"));
                     temp.setMedication(resultSet.getString("MED"));
                     temp.setCostPerUnit(resultSet.getBigDecimal("UNITCOST"));
@@ -51,6 +54,7 @@ public class MedicationDBManagement {
                 }
             }
         }
+
         return medicationList;
     }
 
@@ -58,6 +62,8 @@ public class MedicationDBManagement {
     public int createMedication(MedicationBean medication) throws SQLException {
 
         int result;
+
+        String primaryKeySQL = "SELECT LAST_INSERT_ID()";
 
         String preparedQuery = "INSERT INTO MEDICATION(PATIENTID, DATEOFMED, MED, UNITCOST, UNITS) VALUES (?,?,?,?,?)";
 
@@ -71,6 +77,18 @@ public class MedicationDBManagement {
             ps.setBigDecimal(5, medication.getNumberOfUnits());
 
             result = ps.executeUpdate();
+
+            try (Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(primaryKeySQL);) {
+                if (rs.next()) {
+                    long key = rs.getLong(1);
+                    medication.setiD((int) key);
+                    //temporary fix of casting to int,
+                }
+
+                medicationDBTableModel.addMedicationBean(medication);
+
+            }
         }
         return result;
     }

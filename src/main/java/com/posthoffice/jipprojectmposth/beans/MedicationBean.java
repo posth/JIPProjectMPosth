@@ -12,6 +12,18 @@ public class MedicationBean {
     private String medication;
     private BigDecimal costPerUnit;
     private BigDecimal numberOfUnits;
+    private boolean update;
+    
+    public MedicationBean(int patientID, Timestamp dateOfMed, String medication, BigDecimal costPerUnit, BigDecimal numberOfUnits) {
+        
+        super();
+        this.patientID = patientID;
+        this.dateOfMed = dateOfMed;
+        this.medication = medication;
+        this.costPerUnit = costPerUnit;
+        this.numberOfUnits = numberOfUnits;
+        this.update = false;
+    }
 
     public MedicationBean() {
         super();
@@ -20,6 +32,7 @@ public class MedicationBean {
         this.medication = "";
         this.costPerUnit = new BigDecimal("0");
         this.numberOfUnits = new BigDecimal("0");
+        this.update = false;
     }
 
     public int getPatientID() {
@@ -68,6 +81,14 @@ public class MedicationBean {
 
     public void setNumberOfUnits(BigDecimal numberOfUnits) {
         this.numberOfUnits = numberOfUnits;
+    }
+
+    public boolean isUpdate() {
+        return update;
+    }
+
+    public void setUpdate(boolean update) {
+        this.update = update;
     }
 
     @Override
