@@ -17,20 +17,22 @@ import org.slf4j.LoggerFactory;
 public class PatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
-    
+
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
-    
+
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
-    
+    private SurgicalDBTableModel surgicalModel;
+
     private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
         "Date of Admission"};
 
-    public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel) {
+    public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
         super();
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
+        this.surgicalModel = surgicalModel;
         logger.info("Patient Database Table Model Instantiated");
     }
 
@@ -75,7 +77,6 @@ public class PatientDBTableModel extends AbstractTableModel {
         PatientBean patientBean = getPatientData(selectedRow);
 
         logger.info("The Patient Bean taken from the Patient Model upon user selection" + patientBean);
-        System.out.println("The Patient Bean taken from the Patient Model upon user selection = " + patientBean);
 
         //getting the list of each child bean from the patient bean to send them to each children's table model
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
@@ -83,11 +84,11 @@ public class PatientDBTableModel extends AbstractTableModel {
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
 
         logger.info("The Inpatient List as taken from the Patient Model class" + inpatientList);
-        System.out.println("The Medication List as taken from the Patient Model class = " + medicationList);
 
         //sending arraylists to the seperate children table models 
         inpatientModel.loadInpatientList(inpatientList);
         medicationModel.loadMedicationList(medicationList);
+        surgicalModel.loadSurgicalList(surgicalList);
 
     }
 

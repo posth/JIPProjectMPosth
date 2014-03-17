@@ -13,6 +13,18 @@ public class SurgicalBean {
     private BigDecimal roomFee;
     private BigDecimal surgeonsFee;
     private BigDecimal supplies;
+    private boolean update;
+
+    public SurgicalBean(int patientID, Timestamp dateOfSurgery, String surgery, BigDecimal roomFee, BigDecimal surgeonsFee, BigDecimal supplies) {
+        super();
+        this.patientID = patientID;
+        this.dateOfSurgery = dateOfSurgery;
+        this.surgery = surgery;
+        this.roomFee = roomFee;
+        this.surgeonsFee = surgeonsFee;
+        this.supplies = supplies;
+        this.update = false;
+    }
 
     public SurgicalBean() {
         super();
@@ -22,6 +34,7 @@ public class SurgicalBean {
         this.roomFee = new BigDecimal("0");
         this.surgeonsFee = new BigDecimal("0");
         this.supplies = new BigDecimal("0");
+        this.update = false;
     }
 
     public int getPatientID() {
@@ -78,6 +91,14 @@ public class SurgicalBean {
 
     public void setSupplies(BigDecimal supplies) {
         this.supplies = supplies;
+    }
+
+    public boolean isUpdate() {
+        return update;
+    }
+
+    public void setUpdate(boolean update) {
+        this.update = update;
     }
 
     @Override

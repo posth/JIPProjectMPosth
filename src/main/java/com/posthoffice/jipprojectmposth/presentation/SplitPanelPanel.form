@@ -47,7 +47,7 @@
           <SubComponents>
             <Component class="com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables" name="tabbedChildrenTables1">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel)"/>
               </AuxValues>
             </Component>
           </SubComponents>

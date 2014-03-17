@@ -14,8 +14,7 @@ public class MedicationBean {
     private BigDecimal numberOfUnits;
     private boolean update;
     
-    public MedicationBean(int patientID, Timestamp dateOfMed, String medication, BigDecimal costPerUnit, BigDecimal numberOfUnits) {
-        
+    public MedicationBean(int patientID, Timestamp dateOfMed, String medication, BigDecimal costPerUnit, BigDecimal numberOfUnits) {        
         super();
         this.patientID = patientID;
         this.dateOfMed = dateOfMed;

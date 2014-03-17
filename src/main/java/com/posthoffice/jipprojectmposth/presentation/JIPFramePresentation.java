@@ -3,8 +3,7 @@ package com.posthoffice.jipprojectmposth.presentation;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,12 +21,14 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
+    private SurgicalDBTableModel surgicalModel;
 
     public JIPFramePresentation() {
 
         inpatientModel = new InpatientDBTableModel();
         medicationModel = new MedicationDBTableModel();
-        patientModel = new PatientDBTableModel(inpatientModel, medicationModel);
+        surgicalModel = new SurgicalDBTableModel();
+        patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
 
         initComponents();
     }
@@ -37,7 +38,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private void initComponents() {
 
         jToolBar = createToolBar();
-        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel, medicationModel);
+        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel, medicationModel, surgicalModel);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();

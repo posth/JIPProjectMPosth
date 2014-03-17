@@ -26,7 +26,6 @@ public class MedicationDBManagement {
         super();
     }
 
-    //works
     public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM MEDICATION WHERE PATIENTID = ?";

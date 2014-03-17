@@ -3,25 +3,29 @@ package com.posthoffice.jipprojectmposth.presentation;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
 public class SplitPanelPanel extends javax.swing.JPanel {
 
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
+    private SurgicalDBTableModel surgicalModel;
     
-//    public SplitPanelPanel() {     
-//        this.inpatientModel = new InpatientDBTableModel();
-//        this.medicationModel = new MedicationDBTableModel();
-//        this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel);
-//        initComponents();
-//    }
+    public SplitPanelPanel() {     
+        this.inpatientModel = new InpatientDBTableModel();
+        this.medicationModel = new MedicationDBTableModel();
+        this.surgicalModel = new SurgicalDBTableModel();
+        this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
+        initComponents();
+    }
 
-    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel) {
+    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
 
         this.patientModel = patientModel;
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
+        this.surgicalModel = surgicalModel;
         initComponents();
     }
 
@@ -31,7 +35,7 @@ public class SplitPanelPanel extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel);
+        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel);
         jScrollPane3 = new javax.swing.JScrollPane();
         patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel);
 

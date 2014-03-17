@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="9.325" tests="4" errors="1" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="9.582" tests="4" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
@@ -60,10 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.355"/>
-  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.347"/>
-  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.739"/>
-  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="1.884">
+  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.508"/>
+  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.327"/>
+  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.547"/>
+  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="2.2">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:134)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.createPatientTest(PatientDBManagementTest.java:35)

@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.MedicationDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.45 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
-createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 1.976 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.274 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
+createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 2.254 sec  <<< ERROR!
 java.lang.NullPointerException: null
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:89)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:88)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.createMedicationTest(MedicationDBManagementTest.java:39)
 

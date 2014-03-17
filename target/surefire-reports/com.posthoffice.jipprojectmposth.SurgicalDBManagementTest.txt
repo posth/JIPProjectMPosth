@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.71 sec - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.337 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 1.804 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:89)
+	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
+

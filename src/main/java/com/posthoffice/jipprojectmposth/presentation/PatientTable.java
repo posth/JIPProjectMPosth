@@ -4,6 +4,7 @@ import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,7 +18,8 @@ public class PatientTable extends javax.swing.JPanel {
     public PatientTable() {
         InpatientDBTableModel t = new InpatientDBTableModel();
         MedicationDBTableModel m = new MedicationDBTableModel();
-        patientModel = new PatientDBTableModel(t, m);
+        SurgicalDBTableModel s = new SurgicalDBTableModel();
+        patientModel = new PatientDBTableModel(t, m, s);
         initComponents();
     }
 

@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.database;
 
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,17 +15,17 @@ import org.slf4j.LoggerFactory;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
+import java.sql.Statement;
 
 public class SurgicalDBManagement {
 
+    private SurgicalDBTableModel surgicalDBTableModel = null;
     final Logger logger = LoggerFactory.getLogger(SurgicalDBManagement.class);
 
     public SurgicalDBManagement() {
         super();
     }
 
-    //works
-    //only time primary key is used is when it is read?
     public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM SURGICAL WHERE PATIENTID = ?";
@@ -42,7 +43,7 @@ public class SurgicalDBManagement {
                     SurgicalBean temp = new SurgicalBean();
 
                     temp.setPatientID(resultSet.getInt("ID"));
-                    temp.setiD(resultSet.getInt("PATIENTID"));
+                    //temp.setiD(resultSet.getInt("PATIENTID"));
                     temp.setDateOfSurgery(resultSet.getTimestamp("DATEOFSURGERY"));
                     temp.setSurgery(resultSet.getString("SURGERY"));
                     temp.setRoomFee(resultSet.getBigDecimal("ROOMFEE"));
@@ -61,6 +62,8 @@ public class SurgicalDBManagement {
 
         int result;
 
+        String primaryKeySQL = "SELECT LAST_INSERT_ID()";
+
         String preparedQuery = "INSERT INTO SURGICAL(PATIENTID, DATEOFSURGERY, SURGERY, ROOMFEE, SURGEONFEE, SUPPLIES) VALUES (?,?,?,?,?,?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
@@ -74,6 +77,17 @@ public class SurgicalDBManagement {
             ps.setBigDecimal(6, surgical.getSupplies());
 
             result = ps.executeUpdate();
+
+            try (Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(primaryKeySQL);) {
+                if (rs.next()) {
+                    long key = rs.getLong(1);
+                    surgical.setiD((int) key);
+                    //temporary fix of casting to int,
+                }
+
+                surgicalDBTableModel.addSurgicalBean(surgical);
+            }
         }
         return result;
     }

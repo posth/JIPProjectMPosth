@@ -54,6 +54,18 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="com.posthoffice.jipprojectmposth.presentation.SurgicalTable" name="surgicalTable1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.SurgicalTable(surgicalModel)"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Surgical Data">
+                <Property name="tabTitle" type="java.lang.String" value="Surgical Data"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
