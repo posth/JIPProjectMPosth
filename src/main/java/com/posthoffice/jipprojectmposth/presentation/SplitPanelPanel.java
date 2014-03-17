@@ -1,17 +1,27 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 
 public class SplitPanelPanel extends javax.swing.JPanel {
 
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
+    private MedicationDBTableModel medicationModel;
+    
+//    public SplitPanelPanel() {     
+//        this.inpatientModel = new InpatientDBTableModel();
+//        this.medicationModel = new MedicationDBTableModel();
+//        this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel);
+//        initComponents();
+//    }
 
-    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel) {
+    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel) {
 
         this.patientModel = patientModel;
         this.inpatientModel = inpatientModel;
+        this.medicationModel = medicationModel;
         initComponents();
     }
 
@@ -21,7 +31,7 @@ public class SplitPanelPanel extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel);
+        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel);
         jScrollPane3 = new javax.swing.JScrollPane();
         patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel);
 
@@ -40,11 +50,11 @@ public class SplitPanelPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

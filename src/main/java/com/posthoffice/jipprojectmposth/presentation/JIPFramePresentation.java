@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -17,13 +18,16 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
+    
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
+    private MedicationDBTableModel medicationModel;
 
     public JIPFramePresentation() {
 
         inpatientModel = new InpatientDBTableModel();
-        patientModel = new PatientDBTableModel(inpatientModel);
+        medicationModel = new MedicationDBTableModel();
+        patientModel = new PatientDBTableModel(inpatientModel, medicationModel);
 
         initComponents();
     }
@@ -33,7 +37,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private void initComponents() {
 
         jToolBar = createToolBar();
-        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel);
+        splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel, medicationModel);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();

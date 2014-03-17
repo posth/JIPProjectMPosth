@@ -16,12 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane1" alignment="1" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="1" pref="607" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane1" alignment="1" pref="500" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="1" pref="649" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -47,7 +47,7 @@
           <SubComponents>
             <Component class="com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables" name="tabbedChildrenTables1">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel)"/>
               </AuxValues>
             </Component>
           </SubComponents>

@@ -1,17 +1,24 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 
 public class TabbedChildrenTables extends javax.swing.JPanel {
 
     private InpatientDBTableModel inpatientModel;
+    private MedicationDBTableModel medicationModel;
 
+//    public TabbedChildrenTables() {
+//        initComponents();
+//    }
+    
     public TabbedChildrenTables() {
         initComponents();
     }
-
-    public TabbedChildrenTables(InpatientDBTableModel inpatientModel) {
+    
+    public TabbedChildrenTables(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel) {       
         this.inpatientModel = inpatientModel;
+        this.medicationModel = medicationModel;
         initComponents();
     }
 
@@ -21,8 +28,10 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         inpatientTable2 = new com.posthoffice.jipprojectmposth.presentation.InpatientTable(inpatientModel);
+        medicationTable1 = new com.posthoffice.jipprojectmposth.presentation.MedicationTable(medicationModel);
 
         jTabbedPane1.addTab("Inpatient Data", inpatientTable2);
+        jTabbedPane1.addTab("Medication Data", medicationTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -38,5 +47,6 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.posthoffice.jipprojectmposth.presentation.InpatientTable inpatientTable2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private com.posthoffice.jipprojectmposth.presentation.MedicationTable medicationTable1;
     // End of variables declaration//GEN-END:variables
 }

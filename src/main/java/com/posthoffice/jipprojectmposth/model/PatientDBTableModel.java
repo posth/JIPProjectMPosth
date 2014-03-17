@@ -27,9 +27,10 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
         "Date of Admission"};
 
-    public PatientDBTableModel(InpatientDBTableModel inpatientModel) {
+    public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel) {
         super();
         this.inpatientModel = inpatientModel;
+        this.medicationModel = medicationModel;
         logger.info("Patient Database Table Model Instantiated");
     }
 
@@ -64,7 +65,6 @@ public class PatientDBTableModel extends AbstractTableModel {
             PatientBean temp = patientList.get(i);
 
             data.add(temp);
-
 
         }
 
