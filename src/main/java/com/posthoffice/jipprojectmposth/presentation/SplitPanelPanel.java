@@ -10,15 +10,7 @@ public class SplitPanelPanel extends javax.swing.JPanel {
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
-    private SurgicalDBTableModel surgicalModel;
-    
-    public SplitPanelPanel() {     
-        this.inpatientModel = new InpatientDBTableModel();
-        this.medicationModel = new MedicationDBTableModel();
-        this.surgicalModel = new SurgicalDBTableModel();
-        this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
-        initComponents();
-    }
+    private SurgicalDBTableModel surgicalModel;   
 
     public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
 
@@ -26,6 +18,15 @@ public class SplitPanelPanel extends javax.swing.JPanel {
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
+        initComponents();
+    }
+    
+    public SplitPanelPanel() {
+              
+        this.inpatientModel = new InpatientDBTableModel();
+        this.medicationModel = new MedicationDBTableModel();
+        this.surgicalModel = new SurgicalDBTableModel();
+        this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
         initComponents();
     }
 

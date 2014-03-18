@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
+import com.posthoffice.jipprojectmposth.regex.Messages;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ public class MedicationDBTableModel extends AbstractTableModel {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<MedicationBean> data = new ArrayList<>();
 
-    private String[] MEDICATIONCOLUMNNAMES = {"Patient ID", "Date of Medication", "Medication",
-        "Unit Cost", "Units"};
+    private String[] MEDICATIONCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofmed"), Messages.getString("medication"),
+        Messages.getString("unitcost"), Messages.getString("units")};
 
     public MedicationDBTableModel() {
         super();

@@ -9,18 +9,18 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
+
+    public TabbedChildrenTables(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
+        this.inpatientModel = inpatientModel;
+        this.medicationModel = medicationModel;
+        this.surgicalModel = surgicalModel;
+        initComponents();
+    }
     
     public TabbedChildrenTables() {
         this.inpatientModel = new InpatientDBTableModel();
         this.medicationModel = new MedicationDBTableModel();
         this.surgicalModel = new SurgicalDBTableModel();
-        initComponents();
-    }
-    
-    public TabbedChildrenTables(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {       
-        this.inpatientModel = inpatientModel;
-        this.medicationModel = medicationModel;
-        this.surgicalModel = surgicalModel;
         initComponents();
     }
 

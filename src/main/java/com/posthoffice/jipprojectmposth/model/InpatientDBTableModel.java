@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.regex.Messages;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<InpatientBean> data = new ArrayList<>();
-    private String[] inpatientColumnNames = {"Patient ID", "Date of Stay", "Room Number",
-        "Daily Rate", "Supplies", "Services"};
+    private String[] INPATIENTCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofstay"), Messages.getString("roomnumber"),
+        Messages.getString("dailyrate"), Messages.getString("supplies"), Messages.getString("services")};
 
     public InpatientDBTableModel() {
         super();
@@ -32,12 +33,12 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return inpatientColumnNames.length;
+        return INPATIENTCOLUMNNAMES.length;
     }
 
     @Override
     public String getColumnName(int col) {
-        return inpatientColumnNames[col];
+        return INPATIENTCOLUMNNAMES[col];
     }
 
     public boolean getUpdateStatus(int row) {

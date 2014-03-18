@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.regex.Messages;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ public class SurgicalDBTableModel extends AbstractTableModel{
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<SurgicalBean> data = new ArrayList<>();
 
-    private String[] SURGICALCOLUMNNAMES = {"Patient ID", "Date of Surgery", "Surgery",
-        "Room Fee", "Surgeon's Fee", "Supplies"};
+    private String[] SURGICALCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofsurgery"), Messages.getString("surgery"),
+        Messages.getString("roomfee"), Messages.getString("surgeonsfee"), Messages.getString("supplies")};
 
     public SurgicalDBTableModel() {
         super();

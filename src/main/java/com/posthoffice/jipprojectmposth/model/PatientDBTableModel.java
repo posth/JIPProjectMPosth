@@ -4,6 +4,7 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.regex.Messages;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -25,8 +26,8 @@ public class PatientDBTableModel extends AbstractTableModel {
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
 
-    private final String[] patientColumnNames = {"ID Number", "Last Name", "First Name", "Diagnosis",
-        "Date of Admission"};
+    private final String[] patientColumnNames = {Messages.getString("idnumber"), Messages.getString("lastname"), Messages.getString("firstname"), Messages.getString("diagnosis"),
+        Messages.getString("admissiondate")};
 
     public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
         super();

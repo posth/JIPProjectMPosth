@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.583 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
-createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 2.2 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 9.922 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
+createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 2.012 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:134)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.createPatientTest(PatientDBManagementTest.java:35)

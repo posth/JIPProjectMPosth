@@ -17,7 +17,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
-    
+
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
@@ -79,18 +79,33 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         JToolBar toolBar = new JToolBar();
 
-        JButton newPatientButton = makeToolBarButton("New Patient", "NewPatient", "Alt + N", KeyEvent.VK_N);
-        JButton deletePatientButton = makeToolBarButton("Delete Patient", "DeletePatient", "Alt + D", KeyEvent.VK_D);
+        JButton newPatientButton = makeToolBarButton("New Patient", "NewPatient", "Add a new patient");
+        JButton deletePatientButton = makeToolBarButton("Delete Patient", "DeletePatient", "Delete existing patient");
+
+        JButton newInpatientButton = makeToolBarButton("New Inpatient", "NewInpatient", "Add new inpatient data to existing patient");
+        JButton deleteInpatientButton = makeToolBarButton("Delete Inpatient", "DeleteInpatient", "Delete inpatient data from existing patient");
+
+        JButton newMedicationButton = makeToolBarButton("New Medication", "NewMedication", "Add new medication data to existing patient");
+        JButton deleteMedicationButton = makeToolBarButton("Delete Medication", "DeleteMedication", "Delete medication data from existing patient");
+
+        JButton newSurgicalButton = makeToolBarButton("New Surgical", "NewSurgical", "Add new surgical data to existing patient");
+        JButton deleteSurgicalButton = makeToolBarButton("Delete Surgical", "DeleteSurgical", "Delete surgical data from existing patient");
 
         toolBar.add(newPatientButton);
         toolBar.add(deletePatientButton);
+        toolBar.add(newInpatientButton);
+        toolBar.add(deleteInpatientButton);
+        toolBar.add(newMedicationButton);
+        toolBar.add(deleteMedicationButton);
+        toolBar.add(newSurgicalButton);
+        toolBar.add(deleteSurgicalButton);
 
         toolBar.setFloatable(true);
 
         return toolBar;
     }
 
-    private JButton makeToolBarButton(String buttonName, String actionCommand, String toolTipText, int buttonMnemonic) {
+    private JButton makeToolBarButton(String buttonName, String actionCommand, String toolTipText) {
 
         ToolBarEventHandler toolBarEventHandler = new ToolBarEventHandler();
 
@@ -99,7 +114,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         button.setText(buttonName);
         button.setActionCommand(actionCommand);
         button.setToolTipText(toolTipText);
-        button.setMnemonic(buttonMnemonic);
         button.addActionListener(toolBarEventHandler);
 
         return button;
@@ -126,6 +140,29 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     deletePatientForm();
                     break;
 
+                case "NewInpatient":
+                    createInpatientForm();
+                    break;
+
+                case "DeleteInpatient":
+                    deleteInpatientForm();
+                    break;
+
+                case "NewMedication":
+                    createMedicationForm();
+                    break;
+
+                case "DeleteMedication":
+                    deleteMedicationForm();
+                    break;
+
+                case "NewSurgical":
+                    createSurgicalForm();
+                    break;
+                    
+                case "DeleteSurgical":
+                    deleteSurgicalForm();
+                    break;
             }
 
         }
@@ -134,17 +171,12 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public void createPatientForm() {
 
         JFrame patientFormFrame = new JFrame("Patient Form");
-
-        TabbedFormPanel patientForm = new TabbedFormPanel();
-
+        PatientForm patientForm = new PatientForm();
         JScrollPane patientFormScroll = new JScrollPane(patientForm);
 
         patientFormFrame.getContentPane().add(patientFormScroll);
-
         patientFormFrame.pack();
-
         patientFormFrame.setLocationRelativeTo(null);
-
         patientFormFrame.setVisible(true);
         patientFormFrame.setResizable(false);
     }
@@ -152,6 +184,62 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public void deletePatientForm() {
         //to do based on selectedRow
     }
+
+    public void createInpatientForm() {
+
+        JFrame inpatientFormFrame = new JFrame("Inpatient Form");
+        InpatientForm inpatientForm = new InpatientForm();
+        JScrollPane inpatientFormScroll = new JScrollPane(inpatientForm);
+
+        inpatientFormFrame.getContentPane().add(inpatientFormScroll);
+        inpatientFormFrame.pack();
+        inpatientFormFrame.setLocationRelativeTo(null);
+        inpatientFormFrame.setVisible(true);
+        inpatientFormFrame.setResizable(false);
+
+    }
+
+    public void deleteInpatientForm() {
+        //to do based on selected patient and selected inpatient rows
+
+    }
+
+    public void createMedicationForm() {
+
+        JFrame medicationFormFrame = new JFrame("Medication Form");
+        MedicationForm medicationForm = new MedicationForm();
+        JScrollPane medicationFormScroll = new JScrollPane(medicationForm);
+
+        medicationFormFrame.getContentPane().add(medicationFormScroll);
+        medicationFormFrame.pack();
+        medicationFormFrame.setLocationRelativeTo(null);
+        medicationFormFrame.setVisible(true);
+        medicationFormFrame.setResizable(false);
+
+    }
+
+    public void deleteMedicationForm() {
+        //to do based on selected patient and selected medication rows
+
+    }
+
+    public void createSurgicalForm() {
+
+        JFrame surgicalFormFrame = new JFrame("Surgical Form");
+        SurgicalForm surgicalForm = new SurgicalForm();
+        JScrollPane surgicalFormScroll = new JScrollPane(surgicalForm);
+
+        surgicalFormFrame.getContentPane().add(surgicalFormScroll);
+        surgicalFormFrame.pack();
+        surgicalFormFrame.setLocationRelativeTo(null);
+        surgicalFormFrame.setVisible(true);
+        surgicalFormFrame.setResizable(false);
+    }
+    
+    public void deleteSurgicalForm() {
+        //to do based on selected patient and selected surgical rows
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

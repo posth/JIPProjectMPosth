@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
+import com.posthoffice.jipprojectmposth.regex.Messages;
 
 public class PatientForm extends javax.swing.JPanel {
     
@@ -14,43 +15,39 @@ public class PatientForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lastNameLabel = new javax.swing.JLabel();
-        FirstNameLabel = new javax.swing.JLabel();
-        diagnosisLabel = new javax.swing.JLabel();
-        admissionDateLabel = new javax.swing.JLabel();
-        releaseDateLabel = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel(Messages.getString("lastname"));
+        FirstNameLabel = new javax.swing.JLabel(Messages.getString("firstname"));
+        diagnosisLabel = new javax.swing.JLabel(Messages.getString("diagnosis"));
+        admissionDateLabel = new javax.swing.JLabel(Messages.getString("admissiondate"));
+        releaseDateLabel = new javax.swing.JLabel(Messages.getString("releaseDate"));
         lastNameTextField = new javax.swing.JTextField();
         admissionDateTextField = new javax.swing.JTextField();
         firstNameTextField = new javax.swing.JTextField();
         diagnosisTextField = new javax.swing.JTextField();
         releaseDateTextField = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
 
         lastNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lastNameLabel.setText("Last Name:");
         lastNameLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         lastNameLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         lastNameLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         FirstNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        FirstNameLabel.setText("First Name:");
         FirstNameLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         FirstNameLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         FirstNameLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         diagnosisLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        diagnosisLabel.setText("Diagnosis:");
         diagnosisLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         diagnosisLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         diagnosisLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         admissionDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        admissionDateLabel.setText("Admission Date:");
         admissionDateLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         admissionDateLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         admissionDateLabel.setPreferredSize(new java.awt.Dimension(80, 20));
 
         releaseDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        releaseDateLabel.setText("Release Date:");
         releaseDateLabel.setMaximumSize(new java.awt.Dimension(80, 20));
         releaseDateLabel.setMinimumSize(new java.awt.Dimension(80, 20));
         releaseDateLabel.setPreferredSize(new java.awt.Dimension(80, 20));
@@ -85,33 +82,46 @@ public class PatientForm extends javax.swing.JPanel {
             }
         });
 
+        saveButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(releaseDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(releaseDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(releaseDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(releaseDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(admissionDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(admissionDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(diagnosisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(diagnosisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(FirstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(admissionDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(admissionDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(diagnosisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(diagnosisTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(FirstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(100, 100, 100)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,12 +147,17 @@ public class PatientForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(releaseDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(releaseDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
-        // TODO add your handling code here:
+        String enteredLastName = lastNameTextField.getText();
+        
+        
+        
     }//GEN-LAST:event_lastNameTextFieldActionPerformed
 
     private void admissionDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionDateTextFieldActionPerformed
@@ -150,7 +165,9 @@ public class PatientForm extends javax.swing.JPanel {
     }//GEN-LAST:event_admissionDateTextFieldActionPerformed
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
-        // TODO add your handling code here:
+        String enteredFirstName = firstNameTextField.getText();
+        
+        
     }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
     private void diagnosisTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagnosisTextFieldActionPerformed
@@ -160,6 +177,10 @@ public class PatientForm extends javax.swing.JPanel {
     private void releaseDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_releaseDateTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_releaseDateTextFieldActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -173,5 +194,6 @@ public class PatientForm extends javax.swing.JPanel {
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JLabel releaseDateLabel;
     private javax.swing.JTextField releaseDateTextField;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
