@@ -24,7 +24,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="releaseDateLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="releaseDateTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="releaseDateTextField" pref="160" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="admissionDateLabel" min="-2" pref="120" max="-2" attributes="0"/>
@@ -34,12 +34,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="diagnosisLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="diagnosisTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="diagnosisTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="FirstNameLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="firstNameTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="firstNameTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lastNameLabel" min="-2" pref="120" max="-2" attributes="0"/>
@@ -66,14 +66,14 @@
                   <Component id="lastNameTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FirstNameLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="firstNameTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="FirstNameLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="firstNameTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="diagnosisLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="diagnosisTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="diagnosisLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="diagnosisTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -81,9 +81,9 @@
                   <Component id="admissionDateTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="releaseDateLabel" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="releaseDateTextField" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="releaseDateLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="releaseDateTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="saveButton" min="-2" pref="55" max="-2" attributes="0"/>
@@ -188,21 +188,6 @@
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(Messages.getString(&quot;releaseDate&quot;))"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="firstNameTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="diagnosisTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diagnosisTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="releaseDateTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="releaseDateTextFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -223,11 +208,35 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="admissionDateTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="yyyy/mm/dd"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admissionDateTextFieldActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(new SimpleDateFormat(&quot;yyyy/MM/dd&quot;))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="firstNameTextField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameTextFieldActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="releaseDateTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="yyyy/mm/dd"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new SimpleDateFormat(&quot;yyyy/MM/dd&quot;))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="diagnosisTextField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx))"/>
       </AuxValues>
     </Component>
   </SubComponents>

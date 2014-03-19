@@ -20,31 +20,31 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="dateOfSurgeryLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="dateOfSurgeryTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="dateOfSurgeryTextField" pref="160" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="surgeryLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="surgeryTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="surgeryTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="roomFeeLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="roomFeeTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="roomFeeTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="surgeonsFeeLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="surgeonsFeeTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="surgeonsFeeTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="suppliesLabel" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="suppliesTextField" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="suppliesTextField" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -61,29 +61,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="dateOfSurgeryLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="dateOfSurgeryTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="dateOfSurgeryLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="dateOfSurgeryTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="surgeryLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="surgeryTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="surgeryLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="surgeryTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="roomFeeLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="roomFeeTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="roomFeeLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="roomFeeTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="surgeonsFeeLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="surgeonsFeeTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="surgeonsFeeLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="surgeonsFeeTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="suppliesLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="suppliesTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="suppliesLabel" pref="30" max="32767" attributes="0"/>
+                  <Component id="suppliesTextField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="saveButton" min="-2" pref="55" max="-2" attributes="0"/>
@@ -188,31 +188,6 @@
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JLabel(Messages.getString(&quot;supplies&quot;))"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="surgeonsFeeTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="surgeonsFeeTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="surgeryTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="surgeryTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="dateOfSurgeryTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateOfSurgeryTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="suppliesTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suppliesTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="roomFeeTextField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomFeeTextFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -223,6 +198,43 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="dateOfSurgeryTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="yyyy/mm/dd"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new SimpleDateFormat(&quot;yyyy/mm/dd&quot;))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="surgeryTextField">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="roomFeeTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="$ #,###.##"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(moneyRegEx))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="surgeonsFeeTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="$ #,###.##"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(moneyRegEx))"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="suppliesTextField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="$ #,###.##"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new RegexFormatter(moneyRegEx))"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
