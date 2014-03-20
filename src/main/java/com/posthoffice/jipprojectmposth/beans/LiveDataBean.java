@@ -1,5 +1,8 @@
 package com.posthoffice.jipprojectmposth.beans;
 
+import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+
 public class LiveDataBean {
 
     private int selectedPatientID;
@@ -7,6 +10,8 @@ public class LiveDataBean {
     private String selectedPatientFirstName;
     private PatientBean selectedPatientBean;
     private int selectedPatientRow;
+    private PatientDBManagement patientDBManager;
+    private InpatientDBManagement inpatientDBManager;
 
     public LiveDataBean() {
         super();
@@ -14,6 +19,31 @@ public class LiveDataBean {
         this.selectedPatientLastName = "None Selected";
         this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
+    }
+    
+    public LiveDataBean(InpatientDBManagement inpatientDBManager) {
+        super();
+        this.selectedPatientID = -1;
+        this.selectedPatientLastName = "None Selected";
+        this.selectedPatientFirstName = "None Selected";
+        this.selectedPatientRow = -1;
+        this.inpatientDBManager = inpatientDBManager;
+    }
+
+    public InpatientDBManagement getInpatientDBManager() {
+        return inpatientDBManager;
+    }
+
+    public void setInpatientDBManager(InpatientDBManagement inpatientDBManager) {
+        this.inpatientDBManager = inpatientDBManager;
+    }
+
+    public PatientDBManagement getPatientDBManager() {
+        return patientDBManager;
+    }
+
+    public void setPatientDBManager(PatientDBManagement patientDBManager) {
+        this.patientDBManager = patientDBManager;
     }
 
     public int getSelectedPatientID() {
@@ -60,7 +90,5 @@ public class LiveDataBean {
     public String toString() {
         return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID + ", selectedPatientLastName=" + selectedPatientLastName + ", selectedPatientFirstName=" + selectedPatientFirstName + ", selectedPatientBean=" + selectedPatientBean + ", selectedPatientRow=" + selectedPatientRow + '}';
     }
-    
-    
 
 }

@@ -1,17 +1,32 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class PatientForm extends javax.swing.JPanel {
 
-    private String nameRegEx = ".+";
+    private String nameRegEx = ".+";   
+    private LiveDataBean liveDataBean;
 
     public PatientForm() {
+        initComponents();
+    }
+    
+    public PatientForm(LiveDataBean liveDataBean) {
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 
@@ -149,16 +164,37 @@ public class PatientForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        
+
         PatientBean tempPatient = new PatientBean();
-             
+
+        //getting the patient bean values from the formattedtextfield inputs
         String lastName = lastNameTextField.getText();
         String firstName = firstNameTextField.getText();
         String diagnosis = diagnosisTextField.getText();
+
+        //WHAT IF THE USER DOESN'T ENTER A DATE?????
+        Date admissionDate = (Date) admissionDateTextField.getValue();
+        Timestamp admissionDateTimestamp = new Timestamp(admissionDate.getTime());
+
+        Date releaseDate = (Date) releaseDateTextField.getValue();
+        Timestamp releaseDateTimestamp = new Timestamp(releaseDate.getTime());
         
-        SimpleDateFormat admissionDate = (SimpleDateFormat) admissionDateTextField.getValue();      
-        SimpleDateFormat releaseDate = (SimpleDateFormat) releaseDateTextField.getValue();
+        //placing the values in the bean itself
+        tempPatient.setLastName(lastName);
+        tempPatient.setFirstName(firstName);
+        tempPatient.setDiagnosis(diagnosis);
+        tempPatient.setAdmissionDate(admissionDateTimestamp);
+        tempPatient.setReleaseDate(releaseDateTimestamp);
+             
+        PatientDBManagement patientFormAddition = liveDataBean.getPatientDBManager();
         
+        try {
+            patientFormAddition.createPatient(tempPatient);
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //METHOD TO CLOSE FRAME AFTER ADDING THE PATIENT
         
     }//GEN-LAST:event_saveButtonActionPerformed
 

@@ -4,7 +4,9 @@ import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SurgicalForm extends javax.swing.JPanel {
     
@@ -139,7 +141,8 @@ public class SurgicalForm extends javax.swing.JPanel {
        
         SurgicalBean tempSurgical = new SurgicalBean();
         
-        SimpleDateFormat dateOfSurgery = (SimpleDateFormat) dateOfSurgeryTextField.getValue();
+        Date dateOfSurgery = (Date) dateOfSurgeryTextField.getValue();
+        Timestamp dateOfSurgeryTimestamp = new Timestamp(dateOfSurgery.getTime());
         
         String surgery = surgeryTextField.getText();
         

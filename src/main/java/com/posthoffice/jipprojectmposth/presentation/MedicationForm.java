@@ -4,7 +4,9 @@ import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MedicationForm extends javax.swing.JPanel {
 
@@ -121,7 +123,8 @@ public class MedicationForm extends javax.swing.JPanel {
 
         MedicationBean tempMedication = new MedicationBean();
 
-        SimpleDateFormat dateOfMed = (SimpleDateFormat) dateOfMedTextField.getValue();
+        Date dateOfMed = (Date) dateOfMedTextField.getValue();
+        Timestamp dateOfMedTimestamp = new Timestamp(dateOfMed.getTime());
         
         String medication = medicationTextField.getText();
         

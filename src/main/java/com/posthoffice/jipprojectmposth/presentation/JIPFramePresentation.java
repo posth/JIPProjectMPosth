@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
@@ -23,6 +24,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
+    
+    private InpatientDBManagement inpatientDBManager;
 
     private LiveDataBean liveDataBean;
 
@@ -33,7 +36,9 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         surgicalModel = new SurgicalDBTableModel();
         patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
 
-        liveDataBean = new LiveDataBean();
+        inpatientDBManager = new InpatientDBManagement(inpatientModel);
+        
+        liveDataBean = new LiveDataBean(inpatientDBManager);
 
         initComponents();
     }
@@ -176,7 +181,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public void createPatientForm() {
 
         JFrame patientFormFrame = new JFrame("New Patient");
-        PatientForm patientForm = new PatientForm();
+        PatientForm patientForm = new PatientForm(liveDataBean);
         JScrollPane patientFormScroll = new JScrollPane(patientForm);
 
         patientFormFrame.getContentPane().add(patientFormScroll);
@@ -198,7 +203,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             JFrame inpatientFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
                     + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
 
-            InpatientForm inpatientForm = new InpatientForm();
+            InpatientForm inpatientForm = new InpatientForm(liveDataBean);
             JScrollPane inpatientFormScroll = new JScrollPane(inpatientForm);
 
             inpatientFormFrame.getContentPane().add(inpatientFormScroll);

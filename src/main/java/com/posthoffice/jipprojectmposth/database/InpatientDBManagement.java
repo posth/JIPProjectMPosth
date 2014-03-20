@@ -27,6 +27,11 @@ public class InpatientDBManagement {
     public InpatientDBManagement() {
         super();
     }
+    
+    public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel) {
+        super();
+        this.inpatientDBTableModel = inpatientDBTableModel;
+    }
 
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 

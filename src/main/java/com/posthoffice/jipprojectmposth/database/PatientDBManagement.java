@@ -1,6 +1,7 @@
 package com.posthoffice.jipprojectmposth.database;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
@@ -27,15 +28,17 @@ public class PatientDBManagement {
     private PatientDBTableModel patientDBTableModel;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
+    private LiveDataBean liveDataBean;
 
     public PatientDBManagement() {
         super();
     }
 
-    public PatientDBManagement(PatientDBTableModel patientDBTableModel) {
+    public PatientDBManagement(PatientDBTableModel patientDBTableModel, LiveDataBean liveDataBean) {
         super();
         logger.info("Patient Database instantiated.");
         this.patientDBTableModel = patientDBTableModel;
+        this.liveDataBean = liveDataBean;
     }
 
     public boolean fillTableModel(String criteria) {
@@ -155,7 +158,7 @@ public class PatientDBManagement {
 
                     PatientBean temp = new PatientBean();
 
-                    InpatientDBManagement inpatient = new InpatientDBManagement();
+                    InpatientDBManagement inpatient = liveDataBean.getInpatientDBManager();
                     MedicationDBManagement medication = new MedicationDBManagement();
                     SurgicalDBManagement surgical = new SurgicalDBManagement();
 
@@ -222,7 +225,7 @@ public class PatientDBManagement {
             InpatientDBManagement inpatient = new InpatientDBManagement();
             MedicationDBManagement medication = new MedicationDBManagement();
             SurgicalDBManagement surgical = new SurgicalDBManagement();
-
+            
             ArrayList<InpatientBean> inpatientList = inpatient.readInpatient(patientID);
             ArrayList<MedicationBean> medicationList = medication.readMedication(patientID);
             ArrayList<SurgicalBean> surgicalList = surgical.readSurgical(patientID);

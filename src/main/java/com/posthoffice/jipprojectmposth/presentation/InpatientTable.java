@@ -21,6 +21,7 @@ public class InpatientTable extends javax.swing.JPanel {
     public InpatientTable(InpatientDBTableModel inpatientModel, LiveDataBean liveDataBean) {
         this.inpatientModel = inpatientModel;
         this.liveDataBean = liveDataBean;
+
         initComponents();
     }
 

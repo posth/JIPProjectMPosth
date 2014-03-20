@@ -1,17 +1,30 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class InpatientForm extends javax.swing.JPanel {
     
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
+    private LiveDataBean liveDataBean;
 
     public InpatientForm() {
+        initComponents();
+    }
+    
+    public InpatientForm(LiveDataBean liveDataBean) {
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 
@@ -144,11 +157,12 @@ public class InpatientForm extends javax.swing.JPanel {
        
         InpatientBean tempInpatient = new InpatientBean();
         
-        SimpleDateFormat dateOfStay = (SimpleDateFormat) dateOfStayTextField.getValue();
+        Date dateOfStay = (Date) dateOfStayTextField.getValue();
+        Timestamp dateOfStayTimestamp = new Timestamp(dateOfStay.getTime());
         
-        String roomNumber = roomNumberTextField.getText();
+        String roomNumber = roomNumberTextField.getText();    
         
-        String dailyRateAsString = dailyRateTextField.getText();
+        String dailyRateAsString = dailyRateTextField.getText();       
         BigDecimal dailyRate = new BigDecimal(dailyRateAsString.replaceAll(",", ""));
         
         String suppliesAsString = suppliesTextField.getText();
@@ -157,7 +171,22 @@ public class InpatientForm extends javax.swing.JPanel {
         String servicesAsString = servicesTextField.getText();
         BigDecimal services = new BigDecimal(servicesAsString.replaceAll(",", ""));
         
+        tempInpatient.setDateOfStay(dateOfStayTimestamp);
+        tempInpatient.setRoomNumber(roomNumber);
+        tempInpatient.setDailyRate(dailyRate);
+        tempInpatient.setRoomSupplies(supplies);
+        tempInpatient.setRoomServices(services);
         
+        tempInpatient.setPatientID(liveDataBean.getSelectedPatientID());
+        
+        InpatientDBManagement inpatientFormAddition = liveDataBean.getInpatientDBManager();
+        
+        try {
+            inpatientFormAddition.createInpatient(tempInpatient);
+        } catch (SQLException ex) {
+            Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         
     }//GEN-LAST:event_saveButtonActionPerformed
 
