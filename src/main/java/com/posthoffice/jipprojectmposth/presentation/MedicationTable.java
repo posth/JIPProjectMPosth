@@ -1,19 +1,22 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 
 public class MedicationTable extends javax.swing.JPanel {
 
     private MedicationDBTableModel medicationModel = new MedicationDBTableModel();
     private int selectedRow = -1;
+    private LiveDataBean liveDataBean;
 
     public MedicationTable() {
         medicationModel = new MedicationDBTableModel();
         initComponents();
     }
 
-    public MedicationTable(MedicationDBTableModel medicationModel) {
+    public MedicationTable(MedicationDBTableModel medicationModel, LiveDataBean liveDataBean) {
         this.medicationModel = medicationModel;
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 

@@ -1,20 +1,48 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class InpatientTable extends javax.swing.JPanel {
 
     private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
     private int selectedRow = -1;
+    private LiveDataBean liveDataBean;
 
     public InpatientTable() {
         inpatientModel = new InpatientDBTableModel();
         initComponents();
     }
 
-    public InpatientTable(InpatientDBTableModel inpatientModel) {
+    public InpatientTable(InpatientDBTableModel inpatientModel, LiveDataBean liveDataBean) {
         this.inpatientModel = inpatientModel;
+        this.liveDataBean = liveDataBean;
         initComponents();
+    }
+
+    class RowListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+
+            if (e.getValueIsAdjusting()) {
+                return;
+            }
+
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            if (!lsm.isSelectionEmpty()) {
+                selectedRow = lsm.getMinSelectionIndex();
+            }
+
+
+            //getting the bean from model through the selected row of the table
+            InpatientBean temp = (inpatientModel.getinPatientData(selectedRow));
+
+        }
     }
 
     @SuppressWarnings("unchecked")

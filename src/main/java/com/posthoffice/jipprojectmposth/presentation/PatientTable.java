@@ -1,5 +1,7 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
@@ -14,6 +16,7 @@ public class PatientTable extends javax.swing.JPanel {
     private PatientDBTableModel patientModel = null;
     private PatientDBManagement patientDBManager = null;
     private int selectedRow = -1;
+    private LiveDataBean liveDataBean;
 
     public PatientTable() {
         InpatientDBTableModel t = new InpatientDBTableModel();
@@ -23,8 +26,9 @@ public class PatientTable extends javax.swing.JPanel {
         initComponents();
     }
 
-    public PatientTable(PatientDBTableModel patientModel) {
+    public PatientTable(PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
         this.patientModel = patientModel;
+        this.liveDataBean = liveDataBean;
 
         patientDBManager = new PatientDBManagement(patientModel);
         patientDBManager.fillTableModel(null);
@@ -66,9 +70,18 @@ public class PatientTable extends javax.swing.JPanel {
             }
 
             patientModel.setChildrenTableModels(selectedRow);
-
-
-
+            
+            //getting the bean from model through the selected row of the table
+            PatientBean temp = (patientModel.getPatientData(selectedRow));
+            
+            //setting selected values of the patient into the livedata bean
+            liveDataBean.setSelectedPatientRow(selectedRow);
+            liveDataBean.setSelectedPatientBean(temp);
+            liveDataBean.setSelectedPatientID(temp.getPatientID());
+            liveDataBean.setSelectedPatientFirstName(temp.getFirstName());
+            liveDataBean.setSelectedPatientLastName(temp.getLastName());     
+            System.out.println("live data bean selected patient is " + liveDataBean);
+ 
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

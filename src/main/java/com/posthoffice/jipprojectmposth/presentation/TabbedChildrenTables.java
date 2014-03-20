@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
@@ -9,11 +10,13 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
+    private LiveDataBean liveDataBean;
 
-    public TabbedChildrenTables(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
+    public TabbedChildrenTables(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel, LiveDataBean liveDataBean) {
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
     
@@ -29,9 +32,9 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        inpatientTable2 = new com.posthoffice.jipprojectmposth.presentation.InpatientTable(inpatientModel);
-        medicationTable1 = new com.posthoffice.jipprojectmposth.presentation.MedicationTable(medicationModel);
-        surgicalTable1 = new com.posthoffice.jipprojectmposth.presentation.SurgicalTable(surgicalModel);
+        inpatientTable2 = new com.posthoffice.jipprojectmposth.presentation.InpatientTable(inpatientModel, liveDataBean);
+        medicationTable1 = new com.posthoffice.jipprojectmposth.presentation.MedicationTable(medicationModel, liveDataBean);
+        surgicalTable1 = new com.posthoffice.jipprojectmposth.presentation.SurgicalTable(surgicalModel, liveDataBean);
 
         jTabbedPane1.addTab("Inpatient Data", inpatientTable2);
         jTabbedPane1.addTab("Medication Data", medicationTable1);

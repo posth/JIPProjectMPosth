@@ -1,19 +1,22 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
 public class SurgicalTable extends javax.swing.JPanel {
     
     private SurgicalDBTableModel surgicalModel = new SurgicalDBTableModel();
     private int selectedRow = -1;
+    private LiveDataBean liveDataBean;
 
     public SurgicalTable() {
         surgicalModel = new SurgicalDBTableModel();
         initComponents();
     }
     
-    public SurgicalTable(SurgicalDBTableModel surgicalModel) {
+    public SurgicalTable(SurgicalDBTableModel surgicalModel, LiveDataBean liveDataBean) {
         this.surgicalModel = surgicalModel;
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 

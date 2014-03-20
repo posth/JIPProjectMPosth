@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
@@ -11,13 +12,16 @@ public class SplitPanelPanel extends javax.swing.JPanel {
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;   
+    private LiveDataBean liveDataBean;
 
-    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
+    public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, 
+            MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel, LiveDataBean liveDataBean) {
 
         this.patientModel = patientModel;
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
     
@@ -36,9 +40,9 @@ public class SplitPanelPanel extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel);
+        tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel, liveDataBean);
         jScrollPane3 = new javax.swing.JScrollPane();
-        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel);
+        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel, liveDataBean);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setResizeWeight(.5d);
