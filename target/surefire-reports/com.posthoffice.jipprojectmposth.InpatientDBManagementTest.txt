@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.InpatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 13.796 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
-createInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 3.036 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 10.283 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+createInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 2.36 sec  <<< ERROR!
 com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`patientdb`.`inpatient`, CONSTRAINT `patient_1` FOREIGN KEY (`PATIENTID`) REFERENCES `patient` (`PATIENTID`))
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
@@ -20,6 +20,6 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cann
 	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2441)
 	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2366)
 	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2350)
-	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.createInpatient(InpatientDBManagement.java:82)
+	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.createInpatient(InpatientDBManagement.java:87)
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.createInpatientTest(InpatientDBManagementTest.java:36)
 

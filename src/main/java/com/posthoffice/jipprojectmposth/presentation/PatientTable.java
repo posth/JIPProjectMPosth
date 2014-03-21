@@ -83,6 +83,7 @@ public class PatientTable extends javax.swing.JPanel {
             liveDataBean.setSelectedPatientFirstName(temp.getFirstName());
             liveDataBean.setSelectedPatientLastName(temp.getLastName());     
             System.out.println("live data bean selected patient is " + liveDataBean);
+            
  
         }
     }

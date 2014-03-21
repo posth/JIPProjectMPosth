@@ -38,7 +38,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         inpatientDBManager = new InpatientDBManagement(inpatientModel);
         
-        liveDataBean = new LiveDataBean(inpatientDBManager);
+        liveDataBean = new LiveDataBean(inpatientDBManager, patientModel);
 
         initComponents();
     }

@@ -2,19 +2,22 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InpatientForm extends javax.swing.JPanel {
-    
+
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private LiveDataBean liveDataBean;
@@ -22,7 +25,7 @@ public class InpatientForm extends javax.swing.JPanel {
     public InpatientForm() {
         initComponents();
     }
-    
+
     public InpatientForm(LiveDataBean liveDataBean) {
         this.liveDataBean = liveDataBean;
         initComponents();
@@ -154,40 +157,57 @@ public class InpatientForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-       
+
         InpatientBean tempInpatient = new InpatientBean();
-        
+
         Date dateOfStay = (Date) dateOfStayTextField.getValue();
         Timestamp dateOfStayTimestamp = new Timestamp(dateOfStay.getTime());
-        
-        String roomNumber = roomNumberTextField.getText();    
-        
-        String dailyRateAsString = dailyRateTextField.getText();       
+
+        String roomNumber = roomNumberTextField.getText();
+
+        String dailyRateAsString = dailyRateTextField.getText();
         BigDecimal dailyRate = new BigDecimal(dailyRateAsString.replaceAll(",", ""));
-        
+
         String suppliesAsString = suppliesTextField.getText();
         BigDecimal supplies = new BigDecimal(suppliesAsString.replaceAll(",", ""));
-        
+
         String servicesAsString = servicesTextField.getText();
         BigDecimal services = new BigDecimal(servicesAsString.replaceAll(",", ""));
-        
+
         tempInpatient.setDateOfStay(dateOfStayTimestamp);
         tempInpatient.setRoomNumber(roomNumber);
         tempInpatient.setDailyRate(dailyRate);
         tempInpatient.setRoomSupplies(supplies);
         tempInpatient.setRoomServices(services);
-        
+
         tempInpatient.setPatientID(liveDataBean.getSelectedPatientID());
-        
+
         InpatientDBManagement inpatientFormAddition = liveDataBean.getInpatientDBManager();
-        
+
         try {
             inpatientFormAddition.createInpatient(tempInpatient);
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-        
+
+        //TESTING THIS METHOD TO FIX ISSUE OF NOT HAVING THE PATIENT MODEL UPDATE UPON POPULATING ITS CHILDREN ARRAYLISTS
+        //to remove this technique, also remove the patient model from the live data bean
+        //getting patient model from livedata bean
+//        PatientDBTableModel patientModel = liveDataBean.getPatientModel(); 
+//        
+//           
+//        PatientBean test = liveDataBean.getSelectedPatientBean();
+//        
+//        //delete patient bean       
+//        
+//        ArrayList<InpatientBean> testInpatientList = test.getInpatientList();
+//        testInpatientList.add(tempInpatient);
+//        test.setInpatientList(testInpatientList);
+//        
+//        patientModel.addPatientBean(test);
+//        patientModel.deleteRow(liveDataBean.getSelectedPatientRow());
+//        patientModel.fireTableDataChanged();
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void suppliesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliesTextFieldActionPerformed

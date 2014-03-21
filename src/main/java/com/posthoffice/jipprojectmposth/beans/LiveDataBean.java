@@ -2,6 +2,7 @@ package com.posthoffice.jipprojectmposth.beans;
 
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 
 public class LiveDataBean {
 
@@ -12,6 +13,7 @@ public class LiveDataBean {
     private int selectedPatientRow;
     private PatientDBManagement patientDBManager;
     private InpatientDBManagement inpatientDBManager;
+    private PatientDBTableModel patientModel;
 
     public LiveDataBean() {
         super();
@@ -20,14 +22,23 @@ public class LiveDataBean {
         this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
     }
-    
-    public LiveDataBean(InpatientDBManagement inpatientDBManager) {
+
+    public LiveDataBean(InpatientDBManagement inpatientDBManager, PatientDBTableModel patientModel) {
         super();
         this.selectedPatientID = -1;
         this.selectedPatientLastName = "None Selected";
         this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
         this.inpatientDBManager = inpatientDBManager;
+        this.patientModel = patientModel;
+    }
+
+    public PatientDBTableModel getPatientModel() {
+        return patientModel;
+    }
+
+    public void setPatientModel(PatientDBTableModel patientModel) {
+        this.patientModel = patientModel;
     }
 
     public InpatientDBManagement getInpatientDBManager() {
