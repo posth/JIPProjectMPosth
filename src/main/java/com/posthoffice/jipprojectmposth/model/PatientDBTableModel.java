@@ -92,6 +92,8 @@ public class PatientDBTableModel extends AbstractTableModel {
         inpatientModel.loadInpatientList(inpatientList);
         medicationModel.loadMedicationList(medicationList);
         surgicalModel.loadSurgicalList(surgicalList);
+        
+        System.out.println("The inpatient bean list from table model selection is " + inpatientList);
 
     }
 

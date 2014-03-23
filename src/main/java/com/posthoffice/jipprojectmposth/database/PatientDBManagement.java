@@ -200,8 +200,13 @@ public class PatientDBManagement {
             ps.setTimestamp(4, patient.getAdmissionDate());
             ps.setTimestamp(5, patient.getReleaseDate());
             ps.setInt(6, patient.getPatientID());
+            
+            InpatientDBManagement tempInpatientDB = liveDataBean.getInpatientDBManager();
+            patient.setInpatientList(tempInpatientDB.readInpatient(patient.getPatientID()));
 
             result = ps.executeUpdate();
+             
+            
         }
 
         return result;

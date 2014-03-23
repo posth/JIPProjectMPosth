@@ -4,6 +4,7 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
@@ -189,32 +190,21 @@ public class InpatientForm extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
+        try {
+            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
+            
+       PatientDBTableModel patientModelTest = liveDataBean.getPatientModel();   
 
-        //TESTING THIS METHOD TO FIX ISSUE OF NOT HAVING THE PATIENT MODEL UPDATE UPON POPULATING ITS CHILDREN ARRAYLISTS
-        //to remove this technique, also remove the patient model from the live data bean
-        //getting patient model from livedata bean
-//        PatientDBTableModel patientModel = liveDataBean.getPatientModel(); 
-//        
-//           
-//        PatientBean test = liveDataBean.getSelectedPatientBean();
-//        
-//        //delete patient bean       
-//        
-//        ArrayList<InpatientBean> testInpatientList = test.getInpatientList();
-//        testInpatientList.add(tempInpatient);
-//        test.setInpatientList(testInpatientList);
-//        
-//        patientModel.addPatientBean(test);
-//        patientModel.deleteRow(liveDataBean.getSelectedPatientRow());
-//        patientModel.fireTableDataChanged();
-
+        } catch (SQLException ex) {
+            Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void suppliesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliesTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_suppliesTextFieldActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dailyRateLabel;
     private javax.swing.JFormattedTextField dailyRateTextField;
