@@ -192,6 +192,7 @@ public class InpatientForm extends javax.swing.JPanel {
         }
         
         PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
+        
         try {
             testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
             

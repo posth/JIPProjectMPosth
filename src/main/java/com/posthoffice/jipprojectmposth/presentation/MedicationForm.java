@@ -1,20 +1,33 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
+import com.posthoffice.jipprojectmposth.database.MedicationDBManagement;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MedicationForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private String digitRegEx = "[0-9]+";
+    
+    private LiveDataBean liveDataBean;
 
     public MedicationForm() {
+        initComponents();
+    }
+    
+    public MedicationForm(LiveDataBean liveDataBean) {
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 
@@ -134,6 +147,28 @@ public class MedicationForm extends javax.swing.JPanel {
         String unitsAsString = unitsTextField.getText();
         BigDecimal units = new BigDecimal(unitsAsString);
         
+        tempMedication.setDateOfMed(dateOfMedTimestamp);
+        tempMedication.setMedication(medication);
+        tempMedication.setCostPerUnit(costPerUnit);
+        tempMedication.setNumberOfUnits(units);
+        
+        tempMedication.setPatientID(liveDataBean.getSelectedPatientID());
+        
+        MedicationDBManagement medicationFormAddition = liveDataBean.getMedicationDBManager();
+        
+        try {
+            medicationFormAddition.createMedication(tempMedication);
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
+        
+        try {
+            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_saveButtonActionPerformed
 

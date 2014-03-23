@@ -1,7 +1,9 @@
 package com.posthoffice.jipprojectmposth.beans;
 
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.MedicationDBManagement;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 
 public class LiveDataBean {
@@ -13,6 +15,8 @@ public class LiveDataBean {
     private int selectedPatientRow;
     private PatientDBManagement patientDBManager;
     private InpatientDBManagement inpatientDBManager;
+    private MedicationDBManagement medicationDBManager;
+    private SurgicalDBManagement surgicalDBManager;
     private PatientDBTableModel patientModel;
 
     public LiveDataBean() {
@@ -23,13 +27,16 @@ public class LiveDataBean {
         this.selectedPatientRow = -1;
     }
 
-    public LiveDataBean(InpatientDBManagement inpatientDBManager, PatientDBTableModel patientModel) {
+    public LiveDataBean(InpatientDBManagement inpatientDBManager, MedicationDBManagement medicationDBManager,
+            SurgicalDBManagement surgicalDBManager, PatientDBTableModel patientModel) {
         super();
         this.selectedPatientID = -1;
         this.selectedPatientLastName = "None Selected";
         this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
         this.inpatientDBManager = inpatientDBManager;
+        this.medicationDBManager = medicationDBManager;
+        this.surgicalDBManager = surgicalDBManager;
         this.patientModel = patientModel;
     }
 
@@ -47,6 +54,22 @@ public class LiveDataBean {
 
     public void setInpatientDBManager(InpatientDBManagement inpatientDBManager) {
         this.inpatientDBManager = inpatientDBManager;
+    }
+
+    public MedicationDBManagement getMedicationDBManager() {
+        return medicationDBManager;
+    }
+
+    public void setMedicationDBManager(MedicationDBManagement medicationDBManager) {
+        this.medicationDBManager = medicationDBManager;
+    }
+
+    public SurgicalDBManagement getSurgicalDBManager() {
+        return surgicalDBManager;
+    }
+
+    public void setSurgicalDBManager(SurgicalDBManagement surgicalDBManager) {
+        this.surgicalDBManager = surgicalDBManager;
     }
 
     public PatientDBManagement getPatientDBManager() {
@@ -101,5 +124,4 @@ public class LiveDataBean {
     public String toString() {
         return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID + ", selectedPatientLastName=" + selectedPatientLastName + ", selectedPatientFirstName=" + selectedPatientFirstName + ", selectedPatientBean=" + selectedPatientBean + ", selectedPatientRow=" + selectedPatientRow + '}';
     }
-
 }

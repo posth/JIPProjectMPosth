@@ -1,19 +1,31 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SurgicalForm extends javax.swing.JPanel {
-    
+
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
+    private LiveDataBean liveDataBean;
 
     public SurgicalForm() {
+        initComponents();
+    }
+
+    public SurgicalForm(LiveDataBean liveDataBean) {
+        this.liveDataBean = liveDataBean;
         initComponents();
     }
 
@@ -138,26 +150,49 @@ public class SurgicalForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-       
+
         SurgicalBean tempSurgical = new SurgicalBean();
-        
+
         Date dateOfSurgery = (Date) dateOfSurgeryTextField.getValue();
         Timestamp dateOfSurgeryTimestamp = new Timestamp(dateOfSurgery.getTime());
-        
+
         String surgery = surgeryTextField.getText();
-        
+
         String roomFeeAsString = roomFeeTextField.getText();
         BigDecimal roomFee = new BigDecimal(roomFeeAsString.replaceAll(",", ""));
-        
+
         String surgeonsFeeAsString = surgeonsFeeTextField.getText();
         BigDecimal surgeonsFee = new BigDecimal(surgeonsFeeAsString.replaceAll(",", ""));
-        
+
         String supupliesAsString = suppliesTextField.getText();
         BigDecimal supplies = new BigDecimal(supupliesAsString.replaceAll(",", ""));
-        
+
+        tempSurgical.setDateOfSurgery(dateOfSurgeryTimestamp);
+        tempSurgical.setSurgery(surgery);
+        tempSurgical.setRoomFee(roomFee);
+        tempSurgical.setSurgeonsFee(surgeonsFee);
+        tempSurgical.getSupplies();
+
+        tempSurgical.setPatientID(liveDataBean.getSelectedPatientID());
+
+        SurgicalDBManagement surgicalFormAddition = liveDataBean.getSurgicalDBManager();
+
+        try {
+            surgicalFormAddition.createSurgical(tempSurgical);
+        } catch (SQLException ex) {
+            Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
+
+        try {
+            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
+        } catch (SQLException ex) {
+            Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_saveButtonActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateOfSurgeryLabel;
     private javax.swing.JFormattedTextField dateOfSurgeryTextField;

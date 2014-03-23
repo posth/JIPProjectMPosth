@@ -25,6 +25,11 @@ public class MedicationDBManagement {
     public MedicationDBManagement() {
         super();
     }
+    
+    public MedicationDBManagement(MedicationDBTableModel medicationDBTableModel) {
+        super();
+        this.medicationDBTableModel = medicationDBTableModel;
+    }
 
     public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {
 

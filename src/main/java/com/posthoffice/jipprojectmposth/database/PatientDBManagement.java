@@ -24,42 +24,42 @@ import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
 public class PatientDBManagement {
-
+    
     private PatientDBTableModel patientDBTableModel;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
     private LiveDataBean liveDataBean;
-
+    
     public PatientDBManagement() {
         super();
     }
-
+    
     public PatientDBManagement(PatientDBTableModel patientDBTableModel, LiveDataBean liveDataBean) {
         super();
         logger.info("Patient Database instantiated.");
         this.patientDBTableModel = patientDBTableModel;
         this.liveDataBean = liveDataBean;
     }
-
+    
     public boolean fillTableModel(String criteria) {
-
+        
         boolean retVal = true;
         String sql = "SELECT * FROM PATIENT";
         if (criteria != null) {
             sql += criteria;
         }
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql);) {
-
+            
             if (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
                 patientDBTableModel.loadColumnNames(rsmd);
-
+                
                 patientDBTableModel.loadData(readPatient());
-
+                
             } else {
                 retVal = false;
             }
@@ -67,18 +67,18 @@ public class PatientDBManagement {
             logger.error("Error filling table.", sqlex);
             retVal = false;
         }
-
+        
         return retVal;
     }
-
+    
     public void updateDB() {
-
+        
         PatientBean patient;
         int result = 0;
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD);) {
-
+            
             for (int theRows = 0; theRows < patientDBTableModel.getRowCount(); ++theRows) {
                 if (patientDBTableModel.getUpdateStatus(theRows)) {
                     patient = patientDBTableModel.getPatientData(theRows);
@@ -98,24 +98,24 @@ public class PatientDBManagement {
                         System.out.println("\nUpdate UNsuccessful\n");
                     }
                 }
-
+                
                 patientDBTableModel.clearUpdate(theRows);
             }
         } catch (SQLException sqlex) {
             logger.error("Error updating database", sqlex);
         }
-
+        
     }
 
     //@Override
     public int createPatient(PatientBean patient) throws SQLException {
-
+        
         int result;
-
+        
         String primaryKeySQL = "SELECT LAST_INSERT_ID()";
-
+        
         String preparedQuery = "INSERT INTO PATIENT(LASTNAME, FIRSTNAME, DIAGNOSIS, ADMISSIONDATE, RELEASERATE) VALUES (?,?,?,?,?)";
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
             ps.setString(1, patient.getLastName());
@@ -123,9 +123,9 @@ public class PatientDBManagement {
             ps.setString(3, patient.getDiagnosis());
             ps.setTimestamp(4, patient.getAdmissionDate());
             ps.setTimestamp(5, patient.getReleaseDate());
-
+            
             result = ps.executeUpdate();
-
+            
             try (Statement statement = connection.createStatement();
                     ResultSet rs = statement.executeQuery(primaryKeySQL);) {
                 if (rs.next()) {
@@ -133,7 +133,7 @@ public class PatientDBManagement {
                     patient.setPatientID((int) key);
                     //temporary fix of casting to int,
                 }
-
+                
                 patientDBTableModel.addPatientBean(patient);
             }
         }
@@ -143,57 +143,57 @@ public class PatientDBManagement {
 
     //@Override
     public ArrayList<PatientBean> readPatient() throws SQLException {
-
+        
         String preparedQuery = "SELECT * FROM PATIENT";
-
+        
         ArrayList<PatientBean> patientList = new ArrayList<>();
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
-
+            
             try (ResultSet resultSet = pStatement.executeQuery()) {
-
+                
                 while (resultSet.next()) {
-
+                    
                     PatientBean temp = new PatientBean();
-
+                    
                     InpatientDBManagement inpatient = liveDataBean.getInpatientDBManager();
-                    MedicationDBManagement medication = new MedicationDBManagement();
-                    SurgicalDBManagement surgical = new SurgicalDBManagement();
-
+                    MedicationDBManagement medication = liveDataBean.getMedicationDBManager();
+                    SurgicalDBManagement surgical = liveDataBean.getSurgicalDBManager();
+                    
                     int patientID = resultSet.getInt("PATIENTID");
-
+                    
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
                     temp.setLastName(resultSet.getString("LASTNAME"));
                     temp.setFirstName(resultSet.getString("FIRSTNAME"));
                     temp.setDiagnosis(resultSet.getString("DIAGNOSIS"));
                     temp.setAdmissionDate(resultSet.getTimestamp("ADMISSIONDATE"));
                     temp.setReleaseDate(resultSet.getTimestamp("RELEASERATE"));
-
+                    
                     temp.setInpatientList(inpatient.readInpatient(patientID));
                     temp.setMedicationList(medication.readMedication(patientID));
                     temp.setSurgicalList(surgical.readSurgical(patientID));
-
+                    
                     patientList.add(temp);
                 }
             }
         }
-
+        
         return patientList;
-
+        
     }
 
     //@Override
     public int updatePatient(PatientBean patient) throws SQLException {
-
+        
         int result;
-
+        
         String preparedQuery = "UPDATE PATIENT SET LASTNAME = ?, FIRSTNAME = ?, DIAGNOSIS = ?, ADMISSIONDATE = ?, RELEASERATE = ? WHERE PATIENTID = ?";
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-
+            
             ps.setString(1, patient.getLastName());
             ps.setString(2, patient.getFirstName());
             ps.setString(3, patient.getDiagnosis());
@@ -203,30 +203,35 @@ public class PatientDBManagement {
             
             InpatientDBManagement tempInpatientDB = liveDataBean.getInpatientDBManager();
             patient.setInpatientList(tempInpatientDB.readInpatient(patient.getPatientID()));
-
-            result = ps.executeUpdate();
-             
             
+            MedicationDBManagement tempMedicationDB = liveDataBean.getMedicationDBManager();
+            patient.setMedicationList(tempMedicationDB.readMedication(patient.getPatientID()));
+            
+            SurgicalDBManagement tempSurgicalDB = liveDataBean.getSurgicalDBManager();
+            patient.setSurgicalList(tempSurgicalDB.readSurgical(patient.getPatientID()));
+            
+            result = ps.executeUpdate();
+          
         }
-
+        
         return result;
     }
 
     //@Override
     public int deletePatient(PatientBean patientBean) throws SQLException {
-
+        
         int result = 0;
-
+        
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
-
+        
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-
+            
             ps.setInt(1, patientBean.getPatientID());
-
+            
             int patientID = patientBean.getPatientID();
-
+            
             InpatientDBManagement inpatient = new InpatientDBManagement();
             MedicationDBManagement medication = new MedicationDBManagement();
             SurgicalDBManagement surgical = new SurgicalDBManagement();
@@ -255,10 +260,10 @@ public class PatientDBManagement {
                 SurgicalBean temp = surgicalList.get(i);
                 surgical.deleteSurgical(temp);
             }
-
+            
             result = ps.executeUpdate();
         }
-
+        
         logger.info("Records deleted: " + result);
         return result;
     }

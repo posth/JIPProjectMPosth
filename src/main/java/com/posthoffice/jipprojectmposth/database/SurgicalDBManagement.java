@@ -25,6 +25,11 @@ public class SurgicalDBManagement {
     public SurgicalDBManagement() {
         super();
     }
+    
+    public SurgicalDBManagement(SurgicalDBTableModel surgicalDBTableModel) {
+        super();
+        this.surgicalDBTableModel = surgicalDBTableModel;
+    }
 
     public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {
 
@@ -57,7 +62,6 @@ public class SurgicalDBManagement {
         return surgicalList;
     }
 
-    //works
     public int createSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;

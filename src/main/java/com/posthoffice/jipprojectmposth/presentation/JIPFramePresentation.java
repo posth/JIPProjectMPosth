@@ -2,6 +2,8 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.MedicationDBManagement;
+import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
@@ -26,6 +28,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private SurgicalDBTableModel surgicalModel;
     
     private InpatientDBManagement inpatientDBManager;
+    private MedicationDBManagement medicationDBManager;
+    private SurgicalDBManagement surgicalDBManager;
 
     private LiveDataBean liveDataBean;
 
@@ -37,8 +41,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
 
         inpatientDBManager = new InpatientDBManagement(inpatientModel);
+        medicationDBManager = new MedicationDBManagement(medicationModel);
+        surgicalDBManager = new SurgicalDBManagement(surgicalModel);
         
-        liveDataBean = new LiveDataBean(inpatientDBManager, patientModel);
+        liveDataBean = new LiveDataBean(inpatientDBManager, medicationDBManager, surgicalDBManager, patientModel);
 
         initComponents();
     }
@@ -231,7 +237,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             JFrame medicationFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
                     + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
 
-            MedicationForm medicationForm = new MedicationForm();
+            MedicationForm medicationForm = new MedicationForm(liveDataBean);
             JScrollPane medicationFormScroll = new JScrollPane(medicationForm);
 
             medicationFormFrame.getContentPane().add(medicationFormScroll);
@@ -259,7 +265,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             JFrame surgicalFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
                     + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
 
-            SurgicalForm surgicalForm = new SurgicalForm();
+            SurgicalForm surgicalForm = new SurgicalForm(liveDataBean);
             JScrollPane surgicalFormScroll = new JScrollPane(surgicalForm);
 
             surgicalFormFrame.getContentPane().add(surgicalFormScroll);
