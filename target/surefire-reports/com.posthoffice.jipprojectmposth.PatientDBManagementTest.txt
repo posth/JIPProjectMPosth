@@ -1,23 +1,23 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.578 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
-updatePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.138 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.396 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
+updatePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.094 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.updatePatientTest(PatientDBManagementTest.java:57)
 
-readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.101 sec  <<< ERROR!
+readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.107 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.readPatientTest(PatientDBManagementTest.java:27)
 
-deletePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.219 sec  <<< ERROR!
+deletePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.098 sec  <<< ERROR!
 java.lang.NullPointerException: null
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
-	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:48)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:235)
+	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 
-createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.12 sec  <<< ERROR!
+createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.097 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:137)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.createPatientTest(PatientDBManagementTest.java:35)

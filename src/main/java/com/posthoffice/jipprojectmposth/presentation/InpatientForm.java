@@ -195,9 +195,7 @@ public class InpatientForm extends javax.swing.JPanel {
         PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
         
         try {
-            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
-            
-       PatientDBTableModel patientModelTest = liveDataBean.getPatientModel();   
+            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());     
 
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);

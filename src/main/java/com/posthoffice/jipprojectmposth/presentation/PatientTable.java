@@ -26,8 +26,8 @@ public class PatientTable extends javax.swing.JPanel {
         initComponents();
     }
 
-    public PatientTable(PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
-        this.patientModel = patientModel;
+    public PatientTable(LiveDataBean liveDataBean) {
+        this.patientModel = liveDataBean.getPatientModel();
         this.liveDataBean = liveDataBean;
 
         patientDBManager = new PatientDBManagement(patientModel, liveDataBean);

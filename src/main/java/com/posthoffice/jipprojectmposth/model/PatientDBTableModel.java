@@ -60,6 +60,11 @@ public class PatientDBTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
 
     }
+    
+    public void deletePatientBean(PatientBean p) {
+        data.remove(p);
+        this.fireTableDataChanged();
+    }
 
     public void loadData(ArrayList<PatientBean> patientList) {
 

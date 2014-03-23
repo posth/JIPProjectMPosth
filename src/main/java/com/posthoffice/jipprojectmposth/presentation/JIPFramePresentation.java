@@ -1,8 +1,10 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.database.MedicationDBManagement;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
@@ -10,6 +12,9 @@ import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +26,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
+    
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
@@ -150,7 +156,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     break;
 
                 case "DeletePatient":
-                    deletePatientForm();
+                    try {
+                        deletePatientForm();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
 
                 case "NewInpatient":
@@ -195,8 +205,33 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
-    public void deletePatientForm() {
-        //to do based on selectedRow
+    public void deletePatientForm() throws SQLException {
+
+        if (!(liveDataBean.getSelectedPatientRow() == -1)) {
+
+            PatientBean selectedPatient = liveDataBean.getSelectedPatientBean();
+
+            String optionPaneMessage = "Are you sure you want to delete " + selectedPatient.getLastName()
+                    + ", " + selectedPatient.getFirstName() + "?";
+
+            int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Patient", JOptionPane.YES_NO_OPTION);
+
+            if (selectedOption == JOptionPane.YES_OPTION) {
+
+                PatientDBManagement patientDB = liveDataBean.getPatientDBManager();
+                                          
+                patientDB.deletePatient(selectedPatient);
+
+                
+
+            }
+
+        } else {
+            JFrame dialogue = new JFrame();
+            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }
 
     public void createInpatientForm() {

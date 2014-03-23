@@ -193,7 +193,7 @@ public class SurgicalForm extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         surgicalFormFrame.dispose();
 
 

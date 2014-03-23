@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.578" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.396" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,29 +59,25 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.138">
+  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.094">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.updatePatientTest(PatientDBManagementTest.java:57)
 </error>
   </testcase>
-  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.101">
+  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.107">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.readPatientTest(PatientDBManagementTest.java:27)
 </error>
   </testcase>
-  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.219">
+  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.098">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:161)
-	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:48)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:235)
+	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 </error>
-    <system-err><![CDATA[log4j:WARN No appenders could be found for logger (com.posthoffice.jipprojectmposth.database.PatientDBManagement).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-]]></system-err>
   </testcase>
-  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.12">
+  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.097">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:137)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.createPatientTest(PatientDBManagementTest.java:35)

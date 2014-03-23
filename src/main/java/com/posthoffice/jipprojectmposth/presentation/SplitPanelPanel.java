@@ -42,7 +42,7 @@ public class SplitPanelPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel, liveDataBean);
         jScrollPane3 = new javax.swing.JScrollPane();
-        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel, liveDataBean);
+        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(liveDataBean);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setResizeWeight(.5d);

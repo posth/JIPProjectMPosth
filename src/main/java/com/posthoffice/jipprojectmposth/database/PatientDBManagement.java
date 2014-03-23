@@ -220,7 +220,7 @@ public class PatientDBManagement {
     //@Override
     public int deletePatient(PatientBean patientBean) throws SQLException {
         
-        int result = 0;
+        int result = 0;       
         
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
         
@@ -232,9 +232,9 @@ public class PatientDBManagement {
             
             int patientID = patientBean.getPatientID();
             
-            InpatientDBManagement inpatient = new InpatientDBManagement();
-            MedicationDBManagement medication = new MedicationDBManagement();
-            SurgicalDBManagement surgical = new SurgicalDBManagement();
+            InpatientDBManagement inpatient = liveDataBean.getInpatientDBManager();
+            MedicationDBManagement medication = liveDataBean.getMedicationDBManager();
+            SurgicalDBManagement surgical = liveDataBean.getSurgicalDBManager();
             
             ArrayList<InpatientBean> inpatientList = inpatient.readInpatient(patientID);
             ArrayList<MedicationBean> medicationList = medication.readMedication(patientID);
@@ -262,8 +262,11 @@ public class PatientDBManagement {
             }
             
             result = ps.executeUpdate();
+            
+            
         }
         
+
         logger.info("Records deleted: " + result);
         return result;
     }
