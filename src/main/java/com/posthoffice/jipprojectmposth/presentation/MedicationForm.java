@@ -13,12 +13,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 public class MedicationForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private String digitRegEx = "[0-9]+";
+    private JFrame medicationFormFrame;
     
     private LiveDataBean liveDataBean;
 
@@ -26,8 +28,9 @@ public class MedicationForm extends javax.swing.JPanel {
         initComponents();
     }
     
-    public MedicationForm(LiveDataBean liveDataBean) {
+    public MedicationForm(LiveDataBean liveDataBean, JFrame medicationFormFrame) {
         this.liveDataBean = liveDataBean;
+        this.medicationFormFrame = medicationFormFrame;
         initComponents();
     }
 
@@ -170,6 +173,8 @@ public class MedicationForm extends javax.swing.JPanel {
             Logger.getLogger(MedicationForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        medicationFormFrame.dispose();
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
 

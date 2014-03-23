@@ -13,19 +13,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 public class SurgicalForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private LiveDataBean liveDataBean;
+    private JFrame surgicalFormFrame;
 
     public SurgicalForm() {
         initComponents();
     }
 
-    public SurgicalForm(LiveDataBean liveDataBean) {
+    public SurgicalForm(LiveDataBean liveDataBean, JFrame surgicalFormFrame) {
         this.liveDataBean = liveDataBean;
+        this.surgicalFormFrame = surgicalFormFrame;
         initComponents();
     }
 
@@ -190,6 +193,8 @@ public class SurgicalForm extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        surgicalFormFrame.dispose();
 
 
     }//GEN-LAST:event_saveButtonActionPerformed

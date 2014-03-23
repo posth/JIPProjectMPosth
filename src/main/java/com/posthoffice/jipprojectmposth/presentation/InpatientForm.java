@@ -2,7 +2,6 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
-import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
@@ -12,23 +11,25 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 public class InpatientForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private LiveDataBean liveDataBean;
+    private JFrame inpatientFormFrame;
 
     public InpatientForm() {
         initComponents();
     }
 
-    public InpatientForm(LiveDataBean liveDataBean) {
+    public InpatientForm(LiveDataBean liveDataBean, JFrame inpatientFormFrame) {
         this.liveDataBean = liveDataBean;
+        this.inpatientFormFrame = inpatientFormFrame;
         initComponents();
     }
 
@@ -201,6 +202,8 @@ public class InpatientForm extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        inpatientFormFrame.dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void suppliesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliesTextFieldActionPerformed

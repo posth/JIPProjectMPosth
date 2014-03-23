@@ -20,13 +20,15 @@ public class PatientForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";   
     private LiveDataBean liveDataBean;
+    private JFrame patientFormFrame;
 
     public PatientForm() {
         initComponents();
     }
     
-    public PatientForm(LiveDataBean liveDataBean) {
+    public PatientForm(LiveDataBean liveDataBean, JFrame patientFormFrame) {
         this.liveDataBean = liveDataBean;
+        this.patientFormFrame = patientFormFrame;
         initComponents();
     }
 
@@ -194,7 +196,7 @@ public class PatientForm extends javax.swing.JPanel {
             Logger.getLogger(PatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //METHOD TO CLOSE FRAME AFTER ADDING THE PATIENT
+        patientFormFrame.dispose();
         
     }//GEN-LAST:event_saveButtonActionPerformed
 
