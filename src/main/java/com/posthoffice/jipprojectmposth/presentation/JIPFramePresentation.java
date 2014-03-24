@@ -26,17 +26,17 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
-    
+
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
-    
+
     private InpatientDBManagement inpatientDBManager;
     private MedicationDBManagement medicationDBManager;
     private SurgicalDBManagement surgicalDBManager;
     private PatientDBManagement patientDBManager;
-    
+
     private LiveDataBean liveDataBean;
 
     public JIPFramePresentation() {
@@ -50,7 +50,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         medicationDBManager = new MedicationDBManagement(medicationModel);
         surgicalDBManager = new SurgicalDBManagement(surgicalModel);
         patientDBManager = new PatientDBManagement(patientModel, inpatientDBManager, medicationDBManager, surgicalDBManager);
-        
 
         liveDataBean = new LiveDataBean();
 
@@ -223,10 +222,18 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Patient", JOptionPane.YES_NO_OPTION);
 
             if (selectedOption == JOptionPane.YES_OPTION) {
-                        
+
+                System.out.println("selected PAtient row when deleting is: " + liveDataBean.getSelectedPatientRow());
+
                 patientDBManager.deletePatient(selectedPatient);
 
+                patientModel.fireTableDataChanged();
+                patientModel.deleteRow(liveDataBean.getSelectedPatientRow());
+
+                //can delete a patient, but its children model remains un-updated
+                //simply firing the changes to the model doesnt work
                 
+                liveDataBean.setSelectedPatientRow(-1);
 
             }
 
@@ -235,11 +242,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-
     }
 
     public void createInpatientForm() {
-        
+
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -268,7 +274,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void createMedicationForm() {
-        
+
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -297,7 +303,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void createSurgicalForm() {
-        
+
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {

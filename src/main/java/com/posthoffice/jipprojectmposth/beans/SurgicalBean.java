@@ -93,7 +93,7 @@ public class SurgicalBean {
         this.supplies = supplies;
     }
 
-    public boolean isUpdate() {
+    public boolean getUpdate() {
         return update;
     }
 

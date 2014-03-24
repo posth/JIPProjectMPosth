@@ -82,7 +82,7 @@ public class MedicationBean {
         this.numberOfUnits = numberOfUnits;
     }
 
-    public boolean isUpdate() {
+    public boolean getUpdate() {
         return update;
     }
 

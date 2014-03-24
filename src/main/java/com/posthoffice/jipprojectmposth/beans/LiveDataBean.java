@@ -1,6 +1,8 @@
 package com.posthoffice.jipprojectmposth.beans;
 
+import com.posthoffice.jipprojectmposth.presentation.PatientTable;
 import java.util.Objects;
+import javax.swing.JTable;
 
 public class LiveDataBean {
 

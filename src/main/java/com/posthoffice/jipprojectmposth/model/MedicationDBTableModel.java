@@ -42,13 +42,14 @@ public class MedicationDBTableModel extends AbstractTableModel {
         return MEDICATIONCOLUMNNAMES[col];
     }
 
-//    public boolean getUpdateStatus(int row) {
-//        return data.get(row).getUpdate();
-//    }
-//
-//    public void clearUpdate(int row) {
-//        data.get(row).setUpdate(false);
-//    }
+    public boolean getUpdateStatus(int row) {
+        return data.get(row).getUpdate();
+    }
+
+    public void clearUpdate(int row) {
+        data.get(row).setUpdate(false);
+    }
+    
     public MedicationBean getMedicationData(int row) {
         return data.get(row);
     }

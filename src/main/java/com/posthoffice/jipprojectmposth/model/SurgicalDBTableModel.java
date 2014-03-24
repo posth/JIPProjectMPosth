@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SurgicalDBTableModel extends AbstractTableModel{
+public class SurgicalDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<SurgicalBean> data = new ArrayList<>();
@@ -42,13 +42,14 @@ public class SurgicalDBTableModel extends AbstractTableModel{
         return SURGICALCOLUMNNAMES[col];
     }
 
-//    public boolean getUpdateStatus(int row) {
-//        return data.get(row).getUpdate();
-//    }
-//
-//    public void clearUpdate(int row) {
-//        data.get(row).setUpdate(false);
-//    }
+    public boolean getUpdateStatus(int row) {
+        return data.get(row).getUpdate();
+    }
+
+    public void clearUpdate(int row) {
+        data.get(row).setUpdate(false);
+    }
+    
     public SurgicalBean getSurgicalData(int row) {
         return data.get(row);
     }

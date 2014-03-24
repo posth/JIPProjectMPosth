@@ -3,10 +3,7 @@ package com.posthoffice.jipprojectmposth.presentation;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
-import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
-import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
-import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -21,17 +18,16 @@ public class PatientTable extends javax.swing.JPanel {
 
     public PatientTable() {
 
-        InpatientDBTableModel t = new InpatientDBTableModel();
-        MedicationDBTableModel m = new MedicationDBTableModel();
-        SurgicalDBTableModel s = new SurgicalDBTableModel();
-        patientModel = new PatientDBTableModel(t, m, s);
+        this.patientModel = new PatientDBTableModel();
+        this.patientDBManager = new PatientDBManagement();
 
-        LiveDataBean b = new LiveDataBean();
+        this.liveDataBean = new LiveDataBean();
 
         initComponents();
     }
 
     public PatientTable(PatientDBManagement patientDBManager, PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
+        
         this.patientDBManager = patientDBManager;
 
         this.patientModel = patientModel;
@@ -62,7 +58,7 @@ public class PatientTable extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     class RowListener implements ListSelectionListener {
-
+        
         @Override
         public void valueChanged(ListSelectionEvent e) {
 
@@ -84,10 +80,13 @@ public class PatientTable extends javax.swing.JPanel {
             liveDataBean.setSelectedPatientRow(selectedRow);
             liveDataBean.setSelectedPatientBean(temp);
             liveDataBean.setSelectedPatientID(temp.getPatientID());
+            
             System.out.println("live data bean selected patient is " + liveDataBean);
 
         }
     }
+    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientTable;

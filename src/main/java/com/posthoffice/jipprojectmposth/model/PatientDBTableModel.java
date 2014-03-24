@@ -1,7 +1,6 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
-import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
@@ -25,8 +24,7 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
-    private SurgicalDBTableModel surgicalModel;
- 
+    private SurgicalDBTableModel surgicalModel; 
 
     private final String[] patientColumnNames = {Messages.getString("idnumber"), Messages.getString("lastname"), Messages.getString("firstname"), Messages.getString("diagnosis"),
         Messages.getString("admissiondate")};
@@ -34,6 +32,7 @@ public class PatientDBTableModel extends AbstractTableModel {
     public PatientDBTableModel() {
         
         super();
+        
         this.inpatientModel = new InpatientDBTableModel();
         this.medicationModel = new MedicationDBTableModel();
         this.surgicalModel = new SurgicalDBTableModel();
@@ -41,16 +40,20 @@ public class PatientDBTableModel extends AbstractTableModel {
     
     
     public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
+        
         super();
+        
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
+        
         logger.info("Patient Database Table Model Instantiated");
     }
 
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
+        
         try {
             colCount = rsmd.getColumnCount() - 1;
 
@@ -65,12 +68,13 @@ public class PatientDBTableModel extends AbstractTableModel {
     }
 
     public void addPatientBean(PatientBean p) {
+        
         data.add(p);
         this.fireTableDataChanged();
-
     }
     
     public void deletePatientBean(PatientBean p) {
+        
         data.remove(p);
         this.fireTableDataChanged();
     }
@@ -107,8 +111,7 @@ public class PatientDBTableModel extends AbstractTableModel {
         medicationModel.loadMedicationList(medicationList);
         surgicalModel.loadSurgicalList(surgicalList);
         
-        System.out.println("The inpatient bean list from table model selection is " + inpatientList);
-
+        //System.out.println("The inpatient bean list from table model selection is " + inpatientList);
     }
 
     @Override

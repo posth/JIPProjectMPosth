@@ -57,13 +57,14 @@ public class PatientDBManagement {
         this.inpatientDBManager = inpatientDBManager;
         this.medicationDBManager = medicationDBManager;
         this.surgicalDBManager = surgicalDBManager;
-
     }
 
     public boolean fillTableModel(String criteria) {
 
         boolean retVal = true;
+        
         String sql = "SELECT * FROM PATIENT";
+        
         if (criteria != null) {
             sql += criteria;
         }
@@ -76,7 +77,6 @@ public class PatientDBManagement {
             if (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
                 patientDBTableModel.loadColumnNames(rsmd);
-
                 patientDBTableModel.loadData(readPatient());
 
             } else {
@@ -93,6 +93,7 @@ public class PatientDBManagement {
     public void updateDB() {
 
         PatientBean patient;
+        
         int result = 0;
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
@@ -126,7 +127,6 @@ public class PatientDBManagement {
 
     }
 
-    //@Override
     public int createPatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -160,7 +160,6 @@ public class PatientDBManagement {
         return result;
     }
 
-    //@Override
     public ArrayList<PatientBean> readPatient() throws SQLException {
 
         String preparedQuery = "SELECT * FROM PATIENT";
@@ -199,7 +198,6 @@ public class PatientDBManagement {
 
     }
 
-    //@Override
     public int updatePatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -229,10 +227,9 @@ public class PatientDBManagement {
         return result;
     }
 
-    //@Override
     public int deletePatient(PatientBean patientBean) throws SQLException {
-
-        int result = 0;
+        
+        int result = 0;        
 
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
 
