@@ -9,7 +9,8 @@ import javax.swing.event.ListSelectionListener;
 
 public class InpatientTable extends javax.swing.JPanel {
 
-    private InpatientDBTableModel inpatientModel = new InpatientDBTableModel();
+    private InpatientDBTableModel inpatientModel;
+    
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 

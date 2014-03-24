@@ -19,16 +19,36 @@ public class SurgicalForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
-    private LiveDataBean liveDataBean;
+    
     private JFrame surgicalFormFrame;
-
+    
+    private PatientDBManagement patientDBManager;
+    private SurgicalDBManagement surgicalDBManager;
+    
+    private LiveDataBean liveDataBean;
+    
     public SurgicalForm() {
+        
+        this.patientDBManager = new PatientDBManagement();
+        this.surgicalDBManager = new SurgicalDBManagement();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.surgicalFormFrame = new JFrame();
+        
         initComponents();
     }
 
-    public SurgicalForm(LiveDataBean liveDataBean, JFrame surgicalFormFrame) {
+    public SurgicalForm(PatientDBManagement patientDBManager, SurgicalDBManagement surgicalDBManager, 
+            LiveDataBean liveDataBean, JFrame surgicalFormFrame) {
+        
+        this.patientDBManager = patientDBManager;
+        this.surgicalDBManager = surgicalDBManager;
+        
         this.liveDataBean = liveDataBean;
+        
         this.surgicalFormFrame = surgicalFormFrame;
+        
         initComponents();
     }
 
@@ -174,22 +194,18 @@ public class SurgicalForm extends javax.swing.JPanel {
         tempSurgical.setSurgery(surgery);
         tempSurgical.setRoomFee(roomFee);
         tempSurgical.setSurgeonsFee(surgeonsFee);
-        tempSurgical.getSupplies();
+        tempSurgical.setSupplies(supplies);
 
         tempSurgical.setPatientID(liveDataBean.getSelectedPatientID());
 
-        SurgicalDBManagement surgicalFormAddition = liveDataBean.getSurgicalDBManager();
-
         try {
-            surgicalFormAddition.createSurgical(tempSurgical);
+            surgicalDBManager.createSurgical(tempSurgical);
         } catch (SQLException ex) {
             Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
-
         try {
-            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
+            patientDBManager.updatePatient(liveDataBean.getSelectedPatientBean());
         } catch (SQLException ex) {
             Logger.getLogger(SurgicalForm.class.getName()).log(Level.SEVERE, null, ex);
         }

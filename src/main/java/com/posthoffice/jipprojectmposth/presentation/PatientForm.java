@@ -21,13 +21,15 @@ public class PatientForm extends javax.swing.JPanel {
     private String nameRegEx = ".+";   
     private LiveDataBean liveDataBean;
     private JFrame patientFormFrame;
+    
+    private PatientDBManagement patientDBManager;
 
     public PatientForm() {
         initComponents();
     }
     
-    public PatientForm(LiveDataBean liveDataBean, JFrame patientFormFrame) {
-        this.liveDataBean = liveDataBean;
+    public PatientForm(PatientDBManagement patientDBManager, JFrame patientFormFrame) {
+        this.patientDBManager = patientDBManager;
         this.patientFormFrame = patientFormFrame;
         initComponents();
     }
@@ -186,12 +188,10 @@ public class PatientForm extends javax.swing.JPanel {
         tempPatient.setFirstName(firstName);
         tempPatient.setDiagnosis(diagnosis);
         tempPatient.setAdmissionDate(admissionDateTimestamp);
-        tempPatient.setReleaseDate(releaseDateTimestamp);
-             
-        PatientDBManagement patientFormAddition = liveDataBean.getPatientDBManager();
+        tempPatient.setReleaseDate(releaseDateTimestamp);             
         
         try {
-            patientFormAddition.createPatient(tempPatient);
+            patientDBManager.createPatient(tempPatient);
         } catch (SQLException ex) {
             Logger.getLogger(PatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }

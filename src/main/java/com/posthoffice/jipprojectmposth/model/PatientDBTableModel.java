@@ -31,6 +31,15 @@ public class PatientDBTableModel extends AbstractTableModel {
     private final String[] patientColumnNames = {Messages.getString("idnumber"), Messages.getString("lastname"), Messages.getString("firstname"), Messages.getString("diagnosis"),
         Messages.getString("admissiondate")};
 
+    public PatientDBTableModel() {
+        
+        super();
+        this.inpatientModel = new InpatientDBTableModel();
+        this.medicationModel = new MedicationDBTableModel();
+        this.surgicalModel = new SurgicalDBTableModel();
+    }
+    
+    
     public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
         super();
         this.inpatientModel = inpatientModel;

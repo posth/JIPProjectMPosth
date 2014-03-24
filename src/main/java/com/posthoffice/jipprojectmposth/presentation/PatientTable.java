@@ -13,12 +13,14 @@ import javax.swing.event.ListSelectionListener;
 
 public class PatientTable extends javax.swing.JPanel {
 
-    private PatientDBTableModel patientModel = null;
-    private PatientDBManagement patientDBManager = null;
+    private PatientDBTableModel patientModel;
+    private PatientDBManagement patientDBManager;
+
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 
     public PatientTable() {
+
         InpatientDBTableModel t = new InpatientDBTableModel();
         MedicationDBTableModel m = new MedicationDBTableModel();
         SurgicalDBTableModel s = new SurgicalDBTableModel();
@@ -29,14 +31,13 @@ public class PatientTable extends javax.swing.JPanel {
         initComponents();
     }
 
-    public PatientTable(PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
+    public PatientTable(PatientDBManagement patientDBManager, PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
+        this.patientDBManager = patientDBManager;
+
         this.patientModel = patientModel;
         this.liveDataBean = liveDataBean;
 
-        patientDBManager = new PatientDBManagement(patientModel, liveDataBean);
         patientDBManager.fillTableModel(null);
-
-        liveDataBean.setPatientDBManager(patientDBManager);
 
         initComponents();
     }

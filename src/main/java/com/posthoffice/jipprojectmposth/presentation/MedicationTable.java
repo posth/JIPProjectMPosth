@@ -5,7 +5,8 @@ import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 
 public class MedicationTable extends javax.swing.JPanel {
 
-    private MedicationDBTableModel medicationModel = new MedicationDBTableModel();
+    private MedicationDBTableModel medicationModel;
+    
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 

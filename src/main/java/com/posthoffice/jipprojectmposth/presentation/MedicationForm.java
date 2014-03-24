@@ -20,17 +20,36 @@ public class MedicationForm extends javax.swing.JPanel {
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
     private String digitRegEx = "[0-9]+";
+    
     private JFrame medicationFormFrame;
+    
+    private PatientDBManagement patientDBManager;
+    private MedicationDBManagement medicationDBManager;
     
     private LiveDataBean liveDataBean;
 
     public MedicationForm() {
+        
+        this.patientDBManager = new PatientDBManagement();
+        this.medicationDBManager = new MedicationDBManagement();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.medicationFormFrame = new JFrame();
+        
         initComponents();
     }
     
-    public MedicationForm(LiveDataBean liveDataBean, JFrame medicationFormFrame) {
+    public MedicationForm(PatientDBManagement patientDBManager, MedicationDBManagement medicationDBManager, 
+            LiveDataBean liveDataBean, JFrame medicationFormFrame) {
+        
+        this.patientDBManager = patientDBManager;
+        this.medicationDBManager = medicationDBManager;
+        
         this.liveDataBean = liveDataBean;
+        
         this.medicationFormFrame = medicationFormFrame;
+        
         initComponents();
     }
 
@@ -155,20 +174,16 @@ public class MedicationForm extends javax.swing.JPanel {
         tempMedication.setCostPerUnit(costPerUnit);
         tempMedication.setNumberOfUnits(units);
         
-        tempMedication.setPatientID(liveDataBean.getSelectedPatientID());
-        
-        MedicationDBManagement medicationFormAddition = liveDataBean.getMedicationDBManager();
+        tempMedication.setPatientID(liveDataBean.getSelectedPatientID());      
         
         try {
-            medicationFormAddition.createMedication(tempMedication);
+            medicationDBManager.createMedication(tempMedication);
         } catch (SQLException ex) {
             Logger.getLogger(MedicationForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
-        
         try {
-            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());
+            patientDBManager.updatePatient(liveDataBean.getSelectedPatientBean());
         } catch (SQLException ex) {
             Logger.getLogger(MedicationForm.class.getName()).log(Level.SEVERE, null, ex);
         }

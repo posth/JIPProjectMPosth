@@ -1,6 +1,10 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.MedicationDBManagement;
+import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
+import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
@@ -11,16 +15,30 @@ public class SplitPanelPanel extends javax.swing.JPanel {
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
-    private SurgicalDBTableModel surgicalModel;   
+    private SurgicalDBTableModel surgicalModel;  
+    
+    private PatientDBManagement patientDBManager;
+    private InpatientDBManagement inpatientDBManager;
+    private MedicationDBManagement medicationDBManager;
+    private SurgicalDBManagement surgicalDBManager;
+    
     private LiveDataBean liveDataBean;
 
     public SplitPanelPanel(PatientDBTableModel patientModel, InpatientDBTableModel inpatientModel, 
-            MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel, LiveDataBean liveDataBean) {
+            MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel, LiveDataBean liveDataBean,
+            PatientDBManagement patientDBManager, InpatientDBManagement inpatientDBManager, MedicationDBManagement medicationDBManager, 
+            SurgicalDBManagement surgicalDBManager) {
 
-        this.patientModel = patientModel;
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
+        this.patientModel = patientModel;    
+        
+        this.patientDBManager = patientDBManager;
+        this.inpatientDBManager = inpatientDBManager;
+        this.medicationDBManager = medicationDBManager;
+        this.surgicalDBManager = surgicalDBManager;
+        
         this.liveDataBean = liveDataBean;
         
         initComponents();
@@ -32,6 +50,12 @@ public class SplitPanelPanel extends javax.swing.JPanel {
         this.medicationModel = new MedicationDBTableModel();
         this.surgicalModel = new SurgicalDBTableModel();
         this.patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
+        
+        this.patientDBManager = new PatientDBManagement();
+        this.inpatientDBManager = new InpatientDBManagement();
+        this.medicationDBManager = new MedicationDBManagement();
+        this.surgicalDBManager = new SurgicalDBManagement();
+        
         this.liveDataBean = new LiveDataBean();
         
         initComponents();
@@ -45,7 +69,7 @@ public class SplitPanelPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabbedChildrenTables1 = new com.posthoffice.jipprojectmposth.presentation.TabbedChildrenTables(inpatientModel, medicationModel, surgicalModel, liveDataBean);
         jScrollPane3 = new javax.swing.JScrollPane();
-        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel, liveDataBean);
+        patientTable1 = new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientDBManager, patientModel, liveDataBean);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setResizeWeight(.5d);

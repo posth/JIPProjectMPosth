@@ -20,16 +20,35 @@ public class InpatientForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";
     private String moneyRegEx = "^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\\.[0-9]{2})?|(?:\\.[0-9]{3})*(?:,[0-9]{2})?)$";
-    private LiveDataBean liveDataBean;
+    
     private JFrame inpatientFormFrame;
+    
+    private PatientDBManagement patientDBManager;
+    private InpatientDBManagement inpatientDBManager;
+    
+    private LiveDataBean liveDataBean;
 
     public InpatientForm() {
+        
+        this.inpatientFormFrame = new JFrame();
+        
+        this.patientDBManager = new PatientDBManagement();
+        this.inpatientDBManager = new InpatientDBManagement();
+        
+        this.liveDataBean = new LiveDataBean();
+        
         initComponents();
     }
 
-    public InpatientForm(LiveDataBean liveDataBean, JFrame inpatientFormFrame) {
+    public InpatientForm(PatientDBManagement patientDBManager, InpatientDBManagement inpatientDBManager, LiveDataBean liveDataBean, JFrame inpatientFormFrame) {
+        
+        this.patientDBManager = patientDBManager;
+        this.inpatientDBManager = inpatientDBManager;
+        
         this.liveDataBean = liveDataBean;
+        
         this.inpatientFormFrame = inpatientFormFrame;
+        
         initComponents();
     }
 
@@ -184,18 +203,14 @@ public class InpatientForm extends javax.swing.JPanel {
 
         tempInpatient.setPatientID(liveDataBean.getSelectedPatientID());
 
-        InpatientDBManagement inpatientFormAddition = liveDataBean.getInpatientDBManager();
-
         try {
-            inpatientFormAddition.createInpatient(tempInpatient);
+            inpatientDBManager.createInpatient(tempInpatient);
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        PatientDBManagement testPatientDB = liveDataBean.getPatientDBManager();
+        }       
         
         try {
-            testPatientDB.updatePatient(liveDataBean.getSelectedPatientBean());     
+            patientDBManager.updatePatient(liveDataBean.getSelectedPatientBean());     
 
         } catch (SQLException ex) {
             Logger.getLogger(InpatientForm.class.getName()).log(Level.SEVERE, null, ex);

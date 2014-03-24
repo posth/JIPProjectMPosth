@@ -5,7 +5,8 @@ import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
 public class SurgicalTable extends javax.swing.JPanel {
     
-    private SurgicalDBTableModel surgicalModel = new SurgicalDBTableModel();
+    private SurgicalDBTableModel surgicalModel;
+    
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 

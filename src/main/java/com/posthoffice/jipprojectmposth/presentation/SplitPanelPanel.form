@@ -63,7 +63,7 @@
           <SubComponents>
             <Component class="com.posthoffice.jipprojectmposth.presentation.PatientTable" name="patientTable1">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientModel, liveDataBean)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.PatientTable(patientDBManager, patientModel, liveDataBean)"/>
               </AuxValues>
             </Component>
           </SubComponents>
