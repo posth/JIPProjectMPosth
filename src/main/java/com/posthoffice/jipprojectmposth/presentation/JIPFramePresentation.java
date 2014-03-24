@@ -47,7 +47,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         medicationDBManager = new MedicationDBManagement(medicationModel);
         surgicalDBManager = new SurgicalDBManagement(surgicalModel);
 
-        liveDataBean = new LiveDataBean(inpatientDBManager, medicationDBManager, surgicalDBManager, patientModel);
+        liveDataBean = new LiveDataBean(inpatientDBManager, medicationDBManager, surgicalDBManager);
 
         initComponents();
     }
@@ -235,11 +235,13 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void createInpatientForm() {
+        
+        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame inpatientFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
-                    + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
+            JFrame inpatientFormFrame = new JFrame("Inpatient Form: " + tempPatient.getLastName() + ", "
+                    + tempPatient.getFirstName() + " | ID: " + tempPatient.getPatientID());
 
             InpatientForm inpatientForm = new InpatientForm(liveDataBean, inpatientFormFrame);
             JScrollPane inpatientFormScroll = new JScrollPane(inpatientForm);
@@ -262,11 +264,13 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void createMedicationForm() {
+        
+        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame medicationFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
-                    + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
+            JFrame medicationFormFrame = new JFrame("Medication Form: " + tempPatient.getLastName() + ", "
+                    + tempPatient.getFirstName() + " | ID: " + tempPatient.getPatientID());
 
             MedicationForm medicationForm = new MedicationForm(liveDataBean, medicationFormFrame);
             JScrollPane medicationFormScroll = new JScrollPane(medicationForm);
@@ -289,11 +293,13 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     public void createSurgicalForm() {
+        
+        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame surgicalFormFrame = new JFrame(liveDataBean.getSelectedPatientLastName() + ", "
-                    + liveDataBean.getSelectedPatientFirstName() + " | ID Number: " + liveDataBean.getSelectedPatientID());
+            JFrame surgicalFormFrame = new JFrame("Surgical Form: " + tempPatient.getLastName() + ", "
+                    + tempPatient.getFirstName() + " | ID: " + liveDataBean.getSelectedPatientID());
 
             SurgicalForm surgicalForm = new SurgicalForm(liveDataBean, surgicalFormFrame);
             JScrollPane surgicalFormScroll = new JScrollPane(surgicalForm);

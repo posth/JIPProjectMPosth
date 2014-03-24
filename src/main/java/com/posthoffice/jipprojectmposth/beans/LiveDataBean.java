@@ -10,8 +10,6 @@ import java.util.Objects;
 public class LiveDataBean {
 
     private int selectedPatientID;
-    private String selectedPatientLastName;
-    private String selectedPatientFirstName;
     private PatientBean selectedPatientBean;
     private int selectedPatientRow;
     private PatientDBManagement patientDBManager;
@@ -23,17 +21,13 @@ public class LiveDataBean {
     public LiveDataBean() {
         super();
         this.selectedPatientID = -1;
-        this.selectedPatientLastName = "None Selected";
-        this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
     }
 
     public LiveDataBean(InpatientDBManagement inpatientDBManager, MedicationDBManagement medicationDBManager,
-            SurgicalDBManagement surgicalDBManager, PatientDBTableModel patientModel) {
+            SurgicalDBManagement surgicalDBManager) {
         super();
         this.selectedPatientID = -1;
-        this.selectedPatientLastName = "None Selected";
-        this.selectedPatientFirstName = "None Selected";
         this.selectedPatientRow = -1;
         this.inpatientDBManager = inpatientDBManager;
         this.medicationDBManager = medicationDBManager;
@@ -89,22 +83,6 @@ public class LiveDataBean {
         this.selectedPatientID = selectedPatientID;
     }
 
-    public String getSelectedPatientLastName() {
-        return selectedPatientLastName;
-    }
-
-    public void setSelectedPatientLastName(String selectedPatientLastName) {
-        this.selectedPatientLastName = selectedPatientLastName;
-    }
-
-    public String getSelectedPatientFirstName() {
-        return selectedPatientFirstName;
-    }
-
-    public void setSelectedPatientFirstName(String selectedPatientFirstName) {
-        this.selectedPatientFirstName = selectedPatientFirstName;
-    }
-
     public PatientBean getSelectedPatientBean() {
         return selectedPatientBean;
     }
@@ -125,8 +103,6 @@ public class LiveDataBean {
     public int hashCode() {
         int hash = 5;
         hash = 23 * hash + this.selectedPatientID;
-        hash = 23 * hash + Objects.hashCode(this.selectedPatientLastName);
-        hash = 23 * hash + Objects.hashCode(this.selectedPatientFirstName);
         hash = 23 * hash + Objects.hashCode(this.selectedPatientBean);
         hash = 23 * hash + this.selectedPatientRow;
         hash = 23 * hash + Objects.hashCode(this.patientDBManager);
@@ -147,12 +123,6 @@ public class LiveDataBean {
         }
         final LiveDataBean other = (LiveDataBean) obj;
         if (this.selectedPatientID != other.selectedPatientID) {
-            return false;
-        }
-        if (!Objects.equals(this.selectedPatientLastName, other.selectedPatientLastName)) {
-            return false;
-        }
-        if (!Objects.equals(this.selectedPatientFirstName, other.selectedPatientFirstName)) {
             return false;
         }
         if (!Objects.equals(this.selectedPatientBean, other.selectedPatientBean)) {
@@ -181,11 +151,11 @@ public class LiveDataBean {
 
     @Override
     public String toString() {
-        return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID + ", selectedPatientLastName="
-                + selectedPatientLastName + ", selectedPatientFirstName=" + selectedPatientFirstName
-                + ", selectedPatientBean=" + selectedPatientBean + ", selectedPatientRow=" + selectedPatientRow
-                + ", patientDBManager=" + patientDBManager + ", inpatientDBManager=" + inpatientDBManager
-                + ", medicationDBManager=" + medicationDBManager + ", surgicalDBManager=" + surgicalDBManager
-                + ", patientModel=" + patientModel + '}';
+        return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID + ", selectedPatientBean="
+                + selectedPatientBean + ", selectedPatientRow=" + selectedPatientRow + ", patientDBManager="
+                + patientDBManager + ", inpatientDBManager=" + inpatientDBManager + ", medicationDBManager="
+                + medicationDBManager + ", surgicalDBManager=" + surgicalDBManager + ", patientModel="
+                + patientModel + '}';
     }
+
 }

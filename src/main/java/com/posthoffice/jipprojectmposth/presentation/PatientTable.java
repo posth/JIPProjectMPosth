@@ -23,18 +23,21 @@ public class PatientTable extends javax.swing.JPanel {
         MedicationDBTableModel m = new MedicationDBTableModel();
         SurgicalDBTableModel s = new SurgicalDBTableModel();
         patientModel = new PatientDBTableModel(t, m, s);
+
+        LiveDataBean b = new LiveDataBean();
+
         initComponents();
     }
 
-    public PatientTable(LiveDataBean liveDataBean) {
-        this.patientModel = liveDataBean.getPatientModel();
+    public PatientTable(PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
+        this.patientModel = patientModel;
         this.liveDataBean = liveDataBean;
 
         patientDBManager = new PatientDBManagement(patientModel, liveDataBean);
         patientDBManager.fillTableModel(null);
 
         liveDataBean.setPatientDBManager(patientDBManager);
-        
+
         initComponents();
     }
 
@@ -72,19 +75,16 @@ public class PatientTable extends javax.swing.JPanel {
             }
 
             patientModel.setChildrenTableModels(selectedRow);
-            
+
             //getting the bean from model through the selected row of the table
             PatientBean temp = (patientModel.getPatientData(selectedRow));
-            
+
             //setting selected values of the patient into the livedata bean
             liveDataBean.setSelectedPatientRow(selectedRow);
             liveDataBean.setSelectedPatientBean(temp);
             liveDataBean.setSelectedPatientID(temp.getPatientID());
-            liveDataBean.setSelectedPatientFirstName(temp.getFirstName());
-            liveDataBean.setSelectedPatientLastName(temp.getLastName());     
             System.out.println("live data bean selected patient is " + liveDataBean);
-            
- 
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
