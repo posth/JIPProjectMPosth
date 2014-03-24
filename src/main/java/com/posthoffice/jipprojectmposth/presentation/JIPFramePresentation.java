@@ -230,8 +230,9 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 patientModel.fireTableDataChanged();
                 patientModel.deleteRow(liveDataBean.getSelectedPatientRow());
 
-                //can delete a patient, but its children model remains un-updated
-                //simply firing the changes to the model doesnt work
+                inpatientModel.deleteAllRows();
+                medicationModel.deleteAllRows();
+                surgicalModel.deleteAllRows();
                 
                 liveDataBean.setSelectedPatientRow(-1);
 

@@ -49,7 +49,7 @@ public class SurgicalDBTableModel extends AbstractTableModel {
     public void clearUpdate(int row) {
         data.get(row).setUpdate(false);
     }
-    
+
     public SurgicalBean getSurgicalData(int row) {
         return data.get(row);
     }
@@ -57,6 +57,13 @@ public class SurgicalDBTableModel extends AbstractTableModel {
     public void deleteRow(int selectedRow) {
         data.remove(selectedRow);
 
+        this.fireTableDataChanged();
+    }
+
+    public void deleteAllRows() {
+
+        data.clear();
+        
         this.fireTableDataChanged();
     }
 

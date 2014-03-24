@@ -58,6 +58,13 @@ public class InpatientDBTableModel extends AbstractTableModel {
         data.remove(selectedRow);
         this.fireTableDataChanged();
     }
+    
+    public void deleteAllRows() {
+        
+        data.clear();
+        
+        this.fireTableDataChanged();
+    }
 
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
@@ -99,7 +106,7 @@ public class InpatientDBTableModel extends AbstractTableModel {
         }
 
         fireTableCellUpdated(row, col);
-        data.get(row).setUpdate(true);
+        //data.get(row).setUpdate(true);
     }
 
     @Override

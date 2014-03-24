@@ -49,7 +49,7 @@ public class MedicationDBTableModel extends AbstractTableModel {
     public void clearUpdate(int row) {
         data.get(row).setUpdate(false);
     }
-    
+
     public MedicationBean getMedicationData(int row) {
         return data.get(row);
     }
@@ -58,6 +58,14 @@ public class MedicationDBTableModel extends AbstractTableModel {
         data.remove(selectedRow);
 
         this.fireTableDataChanged();
+    }
+
+    public void deleteAllRows() {
+
+        data.clear();
+        
+        this.fireTableDataChanged();
+
     }
 
     public void loadMedicationList(ArrayList<MedicationBean> medicationList) {

@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="checkPASSWORD" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0.004"/>
-  <testcase name="checkUSER" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0.001"/>
-  <testcase name="checkURL" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0.001"/>
+  <testcase name="checkPASSWORD" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0.006"/>
+  <testcase name="checkUSER" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0"/>
+  <testcase name="checkURL" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0"/>
 </testsuite>
