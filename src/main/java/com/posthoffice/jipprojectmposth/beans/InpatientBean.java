@@ -14,24 +14,26 @@ public class InpatientBean {
     private BigDecimal roomSupplies;
     private BigDecimal roomServices;
     private boolean update;
-    
-    public InpatientBean(int patientID, Timestamp dateOfStay, String roomNumber,
+
+    public InpatientBean(int patientID, int iD, Timestamp dateOfStay, String roomNumber,
             BigDecimal dailyRate, BigDecimal roomSupplies, BigDecimal roomServices) {
-        
+
         super();
         this.patientID = patientID;
+        this.iD = iD;
         this.dateOfStay = dateOfStay;
         this.roomNumber = roomNumber;
         this.dailyRate = dailyRate;
         this.roomSupplies = roomSupplies;
         this.roomServices = roomServices;
         this.update = false;
-         
+
     }
 
     public InpatientBean() {
         super();
         this.patientID = -1;
+        this.iD = -1;
         this.dateOfStay = new Timestamp(new Date().getTime());
         this.roomNumber = "";
         this.dailyRate = new BigDecimal("0");
@@ -103,12 +105,11 @@ public class InpatientBean {
     public void setUpdate(boolean update) {
         this.update = update;
     }
-    
- 
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.patientID;
+        int hash = 3;
+        hash = 41 * hash + this.iD;
         return hash;
     }
 
@@ -121,7 +122,7 @@ public class InpatientBean {
             return false;
         }
         final InpatientBean other = (InpatientBean) obj;
-        if (this.patientID != other.patientID) {
+        if (this.iD != other.iD) {
             return false;
         }
         return true;

@@ -70,19 +70,19 @@ public class PatientTable extends javax.swing.JPanel {
             if (!lsm.isSelectionEmpty()) {
                 selectedRow = lsm.getMinSelectionIndex();
             }
-
+            
             patientModel.setChildrenTableModels(selectedRow);
 
             //getting the bean from model through the selected row of the table
             PatientBean temp = (patientModel.getPatientData(selectedRow));
 
+            
             //setting selected values of the patient into the livedata bean
             liveDataBean.setSelectedPatientRow(selectedRow);
             liveDataBean.setSelectedPatientBean(temp);
             liveDataBean.setSelectedPatientID(temp.getPatientID());
             
-            System.out.println("live data bean selected patient is " + liveDataBean);
-
+            //System.out.println("live data bean selected patient is " + liveDataBean);
         }
     }
     

@@ -19,7 +19,7 @@ import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation
 import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
 public class InpatientDBManagement {
-    
+
     private InpatientDBTableModel inpatientDBTableModel = null;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
@@ -27,7 +27,7 @@ public class InpatientDBManagement {
     public InpatientDBManagement() {
         super();
     }
-    
+
     public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel) {
         super();
         this.inpatientDBTableModel = inpatientDBTableModel;
@@ -39,7 +39,7 @@ public class InpatientDBManagement {
 
         ArrayList<InpatientBean> inpatientList = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(URL, USER,PASSWORD);             
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 PreparedStatement pStatement = connection.prepareStatement(preparedQuery);) {
             pStatement.setInt(1, patientID);
             try (ResultSet resultSet = pStatement.executeQuery()) {
@@ -49,7 +49,7 @@ public class InpatientDBManagement {
                     InpatientBean temp = new InpatientBean();
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
-                    //temp.setiD(resultSet.getInt("ID"));
+                    temp.setiD(resultSet.getInt("ID"));
                     temp.setDateOfStay(resultSet.getTimestamp("DATEOFSTAY"));
                     temp.setRoomNumber(resultSet.getString("ROOMNUMBER"));
                     temp.setDailyRate(resultSet.getBigDecimal("DAILYRATE"));
@@ -62,7 +62,6 @@ public class InpatientDBManagement {
 
         }
 
-        
         return inpatientList;
     }
 
@@ -100,6 +99,7 @@ public class InpatientDBManagement {
         return result;
     }
 
+    //WILL HAVE TO BE CHANGED TO WORK WITH THE ID AND NOT PATIENT ID
     public int updateInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
@@ -122,16 +122,15 @@ public class InpatientDBManagement {
         return result;
     }
 
-    //works
     public int deleteInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
 
-        String preparedQuery = "DELETE FROM INPATIENT WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM INPATIENT WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            ps.setInt(1, inpatient.getPatientID());
+            ps.setInt(1, inpatient.getiD());
 
             result = ps.executeUpdate();
         }

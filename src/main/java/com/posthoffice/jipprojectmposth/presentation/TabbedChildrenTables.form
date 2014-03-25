@@ -31,6 +31,11 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Component class="com.posthoffice.jipprojectmposth.presentation.InpatientTable" name="inpatientTable2">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="default"/>
+            </Property>
+          </AccessibilityProperties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.InpatientTable(inpatientModel, liveDataBean)"/>
           </AuxValues>
@@ -43,6 +48,11 @@
           </Constraints>
         </Component>
         <Component class="com.posthoffice.jipprojectmposth.presentation.MedicationTable" name="medicationTable1">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="jTabbedPane1"/>
+            </Property>
+          </AccessibilityProperties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.MedicationTable(medicationModel, liveDataBean)"/>
           </AuxValues>
@@ -55,6 +65,11 @@
           </Constraints>
         </Component>
         <Component class="com.posthoffice.jipprojectmposth.presentation.SurgicalTable" name="surgicalTable1">
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="surgicalTable1"/>
+            </Property>
+          </AccessibilityProperties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.posthoffice.jipprojectmposth.presentation.SurgicalTable(surgicalModel, liveDataBean)"/>
           </AuxValues>

@@ -10,17 +10,21 @@ import javax.swing.event.ListSelectionListener;
 public class InpatientTable extends javax.swing.JPanel {
 
     private InpatientDBTableModel inpatientModel;
-    
+
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 
     public InpatientTable() {
-        inpatientModel = new InpatientDBTableModel();
+        
+        this.inpatientModel = new InpatientDBTableModel();
+        
         initComponents();
     }
 
     public InpatientTable(InpatientDBTableModel inpatientModel, LiveDataBean liveDataBean) {
+        
         this.inpatientModel = inpatientModel;
+        
         this.liveDataBean = liveDataBean;
 
         initComponents();
@@ -29,7 +33,7 @@ public class InpatientTable extends javax.swing.JPanel {
     class RowListener implements ListSelectionListener {
 
         @Override
-        public void valueChanged(ListSelectionEvent e) {
+        public void valueChanged(ListSelectionEvent e) {;
 
             if (e.getValueIsAdjusting()) {
                 return;
@@ -39,11 +43,17 @@ public class InpatientTable extends javax.swing.JPanel {
             if (!lsm.isSelectionEmpty()) {
                 selectedRow = lsm.getMinSelectionIndex();
             }
-
-
+            
+            //current problem: if i select row 8 before, and then change to another patient which only has 4 inpatients, an error co
             //getting the bean from model through the selected row of the table
+
+ 
             InpatientBean temp = (inpatientModel.getinPatientData(selectedRow));
 
+            liveDataBean.setSelectedInpatientRow(selectedRow);
+            liveDataBean.setSelectedInpatientBean(temp);
+
+            System.out.println("selected row of inpatient from inpatient table" + selectedRow);
         }
     }
 
@@ -55,6 +65,9 @@ public class InpatientTable extends javax.swing.JPanel {
         inpatientTable = new javax.swing.JTable();
 
         inpatientTable.setModel(inpatientModel);
+        inpatientTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListSelectionModel rowSM = inpatientTable.getSelectionModel();
+        rowSM.addListSelectionListener(new RowListener());
         jScrollPane1.setViewportView(inpatientTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

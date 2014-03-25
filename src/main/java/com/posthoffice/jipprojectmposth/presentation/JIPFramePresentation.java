@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
@@ -173,7 +174,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     break;
 
                 case "DeleteInpatient":
-                    deleteInpatientForm();
+                    try {
+                        deleteInpatientForm();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
 
                 case "NewMedication":
@@ -223,8 +228,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             if (selectedOption == JOptionPane.YES_OPTION) {
 
-                System.out.println("selected PAtient row when deleting is: " + liveDataBean.getSelectedPatientRow());
-
                 patientDBManager.deletePatient(selectedPatient);
 
                 patientModel.fireTableDataChanged();
@@ -233,7 +236,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 inpatientModel.deleteAllRows();
                 medicationModel.deleteAllRows();
                 surgicalModel.deleteAllRows();
-                
+
                 liveDataBean.setSelectedPatientRow(-1);
 
             }
@@ -270,8 +273,39 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
-    public void deleteInpatientForm() {
-        //to do based on selected patient and selected inpatient rows
+    public void deleteInpatientForm() throws SQLException {
+
+        if (!(liveDataBean.getSelectedPatientRow() == -1)) {
+
+            PatientBean selectedPatient = liveDataBean.getSelectedPatientBean();
+            InpatientBean selectedInpatient = liveDataBean.getSelectedInpatientBean();
+
+            if (!(liveDataBean.getSelectedInpatientRow() == -1)) {
+
+                String optionPaneMessage = "Are you sure you want to delete the Inpatient data from " + selectedPatient.getLastName()
+                        + ", " + selectedPatient.getFirstName() + "?";
+
+                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Inpatient", JOptionPane.YES_NO_OPTION);
+
+                if (selectedOption == JOptionPane.YES_OPTION) {
+
+                    inpatientDBManager.deleteInpatient(selectedInpatient);
+                    
+                    patientDBManager.updatePatient(selectedPatient);   
+                    
+                    inpatientModel.deleteRow(liveDataBean.getSelectedInpatientRow());   
+                         
+
+                }
+            } else {
+                JFrame dialogue = new JFrame();
+                JOptionPane.showMessageDialog(dialogue, "Please select the inpatient data to delete", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JFrame dialogue = new JFrame();
+            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public void createMedicationForm() {
