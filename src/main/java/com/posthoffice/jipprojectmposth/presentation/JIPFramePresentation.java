@@ -278,7 +278,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
             PatientBean selectedPatient = liveDataBean.getSelectedPatientBean();
-            InpatientBean selectedInpatient = liveDataBean.getSelectedInpatientBean();
+            
+            //InpatientBean selectedInpatient = liveDataBean.getSelectedInpatientBean();
 
             if (!(liveDataBean.getSelectedInpatientRow() == -1)) {
 
@@ -289,11 +290,17 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
                 if (selectedOption == JOptionPane.YES_OPTION) {
 
+                    InpatientBean selectedInpatient = inpatientModel.getinPatientData(liveDataBean.getSelectedInpatientRow());
+                    
                     inpatientDBManager.deleteInpatient(selectedInpatient);
                     
                     patientDBManager.updatePatient(selectedPatient);   
                     
                     inpatientModel.deleteRow(liveDataBean.getSelectedInpatientRow());   
+                    
+                    liveDataBean.setSelectedInpatientRow(-1);
+                    
+                    System.out.println("selected inpatient row after deleting is " + liveDataBean.getSelectedInpatientRow());
                          
 
                 }

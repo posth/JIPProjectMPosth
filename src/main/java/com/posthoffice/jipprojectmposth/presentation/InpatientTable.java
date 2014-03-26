@@ -1,6 +1,5 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
-import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import javax.swing.ListSelectionModel;
@@ -15,16 +14,16 @@ public class InpatientTable extends javax.swing.JPanel {
     private LiveDataBean liveDataBean;
 
     public InpatientTable() {
-        
+
         this.inpatientModel = new InpatientDBTableModel();
-        
+
         initComponents();
     }
 
     public InpatientTable(InpatientDBTableModel inpatientModel, LiveDataBean liveDataBean) {
-        
+
         this.inpatientModel = inpatientModel;
-        
+
         this.liveDataBean = liveDataBean;
 
         initComponents();
@@ -40,20 +39,18 @@ public class InpatientTable extends javax.swing.JPanel {
             }
 
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+            
             if (!lsm.isSelectionEmpty()) {
                 selectedRow = lsm.getMinSelectionIndex();
             }
             
-            //current problem: if i select row 8 before, and then change to another patient which only has 4 inpatients, an error co
-            //getting the bean from model through the selected row of the table
-
- 
-            InpatientBean temp = (inpatientModel.getinPatientData(selectedRow));
+            if (lsm.isSelectionEmpty()) {
+                selectedRow = -1;
+            }
 
             liveDataBean.setSelectedInpatientRow(selectedRow);
-            liveDataBean.setSelectedInpatientBean(temp);
 
-            System.out.println("selected row of inpatient from inpatient table" + selectedRow);
+            System.out.println("selected row of inpatient from inpatient table " + selectedRow);
         }
     }
 

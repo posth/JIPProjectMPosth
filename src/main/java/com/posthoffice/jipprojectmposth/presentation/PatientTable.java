@@ -83,6 +83,7 @@ public class PatientTable extends javax.swing.JPanel {
             liveDataBean.setSelectedPatientID(temp.getPatientID());
             
             //System.out.println("live data bean selected patient is " + liveDataBean);
+            
         }
     }
     
