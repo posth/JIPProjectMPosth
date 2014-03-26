@@ -48,7 +48,7 @@ public class SurgicalDBManagement {
                     SurgicalBean temp = new SurgicalBean();
 
                     temp.setPatientID(resultSet.getInt("ID"));
-                    //temp.setiD(resultSet.getInt("PATIENTID"));
+                    temp.setiD(resultSet.getInt("PATIENTID"));
                     temp.setDateOfSurgery(resultSet.getTimestamp("DATEOFSURGERY"));
                     temp.setSurgery(resultSet.getString("SURGERY"));
                     temp.setRoomFee(resultSet.getBigDecimal("ROOMFEE"));
@@ -122,11 +122,11 @@ public class SurgicalDBManagement {
 
         int result;
 
-        String preparedQuery = "DELETE FROM SURGICAL WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM SURGICAL WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            ps.setInt(1, surgical.getPatientID());
+            ps.setInt(1, surgical.getiD());
 
             result = ps.executeUpdate();
         }

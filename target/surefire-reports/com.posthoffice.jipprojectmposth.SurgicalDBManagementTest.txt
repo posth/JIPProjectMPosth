@@ -1,9 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.463 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
-createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 2.364 sec  <<< ERROR!
+Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 7.972 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 1.941 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:93)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
+
+deleteSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 1.615 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:55)
 

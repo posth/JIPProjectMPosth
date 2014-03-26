@@ -2,23 +2,54 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class MedicationTable extends javax.swing.JPanel {
 
     private MedicationDBTableModel medicationModel;
-    
+
     private int selectedRow = -1;
     private LiveDataBean liveDataBean;
 
     public MedicationTable() {
+
         medicationModel = new MedicationDBTableModel();
+
         initComponents();
     }
 
     public MedicationTable(MedicationDBTableModel medicationModel, LiveDataBean liveDataBean) {
+
         this.medicationModel = medicationModel;
+
         this.liveDataBean = liveDataBean;
+
         initComponents();
+    }
+
+    class RowListener implements ListSelectionListener {
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {;
+
+            if (e.getValueIsAdjusting()) {
+                return;
+            }
+
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+
+            if (!lsm.isSelectionEmpty()) {
+                selectedRow = lsm.getMinSelectionIndex();
+            }
+
+            if (lsm.isSelectionEmpty()) {
+                selectedRow = -1;
+            }
+
+            liveDataBean.setSelectedMedicationRow(selectedRow);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,6 +62,9 @@ public class MedicationTable extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         medicationTable.setModel(medicationModel);
+        medicationTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListSelectionModel rowSM = medicationTable.getSelectionModel();
+        rowSM.addListSelectionListener(new RowListener());
         jScrollPane1.setViewportView(medicationTable);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

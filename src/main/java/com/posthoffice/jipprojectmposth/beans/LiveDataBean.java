@@ -1,9 +1,6 @@
 package com.posthoffice.jipprojectmposth.beans;
 
-import com.posthoffice.jipprojectmposth.presentation.InpatientTable;
-import com.posthoffice.jipprojectmposth.presentation.PatientTable;
 import java.util.Objects;
-import javax.swing.JTable;
 
 public class LiveDataBean {
 
@@ -14,11 +11,49 @@ public class LiveDataBean {
     private int selectedInpatientRow;
     private InpatientBean selectedInpatientBean;
 
+    private int selectedMedicationRow;
+    private MedicationBean selectedMedicationBean;
+
+    private int selectedSurgicalRow;
+    private SurgicalBean selectedSurgicalBean;
+
     public LiveDataBean() {
         super();
         this.selectedPatientID = -1;
         this.selectedPatientRow = -1;
         this.selectedInpatientRow = -1;
+    }
+
+    public int getSelectedSurgicalRow() {
+        return selectedSurgicalRow;
+    }
+
+    public void setSelectedSurgicalRow(int selectedSurgicalRow) {
+        this.selectedSurgicalRow = selectedSurgicalRow;
+    }
+
+    public SurgicalBean getSelectedSurgicalBean() {
+        return selectedSurgicalBean;
+    }
+
+    public void setSelectedSurgicalBean(SurgicalBean selectedSurgicalBean) {
+        this.selectedSurgicalBean = selectedSurgicalBean;
+    }
+
+    public int getSelectedMedicationRow() {
+        return selectedMedicationRow;
+    }
+
+    public void setSelectedMedicationRow(int selectedMedicationRow) {
+        this.selectedMedicationRow = selectedMedicationRow;
+    }
+
+    public MedicationBean getSelectedMedicationBean() {
+        return selectedMedicationBean;
+    }
+
+    public void setSelectedMedicationBean(MedicationBean selectedMedicationBean) {
+        this.selectedMedicationBean = selectedMedicationBean;
     }
 
     public InpatientBean getSelectedInpatientBean() {
@@ -64,11 +99,15 @@ public class LiveDataBean {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.selectedPatientID;
-        hash = 71 * hash + Objects.hashCode(this.selectedPatientBean);
-        hash = 71 * hash + this.selectedPatientRow;
-        hash = 71 * hash + this.selectedInpatientRow;
-        hash = 71 * hash + Objects.hashCode(this.selectedInpatientBean);
+        hash = 59 * hash + this.selectedPatientID;
+        hash = 59 * hash + Objects.hashCode(this.selectedPatientBean);
+        hash = 59 * hash + this.selectedPatientRow;
+        hash = 59 * hash + this.selectedInpatientRow;
+        hash = 59 * hash + Objects.hashCode(this.selectedInpatientBean);
+        hash = 59 * hash + this.selectedMedicationRow;
+        hash = 59 * hash + Objects.hashCode(this.selectedMedicationBean);
+        hash = 59 * hash + this.selectedSurgicalRow;
+        hash = 59 * hash + Objects.hashCode(this.selectedSurgicalBean);
         return hash;
     }
 
@@ -96,14 +135,30 @@ public class LiveDataBean {
         if (!Objects.equals(this.selectedInpatientBean, other.selectedInpatientBean)) {
             return false;
         }
+        if (this.selectedMedicationRow != other.selectedMedicationRow) {
+            return false;
+        }
+        if (!Objects.equals(this.selectedMedicationBean, other.selectedMedicationBean)) {
+            return false;
+        }
+        if (this.selectedSurgicalRow != other.selectedSurgicalRow) {
+            return false;
+        }
+        if (!Objects.equals(this.selectedSurgicalBean, other.selectedSurgicalBean)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID + ", selectedPatientBean="
-                + selectedPatientBean + ", selectedPatientRow=" + selectedPatientRow + ", selectedInpatientRow="
-                + selectedInpatientRow + ", selectedInpatientBean=" + selectedInpatientBean + '}';
+        return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID
+                + ", selectedPatientBean=" + selectedPatientBean + ", selectedPatientRow="
+                + selectedPatientRow + ", selectedInpatientRow=" + selectedInpatientRow
+                + ", selectedInpatientBean=" + selectedInpatientBean + ", selectedMedicationRow="
+                + selectedMedicationRow + ", selectedMedicationBean=" + selectedMedicationBean
+                + ", selectedSurgicalRow=" + selectedSurgicalRow + ", selectedSurgicalBean="
+                + selectedSurgicalBean + '}';
     }
 
 }

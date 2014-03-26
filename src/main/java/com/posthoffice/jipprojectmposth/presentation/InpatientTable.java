@@ -49,8 +49,6 @@ public class InpatientTable extends javax.swing.JPanel {
             }
 
             liveDataBean.setSelectedInpatientRow(selectedRow);
-
-            System.out.println("selected row of inpatient from inpatient table " + selectedRow);
         }
     }
 

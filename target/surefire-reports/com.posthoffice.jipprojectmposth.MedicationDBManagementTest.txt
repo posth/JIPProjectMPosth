@@ -1,9 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.MedicationDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.58 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
-createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 2.169 sec  <<< ERROR!
+Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 8.713 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
+createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 2.443 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:93)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.createMedicationTest(MedicationDBManagementTest.java:39)
+
+deleteMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 1.772 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<0>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.deleteMedicationTest(MedicationDBManagementTest.java:55)
 

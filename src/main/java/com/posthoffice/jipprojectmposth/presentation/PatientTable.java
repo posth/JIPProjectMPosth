@@ -27,7 +27,7 @@ public class PatientTable extends javax.swing.JPanel {
     }
 
     public PatientTable(PatientDBManagement patientDBManager, PatientDBTableModel patientModel, LiveDataBean liveDataBean) {
-        
+
         this.patientDBManager = patientDBManager;
 
         this.patientModel = patientModel;
@@ -58,7 +58,7 @@ public class PatientTable extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     class RowListener implements ListSelectionListener {
-        
+
         @Override
         public void valueChanged(ListSelectionEvent e) {
 
@@ -70,24 +70,21 @@ public class PatientTable extends javax.swing.JPanel {
             if (!lsm.isSelectionEmpty()) {
                 selectedRow = lsm.getMinSelectionIndex();
             }
-            
+
             patientModel.setChildrenTableModels(selectedRow);
 
             //getting the bean from model through the selected row of the table
             PatientBean temp = (patientModel.getPatientData(selectedRow));
 
-            
             //setting selected values of the patient into the livedata bean
             liveDataBean.setSelectedPatientRow(selectedRow);
             liveDataBean.setSelectedPatientBean(temp);
             liveDataBean.setSelectedPatientID(temp.getPatientID());
-            
-            //System.out.println("live data bean selected patient is " + liveDataBean);
-            
+
         }
     }
-    
-   
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable patientTable;

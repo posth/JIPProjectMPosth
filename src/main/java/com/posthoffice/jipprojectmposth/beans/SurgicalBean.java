@@ -15,9 +15,10 @@ public class SurgicalBean {
     private BigDecimal supplies;
     private boolean update;
 
-    public SurgicalBean(int patientID, Timestamp dateOfSurgery, String surgery, BigDecimal roomFee, BigDecimal surgeonsFee, BigDecimal supplies) {
+    public SurgicalBean(int patientID, int iD, Timestamp dateOfSurgery, String surgery, BigDecimal roomFee, BigDecimal surgeonsFee, BigDecimal supplies) {
         super();
         this.patientID = patientID;
+        this.iD = iD;
         this.dateOfSurgery = dateOfSurgery;
         this.surgery = surgery;
         this.roomFee = roomFee;
@@ -29,6 +30,7 @@ public class SurgicalBean {
     public SurgicalBean() {
         super();
         this.patientID = -1;
+        this.iD = -1;
         this.dateOfSurgery = new Timestamp(new Date().getTime());
         this.surgery = "";
         this.roomFee = new BigDecimal("0");
@@ -104,7 +106,7 @@ public class SurgicalBean {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + this.patientID;
+        hash = 97 * hash + this.iD;
         return hash;
     }
 
@@ -117,7 +119,7 @@ public class SurgicalBean {
             return false;
         }
         final SurgicalBean other = (SurgicalBean) obj;
-        if (this.patientID != other.patientID) {
+        if (this.iD != other.iD) {
             return false;
         }
         return true;

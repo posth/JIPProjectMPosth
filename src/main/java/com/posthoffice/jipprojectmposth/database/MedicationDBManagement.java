@@ -48,7 +48,7 @@ public class MedicationDBManagement {
                     MedicationBean temp = new MedicationBean();
 
                     temp.setPatientID(resultSet.getInt("PATIENTID"));
-                    //temp.setiD(resultSet.getInt("ID"));
+                    temp.setiD(resultSet.getInt("ID"));
                     temp.setDateOfMed(resultSet.getTimestamp("DATEOFMED"));
                     temp.setMedication(resultSet.getString("MED"));
                     temp.setCostPerUnit(resultSet.getBigDecimal("UNITCOST"));
@@ -122,11 +122,11 @@ public class MedicationDBManagement {
 
         int result;
 
-        String preparedQuery = "DELETE FROM MEDICATION WHERE PATIENTID = ?";
+        String preparedQuery = "DELETE FROM MEDICATION WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
-            ps.setInt(1, medication.getPatientID());
+            ps.setInt(1, medication.getiD());
 
             result = ps.executeUpdate();
         }

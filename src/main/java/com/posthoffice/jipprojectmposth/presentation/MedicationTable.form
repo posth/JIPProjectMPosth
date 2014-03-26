@@ -34,6 +34,9 @@
               <Connection code="medicationModel" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="medicationTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);&#xa;ListSelectionModel rowSM = medicationTable.getSelectionModel();&#xa;rowSM.addListSelectionListener(new RowListener());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
