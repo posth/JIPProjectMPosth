@@ -20,6 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
@@ -66,9 +69,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         jToolBar = createToolBar();
         splitPanelPanel1 = new com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel(patientModel, inpatientModel, medicationModel, surgicalModel, liveDataBean,
             patientDBManager, inpatientDBManager, medicationDBManager, surgicalDBManager);
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar1 = createMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Patient Management System");
@@ -76,14 +77,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         jToolBar.setRollover(true);
         getContentPane().add(jToolBar, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(splitPanelPanel1, java.awt.BorderLayout.CENTER);
-
-        jMenu1.setText("File");
-
-        jMenuItem1.setText("Exit");
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -101,6 +94,49 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             }
         });
     }
+    
+    public JMenuBar createMenuBar() {
+        
+        JMenuBar menuBar;
+        JMenu menuMain, menuNew, menuDelete;
+        JMenuItem newPatient, newInpatient, newMedication, newSurgical,
+                deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
+                itemExit;
+        
+        menuBar = new JMenuBar();
+        
+        menuMain = new JMenu("File");
+        menuBar.add(menuMain); 
+        
+        menuNew = new JMenu("New");
+        newPatient = new JMenuItem("Patient");
+        newInpatient = new JMenuItem("Inpatient");
+        newMedication = new JMenuItem("Medication");
+        newSurgical = new JMenuItem("Surgical");
+        menuNew.add(newPatient);
+        menuNew.add(newInpatient);
+        menuNew.add(newMedication);
+        menuNew.add(newSurgical);
+        
+        menuDelete = new JMenu("Delete");
+        deletePatient = new JMenuItem("Patient");
+        deleteInpatient = new JMenuItem("Inpatient");
+        deleteMedication = new JMenuItem("Medication");
+        deleteSurgical = new JMenuItem("Surgical");
+        menuDelete.add(deletePatient);
+        menuDelete.add(deleteInpatient);
+        menuDelete.add(deleteMedication);
+        menuDelete.add(deleteSurgical);
+        
+        itemExit = new JMenuItem("Exit");
+              
+        menuMain.add(menuNew);
+        menuMain.add(menuDelete);
+        menuMain.add(itemExit);
+        
+        return menuBar;
+    }
+   
 
     private JToolBar createToolBar() {
 
@@ -444,9 +480,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar jToolBar;
     private com.posthoffice.jipprojectmposth.presentation.SplitPanelPanel splitPanelPanel1;
     // End of variables declaration//GEN-END:variables
