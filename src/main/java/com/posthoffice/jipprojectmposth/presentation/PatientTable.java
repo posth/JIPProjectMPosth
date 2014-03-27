@@ -80,6 +80,10 @@ public class PatientTable extends javax.swing.JPanel {
             liveDataBean.setSelectedPatientRow(selectedRow);
             liveDataBean.setSelectedPatientBean(temp);
             liveDataBean.setSelectedPatientID(temp.getPatientID());
+            
+            liveDataBean.setSelectedInpatientRow(-1);
+            liveDataBean.setSelectedMedicationRow(-1);
+            liveDataBean.setSelectedSurgicalRow(-1);
 
         }
     }

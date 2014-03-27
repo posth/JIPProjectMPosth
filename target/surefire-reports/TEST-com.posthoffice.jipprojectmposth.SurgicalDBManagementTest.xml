@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="7.972" tests="4" errors="1" skipped="0" failures="1">
+<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="7.902" tests="4" errors="1" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_40\jre\bin"/>
@@ -60,14 +60,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="1.941">
+  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.091">
     <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:93)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
 </error>
   </testcase>
-  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.198"/>
-  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="1.615">
+  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.004"/>
+  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="1.748">
     <failure message="expected:&lt;1&gt; but was:&lt;0&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<1> but was:<0>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)
@@ -77,5 +77,5 @@
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:55)
 ]]></failure>
   </testcase>
-  <testcase name="updateSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.218"/>
+  <testcase name="updateSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="2.059"/>
 </testsuite>
