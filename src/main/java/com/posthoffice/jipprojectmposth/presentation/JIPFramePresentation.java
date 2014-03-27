@@ -32,17 +32,15 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
     public static final String USER = "root";
     public static final String PASSWORD = "Johnny23";
-
+    
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
     private SurgicalDBTableModel surgicalModel;
-
     private InpatientDBManagement inpatientDBManager;
     private MedicationDBManagement medicationDBManager;
     private SurgicalDBManagement surgicalDBManager;
     private PatientDBManagement patientDBManager;
-
     private LiveDataBean liveDataBean;
 
     public JIPFramePresentation() {
@@ -94,49 +92,138 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             }
         });
     }
-    
+
     public JMenuBar createMenuBar() {
-        
+
         JMenuBar menuBar;
         JMenu menuMain, menuNew, menuDelete;
         JMenuItem newPatient, newInpatient, newMedication, newSurgical,
                 deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
                 itemExit;
-        
+
         menuBar = new JMenuBar();
-        
+
         menuMain = new JMenu("File");
-        menuBar.add(menuMain); 
-        
+        menuBar.add(menuMain);
+
         menuNew = new JMenu("New");
+
         newPatient = new JMenuItem("Patient");
+        newPatient.setActionCommand("NewPatient");
+        newPatient.addActionListener(this);
+
         newInpatient = new JMenuItem("Inpatient");
+        newInpatient.setActionCommand("NewInpatient");
+        newInpatient.addActionListener(this);
+
         newMedication = new JMenuItem("Medication");
+        newMedication.setActionCommand("NewMedication");
+        newMedication.addActionListener(this);
+
         newSurgical = new JMenuItem("Surgical");
+        newSurgical.setActionCommand("NewSurgical");
+        newSurgical.addActionListener(this);
+
         menuNew.add(newPatient);
         menuNew.add(newInpatient);
         menuNew.add(newMedication);
         menuNew.add(newSurgical);
-        
+
         menuDelete = new JMenu("Delete");
+
         deletePatient = new JMenuItem("Patient");
+        deletePatient.setActionCommand("DeletePatient");
+        deletePatient.addActionListener(this);
+
         deleteInpatient = new JMenuItem("Inpatient");
+        deleteInpatient.setActionCommand("DeleteInpatient");
+        deleteInpatient.addActionListener(this);
+
         deleteMedication = new JMenuItem("Medication");
+        deleteMedication.setActionCommand("DeleteMedication");
+        deleteMedication.addActionListener(this);
+
         deleteSurgical = new JMenuItem("Surgical");
+        deleteSurgical.setActionCommand("DeleteSurgical");
+        deleteSurgical.addActionListener(this);
+
         menuDelete.add(deletePatient);
         menuDelete.add(deleteInpatient);
         menuDelete.add(deleteMedication);
         menuDelete.add(deleteSurgical);
-        
+
         itemExit = new JMenuItem("Exit");
-              
+        itemExit.setActionCommand("Exit");
+        itemExit.addActionListener(this);
+
         menuMain.add(menuNew);
         menuMain.add(menuDelete);
         menuMain.add(itemExit);
-        
+
         return menuBar;
     }
-   
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JMenuItem source = (JMenuItem) (e.getSource());
+
+        switch (source.getActionCommand()) {
+
+            case "NewPatient":
+                createPatientForm();
+                break;
+
+            case "NewInpatient":
+                createInpatientForm();
+                break;
+
+            case "NewMedication":
+                createMedicationForm();
+                break;
+
+            case "NewSurgical":
+                createSurgicalForm();
+                break;
+
+            case "DeletePatient":
+                try {
+                    deletePatientForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            case "DeleteInpatient":
+                try {
+                    deleteInpatientForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            case "DeleteMedication":
+                try {
+                    deleteMedicationForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            case "DeleteSurgical":
+                try {
+                    deleteSurgicalForm();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+            case "Exit":
+                JIPFramePresentation.this.dispose();
+                break;
+
+
+        }
+    }
 
     private JToolBar createToolBar() {
 
@@ -180,11 +267,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         button.addActionListener(toolBarEventHandler);
 
         return button;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     class ToolBarEventHandler implements ActionListener {
