@@ -1,13 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.39 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
-createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.086 sec  <<< ERROR!
+Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 8.723 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 2.227 sec  <<< ERROR!
 java.lang.NullPointerException: null
 	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:93)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
 
-deleteSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.102 sec  <<< FAILURE!
+deleteSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 2.077 sec  <<< FAILURE!
 java.lang.AssertionError: expected:<1> but was:<0>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:743)

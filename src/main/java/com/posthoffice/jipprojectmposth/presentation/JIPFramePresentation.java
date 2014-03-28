@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
+import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
@@ -103,24 +104,24 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         menuBar = new JMenuBar();
 
-        menuMain = new JMenu("File");
+        menuMain = new JMenu(Messages.getString("file"));
         menuBar.add(menuMain);
 
-        menuNew = new JMenu("New");
+        menuNew = new JMenu(Messages.getString("new"));
 
-        newPatient = new JMenuItem("Patient");
+        newPatient = new JMenuItem(Messages.getString("patient"));
         newPatient.setActionCommand("NewPatient");
         newPatient.addActionListener(this);
 
-        newInpatient = new JMenuItem("Inpatient");
+        newInpatient = new JMenuItem(Messages.getString("inpatient"));
         newInpatient.setActionCommand("NewInpatient");
         newInpatient.addActionListener(this);
 
-        newMedication = new JMenuItem("Medication");
+        newMedication = new JMenuItem(Messages.getString("medication"));
         newMedication.setActionCommand("NewMedication");
         newMedication.addActionListener(this);
 
-        newSurgical = new JMenuItem("Surgical");
+        newSurgical = new JMenuItem(Messages.getString("surgical"));
         newSurgical.setActionCommand("NewSurgical");
         newSurgical.addActionListener(this);
 
@@ -129,21 +130,21 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         menuNew.add(newMedication);
         menuNew.add(newSurgical);
 
-        menuDelete = new JMenu("Delete");
+        menuDelete = new JMenu(Messages.getString("delete"));
 
-        deletePatient = new JMenuItem("Patient");
+        deletePatient = new JMenuItem(Messages.getString("patient"));
         deletePatient.setActionCommand("DeletePatient");
         deletePatient.addActionListener(this);
 
-        deleteInpatient = new JMenuItem("Inpatient");
+        deleteInpatient = new JMenuItem(Messages.getString("inpatient"));
         deleteInpatient.setActionCommand("DeleteInpatient");
         deleteInpatient.addActionListener(this);
 
-        deleteMedication = new JMenuItem("Medication");
+        deleteMedication = new JMenuItem(Messages.getString("medication"));
         deleteMedication.setActionCommand("DeleteMedication");
         deleteMedication.addActionListener(this);
 
-        deleteSurgical = new JMenuItem("Surgical");
+        deleteSurgical = new JMenuItem(Messages.getString("surgical"));
         deleteSurgical.setActionCommand("DeleteSurgical");
         deleteSurgical.addActionListener(this);
 
@@ -152,7 +153,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         menuDelete.add(deleteMedication);
         menuDelete.add(deleteSurgical);
 
-        itemExit = new JMenuItem("Exit");
+        itemExit = new JMenuItem(Messages.getString("exit"));
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
 
@@ -229,17 +230,17 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         JToolBar toolBar = new JToolBar();
 
-        JButton newPatientButton = makeToolBarButton("New Patient", "NewPatient", "Add a new patient");
-        JButton deletePatientButton = makeToolBarButton("Delete Patient", "DeletePatient", "Delete existing patient");
+        JButton newPatientButton = makeToolBarButton(Messages.getString("newPatient"), "NewPatient", Messages.getString("newPatientMessage"));
+        JButton deletePatientButton = makeToolBarButton(Messages.getString("deletePatient"), "DeletePatient", Messages.getString("deletePatientMessage"));
 
-        JButton newInpatientButton = makeToolBarButton("New Inpatient", "NewInpatient", "Add new inpatient data to existing patient");
-        JButton deleteInpatientButton = makeToolBarButton("Delete Inpatient", "DeleteInpatient", "Delete inpatient data from existing patient");
+        JButton newInpatientButton = makeToolBarButton(Messages.getString("newInpatient"), "NewInpatient", Messages.getString("newInpatientMessage"));
+        JButton deleteInpatientButton = makeToolBarButton(Messages.getString("deleteInpatient"), "DeleteInpatient", Messages.getString("deleteInpatientMessage"));
 
-        JButton newMedicationButton = makeToolBarButton("New Medication", "NewMedication", "Add new medication data to existing patient");
-        JButton deleteMedicationButton = makeToolBarButton("Delete Medication", "DeleteMedication", "Delete medication data from existing patient");
+        JButton newMedicationButton = makeToolBarButton(Messages.getString("newMedication"), "NewMedication", Messages.getString("newMedicationMessage"));
+        JButton deleteMedicationButton = makeToolBarButton(Messages.getString("deleteMedication"), "DeleteMedication", Messages.getString("deleteMedicationMessage"));
 
-        JButton newSurgicalButton = makeToolBarButton("New Surgical", "NewSurgical", "Add new surgical data to existing patient");
-        JButton deleteSurgicalButton = makeToolBarButton("Delete Surgical", "DeleteSurgical", "Delete surgical data from existing patient");
+        JButton newSurgicalButton = makeToolBarButton(Messages.getString("newSurgical"), "NewSurgical", Messages.getString("newSurgicalMessage"));
+        JButton deleteSurgicalButton = makeToolBarButton(Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
 
         toolBar.add(newPatientButton);
         toolBar.add(deletePatientButton);
@@ -331,7 +332,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     public void createPatientForm() {
 
-        JFrame patientFormFrame = new JFrame("New Patient");
+        JFrame patientFormFrame = new JFrame(Messages.getString("newPatient"));
         PatientForm patientForm = new PatientForm(patientDBManager, patientFormFrame);
         JScrollPane patientFormScroll = new JScrollPane(patientForm);
 
@@ -349,10 +350,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             PatientBean selectedPatient = liveDataBean.getSelectedPatientBean();
 
-            String optionPaneMessage = "Are you sure you want to delete " + selectedPatient.getLastName()
+            String optionPaneMessage = Messages.getString("optionDeleteMessage") + " " + selectedPatient.getLastName()
                     + ", " + selectedPatient.getFirstName() + "?";
 
-            int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Patient", JOptionPane.YES_NO_OPTION);
+            int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, Messages.getString("deletePatient"), JOptionPane.YES_NO_OPTION);
 
             if (selectedOption == JOptionPane.YES_OPTION) {
 
@@ -371,7 +372,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -382,7 +383,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame inpatientFormFrame = new JFrame("Inpatient Form: " + tempPatient.getLastName() + ", "
+            JFrame inpatientFormFrame = new JFrame(Messages.getString("inpatientForm") + " " + tempPatient.getLastName() + ", "
                     + tempPatient.getFirstName() + " | ID: " + tempPatient.getPatientID());
 
             InpatientForm inpatientForm = new InpatientForm(patientDBManager, inpatientDBManager, liveDataBean, inpatientFormFrame);
@@ -395,7 +396,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             inpatientFormFrame.setResizable(false);
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -409,10 +410,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             if (!(liveDataBean.getSelectedInpatientRow() == -1)) {
 
-                String optionPaneMessage = "Are you sure you want to delete the Inpatient data from " + selectedPatient.getLastName()
+                String optionPaneMessage = Messages.getString("deleteInpatientOptionMessage") + " " + selectedPatient.getLastName()
                         + ", " + selectedPatient.getFirstName() + "?";
 
-                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Inpatient", JOptionPane.YES_NO_OPTION);
+                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, Messages.getString("deleteInpatient"), JOptionPane.YES_NO_OPTION);
 
                 if (selectedOption == JOptionPane.YES_OPTION) {
 
@@ -429,12 +430,12 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 }
             } else {
                 JFrame dialogue = new JFrame();
-                JOptionPane.showMessageDialog(dialogue, "Please select the inpatient data to delete", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(dialogue, Messages.getString("deleteInpatientError"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -444,7 +445,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame medicationFormFrame = new JFrame("Medication Form: " + tempPatient.getLastName() + ", "
+            JFrame medicationFormFrame = new JFrame(Messages.getString("medicationForm") + " " + tempPatient.getLastName() + ", "
                     + tempPatient.getFirstName() + " | ID: " + tempPatient.getPatientID());
 
             MedicationForm medicationForm = new MedicationForm(patientDBManager, medicationDBManager, liveDataBean, medicationFormFrame);
@@ -457,7 +458,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             medicationFormFrame.setResizable(false);
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -471,10 +472,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             if (!(liveDataBean.getSelectedMedicationRow() == -1)) {
 
-                String optionPaneMessage = "Are you sure you want to delete the medication data from " + selectedPatient.getLastName()
+                String optionPaneMessage = Messages.getString("deleteMedicationOptionMessage") + " " + selectedPatient.getLastName()
                         + ", " + selectedPatient.getFirstName() + "?";
 
-                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Medication", JOptionPane.YES_NO_OPTION);
+                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, Messages.getString("deleteMedication"), JOptionPane.YES_NO_OPTION);
 
                 if (selectedOption == JOptionPane.YES_OPTION) {
 
@@ -491,12 +492,12 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 }
             } else {
                 JFrame dialogue = new JFrame();
-                JOptionPane.showMessageDialog(dialogue, "Please select the medication data to delete", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(dialogue, Messages.getString("deleteMedicationError"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -506,7 +507,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame surgicalFormFrame = new JFrame("Surgical Form: " + tempPatient.getLastName() + ", "
+            JFrame surgicalFormFrame = new JFrame(Messages.getString("surgicalForm")+ " " + tempPatient.getLastName() + ", "
                     + tempPatient.getFirstName() + " | ID: " + liveDataBean.getSelectedPatientID());
 
             SurgicalForm surgicalForm = new SurgicalForm(patientDBManager, surgicalDBManager, liveDataBean, surgicalFormFrame);
@@ -519,7 +520,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             surgicalFormFrame.setResizable(false);
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
 
         }
     }
@@ -532,10 +533,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             if (!(liveDataBean.getSelectedSurgicalRow() == -1)) {
 
-                String optionPaneMessage = "Are you sure you want to delete the surgical data from " + selectedPatient.getLastName()
+                String optionPaneMessage = Messages.getString("deleteSurgicalOptionMessage") + " " + selectedPatient.getLastName()
                         + ", " + selectedPatient.getFirstName() + "?";
 
-                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, "Delete Surgical", JOptionPane.YES_NO_OPTION);
+                int selectedOption = JOptionPane.showConfirmDialog(null, optionPaneMessage, Messages.getString("deleteSurgical"), JOptionPane.YES_NO_OPTION);
 
                 if (selectedOption == JOptionPane.YES_OPTION) {
 
@@ -549,16 +550,15 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
                     liveDataBean.setSelectedSurgicalRow(-1);
 
-                    System.out.println("selected surgical row after deleting is " + liveDataBean.getSelectedSurgicalRow());
                 }
             } else {
                 JFrame dialogue = new JFrame();
-                JOptionPane.showMessageDialog(dialogue, "Please select the surgical data to delete", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(dialogue, Messages.getString("deleteSurgicalError"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
             JFrame dialogue = new JFrame();
-            JOptionPane.showMessageDialog(dialogue, "Please select a patient", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
