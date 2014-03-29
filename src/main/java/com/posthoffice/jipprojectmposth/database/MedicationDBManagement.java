@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.database;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 
@@ -12,23 +13,40 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 import java.sql.Statement;
 
 public class MedicationDBManagement {
 
     private MedicationDBTableModel medicationDBTableModel = null;
     final Logger logger = LoggerFactory.getLogger(MedicationDBManagement.class);
+    
+    private LiveDataBean liveDataBean;
+    
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public MedicationDBManagement() {
         super();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.URL = "";
+        this.USER = "";
+        this.PASSWORD = "";
     }
     
-    public MedicationDBManagement(MedicationDBTableModel medicationDBTableModel) {
+    public MedicationDBManagement(MedicationDBTableModel medicationDBTableModel, LiveDataBean liveDataBean) {
+        
         super();
+        
         this.medicationDBTableModel = medicationDBTableModel;
+                
+        this.liveDataBean = liveDataBean;
+        
+        this.URL = liveDataBean.getURL();
+        this.USER = liveDataBean.getUSER();
+        this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {

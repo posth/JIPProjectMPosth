@@ -7,21 +7,45 @@ public class LiveDataBean {
     private int selectedPatientID;
     private PatientBean selectedPatientBean;
     private int selectedPatientRow;
-
     private int selectedInpatientRow;
     private InpatientBean selectedInpatientBean;
-
     private int selectedMedicationRow;
     private MedicationBean selectedMedicationBean;
-
     private int selectedSurgicalRow;
     private SurgicalBean selectedSurgicalBean;
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public LiveDataBean() {
         super();
         this.selectedPatientID = -1;
         this.selectedPatientRow = -1;
         this.selectedInpatientRow = -1;
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public String getUSER() {
+        return USER;
+    }
+
+    public void setUSER(String USER) {
+        this.USER = USER;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
     }
 
     public int getSelectedSurgicalRow() {
@@ -160,5 +184,4 @@ public class LiveDataBean {
                 + ", selectedSurgicalRow=" + selectedSurgicalRow + ", selectedSurgicalBean="
                 + selectedSurgicalBean + '}';
     }
-
 }

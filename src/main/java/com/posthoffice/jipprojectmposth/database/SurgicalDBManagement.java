@@ -1,5 +1,6 @@
 package com.posthoffice.jipprojectmposth.database;
 
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.beans.SurgicalBean;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
@@ -12,23 +13,40 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 import java.sql.Statement;
 
 public class SurgicalDBManagement {
 
     private SurgicalDBTableModel surgicalDBTableModel = null;
     final Logger logger = LoggerFactory.getLogger(SurgicalDBManagement.class);
+    
+    private LiveDataBean liveDataBean;
+    
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public SurgicalDBManagement() {
         super();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.URL = "";
+        this.USER = "";
+        this.PASSWORD = "";
     }
     
-    public SurgicalDBManagement(SurgicalDBTableModel surgicalDBTableModel) {
+    public SurgicalDBManagement(SurgicalDBTableModel surgicalDBTableModel, LiveDataBean liveDataBean) {
+        
         super();
+        
         this.surgicalDBTableModel = surgicalDBTableModel;
+                
+        this.liveDataBean = liveDataBean;
+        
+        this.URL = liveDataBean.getURL();
+        this.USER = liveDataBean.getUSER();
+        this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {

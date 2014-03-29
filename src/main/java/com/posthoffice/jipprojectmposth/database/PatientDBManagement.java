@@ -19,10 +19,6 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
-
 public class PatientDBManagement {
 
     private PatientDBTableModel patientDBTableModel;
@@ -33,6 +29,12 @@ public class PatientDBManagement {
 
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
+    
+    private LiveDataBean liveDataBean;
+    
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public PatientDBManagement() {
 
@@ -43,10 +45,16 @@ public class PatientDBManagement {
         this.inpatientDBManager = new InpatientDBManagement();
         this.medicationDBManager = new MedicationDBManagement();
         this.surgicalDBManager = new SurgicalDBManagement();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.URL = "";
+        this.USER = "";
+        this.PASSWORD = "";
     }
 
     public PatientDBManagement(PatientDBTableModel patientDBTableModel, InpatientDBManagement inpatientDBManager, MedicationDBManagement medicationDBManager,
-            SurgicalDBManagement surgicalDBManager) {
+            SurgicalDBManagement surgicalDBManager, LiveDataBean liveDataBean) {
 
         super();
 
@@ -57,6 +65,12 @@ public class PatientDBManagement {
         this.inpatientDBManager = inpatientDBManager;
         this.medicationDBManager = medicationDBManager;
         this.surgicalDBManager = surgicalDBManager;
+        
+        this.liveDataBean = liveDataBean;
+        
+        this.URL = liveDataBean.getURL();
+        this.USER = liveDataBean.getUSER();
+        this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     public boolean fillTableModel(String criteria) {

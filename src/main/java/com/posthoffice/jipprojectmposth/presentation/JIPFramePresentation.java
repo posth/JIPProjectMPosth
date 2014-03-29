@@ -14,8 +14,11 @@ import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
+import com.posthoffice.jipprojectmposth.properties.DBConnectionBean;
+import com.posthoffice.jipprojectmposth.properties.PropertiesManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,10 +33,6 @@ import javax.swing.JToolBar;
 
 public class JIPFramePresentation extends javax.swing.JFrame implements ActionListener {
 
-    public static final String URL = "jdbc:mysql://localhost:3306/PATIENTDB";
-    public static final String USER = "root";
-    public static final String PASSWORD = "Johnny23";
-    
     private PatientDBTableModel patientModel;
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
@@ -51,14 +50,30 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         surgicalModel = new SurgicalDBTableModel();
         patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
 
-        inpatientDBManager = new InpatientDBManagement(inpatientModel);
-        medicationDBManager = new MedicationDBManagement(medicationModel);
-        surgicalDBManager = new SurgicalDBManagement(surgicalModel);
-        patientDBManager = new PatientDBManagement(patientModel, inpatientDBManager, medicationDBManager, surgicalDBManager);
+        liveDataBean = new LiveDataBean();      
+        
+        try {
+            getConnectionDetails();
+        } catch (IOException ex) {
+            Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        liveDataBean = new LiveDataBean();
+        inpatientDBManager = new InpatientDBManagement(inpatientModel, liveDataBean);
+        medicationDBManager = new MedicationDBManagement(medicationModel, liveDataBean);
+        surgicalDBManager = new SurgicalDBManagement(surgicalModel, liveDataBean);
+        patientDBManager = new PatientDBManagement(patientModel, inpatientDBManager, medicationDBManager, surgicalDBManager, liveDataBean);
 
         initComponents();
+    }
+
+    public void getConnectionDetails() throws IOException {
+
+        PropertiesManager prop = new PropertiesManager();
+        DBConnectionBean dBBean = prop.loadProperties();
+
+        liveDataBean.setURL(dBBean.getUrl());
+        liveDataBean.setUSER(dBBean.getUser());
+        liveDataBean.setPASSWORD(dBBean.getPassword());
     }
 
     @SuppressWarnings("unchecked")
@@ -217,7 +232,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-                
+
             case "Exit":
                 JIPFramePresentation.this.dispose();
                 break;
@@ -507,7 +522,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
-            JFrame surgicalFormFrame = new JFrame(Messages.getString("surgicalForm")+ " " + tempPatient.getLastName() + ", "
+            JFrame surgicalFormFrame = new JFrame(Messages.getString("surgicalForm") + " " + tempPatient.getLastName() + ", "
                     + tempPatient.getFirstName() + " | ID: " + liveDataBean.getSelectedPatientID());
 
             SurgicalForm surgicalForm = new SurgicalForm(patientDBManager, surgicalDBManager, liveDataBean, surgicalFormFrame);

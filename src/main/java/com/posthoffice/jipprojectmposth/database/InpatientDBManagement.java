@@ -11,26 +11,45 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import java.sql.Statement;
 
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.URL;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.USER;
-import static com.posthoffice.jipprojectmposth.presentation.JIPFramePresentation.PASSWORD;
 
 public class InpatientDBManagement {
 
     private InpatientDBTableModel inpatientDBTableModel = null;
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
+    
+    private LiveDataBean liveDataBean;
+    
+    private String URL;
+    private String USER;
+    private String PASSWORD;
 
     public InpatientDBManagement() {
+        
         super();
+        
+        this.liveDataBean = new LiveDataBean();
+        
+        this.URL = "";
+        this.USER = "";
+        this.PASSWORD = "";
     }
 
-    public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel) {
+    public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel, LiveDataBean liveDataBean) {
+        
         super();
-        this.inpatientDBTableModel = inpatientDBTableModel;
+        
+        this.inpatientDBTableModel = inpatientDBTableModel; 
+                
+        this.liveDataBean = liveDataBean;
+        
+        this.URL = liveDataBean.getURL();
+        this.USER = liveDataBean.getUSER();
+        this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {

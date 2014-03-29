@@ -1,18 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 8.723 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
-createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 2.227 sec  <<< ERROR!
-java.lang.NullPointerException: null
-	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:93)
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.425 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.123 sec  <<< ERROR!
+java.sql.SQLException: No suitable driver found for 
+	at java.sql.DriverManager.getConnection(DriverManager.java:596)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:91)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
 
-deleteSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 2.077 sec  <<< FAILURE!
-java.lang.AssertionError: expected:<1> but was:<0>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:55)
+readSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.096 sec  <<< ERROR!
+java.sql.SQLException: No suitable driver found for 
+	at java.sql.DriverManager.getConnection(DriverManager.java:596)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.readSurgicalTest(SurgicalDBManagementTest.java:29)
+
+deleteSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.101 sec  <<< ERROR!
+java.sql.SQLException: No suitable driver found for 
+	at java.sql.DriverManager.getConnection(DriverManager.java:596)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.deleteSurgical(SurgicalDBManagement.java:145)
+	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:49)
+
+updateSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.103 sec  <<< ERROR!
+java.sql.SQLException: No suitable driver found for 
+	at java.sql.DriverManager.getConnection(DriverManager.java:596)
+	at java.sql.DriverManager.getConnection(DriverManager.java:215)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.updateSurgicalTest(SurgicalDBManagementTest.java:64)
 
