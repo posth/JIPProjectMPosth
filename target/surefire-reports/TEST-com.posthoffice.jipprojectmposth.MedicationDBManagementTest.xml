@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.378" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.376" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,7 +59,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="updateMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.074">
+  <testcase name="updateMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.083">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -67,7 +67,7 @@
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.updateMedicationTest(MedicationDBManagementTest.java:64)
 </error>
   </testcase>
-  <testcase name="readMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.101">
+  <testcase name="readMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.085">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -75,7 +75,7 @@
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.readMedicationTest(MedicationDBManagementTest.java:29)
 </error>
   </testcase>
-  <testcase name="createMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.107">
+  <testcase name="createMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.108">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -83,7 +83,7 @@
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.createMedicationTest(MedicationDBManagementTest.java:39)
 </error>
   </testcase>
-  <testcase name="deleteMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.096">
+  <testcase name="deleteMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.1">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)

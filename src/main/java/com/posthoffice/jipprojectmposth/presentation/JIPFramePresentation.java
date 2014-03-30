@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Locale;
+import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -44,7 +44,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private PatientDBManagement patientDBManager;
     private LiveDataBean liveDataBean;
 
-    public JIPFramePresentation() {      
+    public JIPFramePresentation() {
 
         inpatientModel = new InpatientDBTableModel();
         medicationModel = new MedicationDBTableModel();
@@ -116,7 +116,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JMenu menuMain, menuNew, menuDelete;
         JMenuItem newPatient, newInpatient, newMedication, newSurgical,
                 deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
-                itemExit;
+                itemExit, itemPrint;
 
         menuBar = new JMenuBar();
 
@@ -168,13 +168,18 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         menuDelete.add(deleteInpatient);
         menuDelete.add(deleteMedication);
         menuDelete.add(deleteSurgical);
-
+        
+        itemPrint = new JMenuItem(Messages.getString("print"));
+        itemPrint.setActionCommand("Print");
+        itemPrint.addActionListener(this);
+        
         itemExit = new JMenuItem(Messages.getString("exit"));
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
 
         menuMain.add(menuNew);
         menuMain.add(menuDelete);
+        menuMain.add(itemPrint);
         menuMain.add(itemExit);
 
         return menuBar;
@@ -233,6 +238,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+                
+            case "Print":
+                printForm();
+                break;
 
             case "Exit":
                 JIPFramePresentation.this.dispose();
@@ -258,6 +267,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JButton newSurgicalButton = makeToolBarButton(Messages.getString("newSurgical"), "NewSurgical", Messages.getString("newSurgicalMessage"));
         JButton deleteSurgicalButton = makeToolBarButton(Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
 
+        JButton newPrintButton = makeToolBarButton(Messages.getString("print"), "Print", Messages.getString("printMessage"));
+
         toolBar.add(newPatientButton);
         toolBar.add(deletePatientButton);
         toolBar.add(newInpatientButton);
@@ -266,6 +277,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         toolBar.add(deleteMedicationButton);
         toolBar.add(newSurgicalButton);
         toolBar.add(deleteSurgicalButton);
+        toolBar.add(newPrintButton);
 
         toolBar.setFloatable(true);
 
@@ -341,9 +353,31 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                         Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     break;
+
+                case "Print":
+                    printForm();
+                    break;
             }
 
         }
+    }
+
+    public void printForm() {
+
+        if (!(liveDataBean.getSelectedPatientRow() == -1)) {
+            
+            MessageFormat header = new MessageFormat(Messages.getString("print"));
+            MessageFormat footer = new MessageFormat("Pg {0, number, integer}");
+                      
+            
+            //add code here
+            
+            
+        } else {
+            JFrame dialogue = new JFrame();
+            JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     public void createPatientForm() {

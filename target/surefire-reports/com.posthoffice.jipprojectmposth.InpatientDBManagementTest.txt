@@ -1,29 +1,29 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.InpatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.89 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
-readInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.486 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.706 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.InpatientDBManagementTest
+readInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.361 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.readInpatient(InpatientDBManagement.java:61)
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.readInpatientTest(InpatientDBManagementTest.java:28)
 
-createInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.129 sec  <<< ERROR!
+createInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.095 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.createInpatient(InpatientDBManagement.java:95)
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.createInpatientTest(InpatientDBManagementTest.java:36)
 
-deleteInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.103 sec  <<< ERROR!
+deleteInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.091 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.InpatientDBManagement.deleteInpatient(InpatientDBManagement.java:150)
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.deleteInpatientTest(InpatientDBManagementTest.java:46)
 
-updateInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.112 sec  <<< ERROR!
+updateInpatientTest(com.posthoffice.jipprojectmposth.InpatientDBManagementTest)  Time elapsed: 0.096 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)

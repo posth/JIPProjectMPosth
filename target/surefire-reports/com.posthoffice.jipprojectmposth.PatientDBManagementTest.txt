@@ -1,29 +1,29 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.427 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
-updatePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.092 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.362 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
+updatePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.066 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:183)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.updatePatientTest(PatientDBManagementTest.java:57)
 
-readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.111 sec  <<< ERROR!
+readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.088 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:183)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.readPatientTest(PatientDBManagementTest.java:27)
 
-deletePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.106 sec  <<< ERROR!
+deletePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.096 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:250)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 
-createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.113 sec  <<< ERROR!
+createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.089 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
