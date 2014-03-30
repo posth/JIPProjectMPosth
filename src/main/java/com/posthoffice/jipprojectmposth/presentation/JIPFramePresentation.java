@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -43,15 +44,15 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private PatientDBManagement patientDBManager;
     private LiveDataBean liveDataBean;
 
-    public JIPFramePresentation() {
+    public JIPFramePresentation() {      
 
         inpatientModel = new InpatientDBTableModel();
         medicationModel = new MedicationDBTableModel();
         surgicalModel = new SurgicalDBTableModel();
         patientModel = new PatientDBTableModel(inpatientModel, medicationModel, surgicalModel);
 
-        liveDataBean = new LiveDataBean();      
-        
+        liveDataBean = new LiveDataBean();
+
         try {
             getConnectionDetails();
         } catch (IOException ex) {

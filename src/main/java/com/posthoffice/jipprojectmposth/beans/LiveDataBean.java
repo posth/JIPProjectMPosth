@@ -122,16 +122,19 @@ public class LiveDataBean {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.selectedPatientID;
-        hash = 59 * hash + Objects.hashCode(this.selectedPatientBean);
-        hash = 59 * hash + this.selectedPatientRow;
-        hash = 59 * hash + this.selectedInpatientRow;
-        hash = 59 * hash + Objects.hashCode(this.selectedInpatientBean);
-        hash = 59 * hash + this.selectedMedicationRow;
-        hash = 59 * hash + Objects.hashCode(this.selectedMedicationBean);
-        hash = 59 * hash + this.selectedSurgicalRow;
-        hash = 59 * hash + Objects.hashCode(this.selectedSurgicalBean);
+        int hash = 5;
+        hash = 97 * hash + this.selectedPatientID;
+        hash = 97 * hash + Objects.hashCode(this.selectedPatientBean);
+        hash = 97 * hash + this.selectedPatientRow;
+        hash = 97 * hash + this.selectedInpatientRow;
+        hash = 97 * hash + Objects.hashCode(this.selectedInpatientBean);
+        hash = 97 * hash + this.selectedMedicationRow;
+        hash = 97 * hash + Objects.hashCode(this.selectedMedicationBean);
+        hash = 97 * hash + this.selectedSurgicalRow;
+        hash = 97 * hash + Objects.hashCode(this.selectedSurgicalBean);
+        hash = 97 * hash + Objects.hashCode(this.URL);
+        hash = 97 * hash + Objects.hashCode(this.USER);
+        hash = 97 * hash + Objects.hashCode(this.PASSWORD);
         return hash;
     }
 
@@ -171,17 +174,28 @@ public class LiveDataBean {
         if (!Objects.equals(this.selectedSurgicalBean, other.selectedSurgicalBean)) {
             return false;
         }
+        if (!Objects.equals(this.URL, other.URL)) {
+            return false;
+        }
+        if (!Objects.equals(this.USER, other.USER)) {
+            return false;
+        }
+        if (!Objects.equals(this.PASSWORD, other.PASSWORD)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
         return "LiveDataBean{" + "selectedPatientID=" + selectedPatientID
-                + ", selectedPatientBean=" + selectedPatientBean + ", selectedPatientRow="
-                + selectedPatientRow + ", selectedInpatientRow=" + selectedInpatientRow
-                + ", selectedInpatientBean=" + selectedInpatientBean + ", selectedMedicationRow="
-                + selectedMedicationRow + ", selectedMedicationBean=" + selectedMedicationBean
-                + ", selectedSurgicalRow=" + selectedSurgicalRow + ", selectedSurgicalBean="
-                + selectedSurgicalBean + '}';
+                + ", selectedPatientBean=" + selectedPatientBean
+                + ", selectedPatientRow=" + selectedPatientRow + ", selectedInpatientRow="
+                + selectedInpatientRow + ", selectedInpatientBean="
+                + selectedInpatientBean + ", selectedMedicationRow="
+                + selectedMedicationRow + ", selectedMedicationBean="
+                + selectedMedicationBean + ", selectedSurgicalRow="
+                + selectedSurgicalRow + ", selectedSurgicalBean=" + selectedSurgicalBean
+                + ", URL=" + URL + ", USER=" + USER + ", PASSWORD=" + PASSWORD + '}';
     }
 }
