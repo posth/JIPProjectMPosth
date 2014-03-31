@@ -384,9 +384,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             
             TableColumn column = receiptTable.getColumnModel().getColumn(0);
             TableColumn column1 = receiptTable.getColumnModel().getColumn(1);
+            TableColumn column2 = receiptTable.getColumnModel().getColumn(2);
             column.setMinWidth(150);
             column1.setMinWidth(125);
-
+            column2.setMinWidth(125);
+            
             receiptTable.setSize(receiptTable.getPreferredSize());
 
             try {
