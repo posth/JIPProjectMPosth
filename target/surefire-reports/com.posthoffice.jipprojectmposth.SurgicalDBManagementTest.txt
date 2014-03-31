@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.357 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
-createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.083 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.37 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.SurgicalDBManagementTest
+createSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.078 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
 	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:91)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
 
-readSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.086 sec  <<< ERROR!
+readSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.092 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -23,7 +23,7 @@ java.sql.SQLException: No suitable driver found for
 	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.deleteSurgical(SurgicalDBManagement.java:145)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:49)
 
-updateSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.095 sec  <<< ERROR!
+updateSurgicalTest(com.posthoffice.jipprojectmposth.SurgicalDBManagementTest)  Time elapsed: 0.105 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)

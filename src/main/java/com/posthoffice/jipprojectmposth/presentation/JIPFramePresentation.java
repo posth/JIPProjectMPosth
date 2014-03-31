@@ -13,11 +13,14 @@ import com.posthoffice.jipprojectmposth.database.SurgicalDBManagement;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
+import com.posthoffice.jipprojectmposth.model.ReceiptTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import com.posthoffice.jipprojectmposth.properties.DBConnectionBean;
 import com.posthoffice.jipprojectmposth.properties.PropertiesManager;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.MessageFormat;
@@ -30,7 +33,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JToolBar;
+import javax.swing.table.TableColumn;
+import org.slf4j.LoggerFactory;
 
 public class JIPFramePresentation extends javax.swing.JFrame implements ActionListener {
 
@@ -43,6 +49,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private SurgicalDBManagement surgicalDBManager;
     private PatientDBManagement patientDBManager;
     private LiveDataBean liveDataBean;
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     public JIPFramePresentation() {
 
@@ -168,11 +175,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         menuDelete.add(deleteInpatient);
         menuDelete.add(deleteMedication);
         menuDelete.add(deleteSurgical);
-        
+
         itemPrint = new JMenuItem(Messages.getString("print"));
         itemPrint.setActionCommand("Print");
         itemPrint.addActionListener(this);
-        
+
         itemExit = new JMenuItem(Messages.getString("exit"));
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
@@ -238,7 +245,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                     Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-                
+
             case "Print":
                 printForm();
                 break;
@@ -365,14 +372,30 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public void printForm() {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
+
+            PatientBean selectedBean = liveDataBean.getSelectedPatientBean();
+
+            MessageFormat header = new MessageFormat(Messages.getString("print") + " for " + selectedBean.getLastName() + ", " + selectedBean.getFirstName());
+            MessageFormat footer = new MessageFormat("Page {0, number, integer}");
+
+            ReceiptTableModel receiptModel = new ReceiptTableModel(selectedBean);
+
+            JTable receiptTable = new ReceiptTable(receiptModel);
             
-            MessageFormat header = new MessageFormat(Messages.getString("print"));
-            MessageFormat footer = new MessageFormat("Pg {0, number, integer}");
-                      
-            
-            //add code here
-            
-            
+            TableColumn column = receiptTable.getColumnModel().getColumn(0);
+            TableColumn column1 = receiptTable.getColumnModel().getColumn(1);
+            column.setMinWidth(150);
+            column1.setMinWidth(125);
+
+            receiptTable.setSize(receiptTable.getPreferredSize());
+
+            try {
+                receiptTable.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            } catch (PrinterException ex) {
+                logger.error("Cannot Print:", ex.getMessage());
+            }
+
+
         } else {
             JFrame dialogue = new JFrame();
             JOptionPane.showMessageDialog(dialogue, Messages.getString("optionSelectPatient"), Messages.getString("error"), JOptionPane.ERROR_MESSAGE);
