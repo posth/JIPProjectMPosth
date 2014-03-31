@@ -1,9 +1,11 @@
 package com.posthoffice.jipprojectmposth.model;
 
 import com.posthoffice.jipprojectmposth.beans.InpatientBean;
+import com.posthoffice.jipprojectmposth.beans.MedicationBean;
 import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.beans.ReceiptDataBean;
 import com.posthoffice.jipprojectmposth.regex.Messages;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class ReceiptTableModel extends AbstractTableModel {
         this.patientBean = selectedPatient;
 
         loadInpatientData();
+        loadMedicationData();
+        //loadSurgicalData();
 
     }
 
@@ -46,14 +50,14 @@ public class ReceiptTableModel extends AbstractTableModel {
         for (int i = 0; i <= inpatientList.size() - 1; i++) {
 
             InpatientBean temp = inpatientList.get(i);
-            
+
             String dailyRate = Messages.getString("inpatient") + " | " + Messages.getString("dailyrate");
-            
-            Timestamp dateOfStay = temp.getDateOfStay();           
-            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy");     
-            
-            String date = format.format(new Date(dateOfStay.getTime()));            
-                  
+
+            Timestamp dateOfStay = temp.getDateOfStay();
+            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy");
+
+            String date = format.format(new Date(dateOfStay.getTime()));
+
             String dailyRateprice = "$" + temp.getDailyRate() + "";
 
             ReceiptDataBean tempReceipt = new ReceiptDataBean(dailyRate, date, dailyRateprice);
@@ -67,13 +71,13 @@ public class ReceiptTableModel extends AbstractTableModel {
         for (int i = 0; i <= inpatientList.size() - 1; i++) {
 
             InpatientBean temp = inpatientList.get(i);
-            
-            Timestamp dateOfStay = temp.getDateOfStay();           
+
+            Timestamp dateOfStay = temp.getDateOfStay();
             SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy");
-            
+
             String date = format.format(new Date(dateOfStay.getTime()));
 
-            String roomSupplies = Messages.getString("inpatient") +  " | " + Messages.getString("supplies");
+            String roomSupplies = Messages.getString("inpatient") + " | " + Messages.getString("supplies");
             String roomSuppliesPrice = "$" + temp.getRoomSupplies() + "";
 
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomSupplies, date, roomSuppliesPrice);
@@ -86,18 +90,57 @@ public class ReceiptTableModel extends AbstractTableModel {
         for (int i = 0; i <= inpatientList.size() - 1; i++) {
 
             InpatientBean temp = inpatientList.get(i);
-            
-            Timestamp dateOfStay = temp.getDateOfStay();           
+
+            Timestamp dateOfStay = temp.getDateOfStay();
             SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy");
-            
+
             String date = format.format(new Date(dateOfStay.getTime()));
 
-            String roomServices = Messages.getString("inpatient") +  " | " + Messages.getString("supplies");
+            String roomServices = Messages.getString("inpatient") + " | " + Messages.getString("supplies");
             String roomServicesPrice = "$" + temp.getRoomServices() + "";
 
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomServices, date, roomServicesPrice);
 
             addReceiptDataBean(tempReceipt);
+        }
+
+        addBlankRow();
+
+    }
+
+    public void loadMedicationData() {
+
+        ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
+
+        for (int i = 0; i <= medicationList.size() - 1; i++) {
+
+            MedicationBean temp = medicationList.get(i);
+
+            String costPerUnit = Messages.getString("medication") + " | " + Messages.getString("unitcost");
+
+            Timestamp dateOfMed = temp.getDateOfMed();
+            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy");
+
+            String date = format.format(new Date(dateOfMed.getTime()));
+
+            String costPerUnitprice = "$" + temp.getCostPerUnit() + "";
+
+            ReceiptDataBean tempReceipt = new ReceiptDataBean(costPerUnit, date, costPerUnitprice);
+
+            addReceiptDataBean(tempReceipt);
+            
+            String numberOfUnits = temp.getNumberOfUnits() + " (" + temp.getMedication() + ")" + " " + Messages.getString("units");
+            String totalPrice = "Total " + Messages.getString("medication") + Messages.getString("price") + ":";
+  
+            BigDecimal unitNumberBD = temp.getNumberOfUnits();
+            BigDecimal unitPriceBD = temp.getCostPerUnit();
+            
+            String medicationTotal = "$" + unitNumberBD.multiply(unitPriceBD) + "";
+                   
+            ReceiptDataBean numberUnits = new ReceiptDataBean(numberOfUnits, totalPrice, medicationTotal);
+            
+            addReceiptDataBean(numberUnits);
+
         }
 
         addBlankRow();
