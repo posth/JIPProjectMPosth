@@ -7,7 +7,5 @@ public class ReceiptTable extends JTable {
 
     public ReceiptTable(ReceiptTableModel receiptTableModel) {
         super(receiptTableModel);
-        
-
     }
 }

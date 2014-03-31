@@ -18,6 +18,10 @@ public class ReceiptTableModel extends AbstractTableModel {
     private PatientBean patientBean;
     private String[] RECEIPTCOLUMNS = {Messages.getString("category"), Messages.getString("admissiondate"), Messages.getString("price")};
     private ArrayList<ReceiptDataBean> data = new ArrayList<>();
+    
+    private BigDecimal inpatientSum = BigDecimal.ZERO;
+    private BigDecimal medicationSum = BigDecimal.ZERO;
+    private BigDecimal surgicalSum = BigDecimal.ZERO;
 
     public ReceiptTableModel() {
         super();
@@ -32,6 +36,8 @@ public class ReceiptTableModel extends AbstractTableModel {
         loadInpatientData();
         loadMedicationData();
         loadSurgicalData();
+        
+        loadTotalSum();
 
     }
 
@@ -43,6 +49,19 @@ public class ReceiptTableModel extends AbstractTableModel {
     public void addBlankRow() {
         ReceiptDataBean blank = new ReceiptDataBean("", "", "");
         addReceiptDataBean(blank);
+    }
+    
+    public void loadTotalSum() {
+        
+        addBlankRow();
+
+        BigDecimal totalSum = surgicalSum.add(inpatientSum.add(medicationSum));
+        
+        BigDecimal totalSumRounded = totalSum.setScale(2, BigDecimal.ROUND_HALF_UP);
+        
+        ReceiptDataBean totalSumRow = new ReceiptDataBean("", Messages.getString("patient") + " total " + Messages.getString("price"), "$" + totalSumRounded + "");
+        
+        addReceiptDataBean(totalSumRow);
     }
 
     public void loadPatientData() {
@@ -73,7 +92,7 @@ public class ReceiptTableModel extends AbstractTableModel {
         ReceiptDataBean inpatientColumnTitles = new ReceiptDataBean(Messages.getString("inpatient"), Messages.getString("dateofstay"), Messages.getString("price"));
         addReceiptDataBean(inpatientColumnTitles);
 
-        for (int i = 0; i <= inpatientList.size() - 1; i++) {
+        for (int i = 0; i <= inpatientList.size() - 1; i++) { 
 
             InpatientBean temp = inpatientList.get(i);
 
@@ -89,6 +108,9 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(dailyRate, date, dailyRateprice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal dailyRateBD = temp.getDailyRate();
+            inpatientSum = inpatientSum.add(dailyRateBD);
 
         }
 
@@ -107,6 +129,9 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomSupplies, date, roomSuppliesPrice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal suppliesBD = temp.getRoomSupplies();
+            inpatientSum = inpatientSum.add(suppliesBD);
         }
 
 
@@ -125,8 +150,14 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomServices, date, roomServicesPrice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal servicesBD = temp.getRoomServices();
+            inpatientSum = inpatientSum.add(servicesBD);
         }
 
+        ReceiptDataBean totalInpatientPrice = new ReceiptDataBean("", "", "Total: $" + inpatientSum + "");
+        addReceiptDataBean(totalInpatientPrice);
+        
         addBlankRow();
 
     }
@@ -159,8 +190,11 @@ public class ReceiptTableModel extends AbstractTableModel {
 
             BigDecimal unitNumberBD = temp.getNumberOfUnits();
             BigDecimal unitPriceBD = temp.getCostPerUnit();
+            
+            medicationSum = unitNumberBD.multiply(unitPriceBD);
+            BigDecimal medicationSumRounded = medicationSum.setScale(2, BigDecimal.ROUND_HALF_UP);
 
-            String medicationTotal = "Total " + "$" + unitNumberBD.multiply(unitPriceBD) + "";
+            String medicationTotal = "Total " + "$" + medicationSumRounded + "";
 
             ReceiptDataBean numberUnits = new ReceiptDataBean(numberOfUnits, "", medicationTotal);
 
@@ -195,6 +229,9 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomFee, date, roomFeeprice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal roomFeeBD = temp.getRoomFee();
+            surgicalSum = surgicalSum.add(roomFeeBD);
 
         }
 
@@ -213,6 +250,9 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(surgeonsFee, date, surgeonsFeePrice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal surgeonsFeeBD = temp.getSurgeonsFee();
+            surgicalSum = surgicalSum.add(surgeonsFeeBD);
         }
 
         for (int i = 0; i <= surgicalList.size() - 1; i++) {
@@ -230,7 +270,13 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(supplies, date, suppliesPrice);
 
             addReceiptDataBean(tempReceipt);
+            
+            BigDecimal suppliesBD = temp.getSupplies();
+            surgicalSum = surgicalSum.add(suppliesBD);
         }
+        
+        ReceiptDataBean totalSurgicalPrice = new ReceiptDataBean("", "", "Total: $" + surgicalSum + "");
+        addReceiptDataBean(totalSurgicalPrice);
 
         addBlankRow();
     }
@@ -263,5 +309,6 @@ public class ReceiptTableModel extends AbstractTableModel {
         }
         // What kind of exception to catch here?
         return null;
-    }
+    }   
+  
 }
