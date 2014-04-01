@@ -13,7 +13,6 @@ public class MedicationDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<MedicationBean> data = new ArrayList<>();
-
     private String[] MEDICATIONCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofmed"), Messages.getString("medication"),
         Messages.getString("unitcost"), Messages.getString("units")};
 
@@ -25,21 +24,6 @@ public class MedicationDBTableModel extends AbstractTableModel {
     public void addMedicationBean(MedicationBean p) {
         data.add(p);
         this.fireTableDataChanged();
-    }
-
-    @Override
-    public int getRowCount() {
-        return data.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return MEDICATIONCOLUMNNAMES.length;
-    }
-
-    @Override
-    public String getColumnName(int col) {
-        return MEDICATIONCOLUMNNAMES[col];
     }
 
     public boolean getUpdateStatus(int row) {
@@ -63,11 +47,19 @@ public class MedicationDBTableModel extends AbstractTableModel {
     public void deleteAllRows() {
 
         data.clear();
-        
+
         this.fireTableDataChanged();
 
     }
 
+    /**
+     * Receives an ArrayList of Medication Beans which it uses to populate the
+     * MedicationDBTableModel's data ArrayList which in turn populates the
+     * MedicationTable. This method is called from the PatientDBTableModel
+     * class.
+     *
+     * @param medicationList
+     */
     public void loadMedicationList(ArrayList<MedicationBean> medicationList) {
 
         int medicationListLength = medicationList.size();
@@ -81,6 +73,21 @@ public class MedicationDBTableModel extends AbstractTableModel {
 
         this.fireTableDataChanged();
 
+    }
+
+    @Override
+    public int getRowCount() {
+        return data.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return MEDICATIONCOLUMNNAMES.length;
+    }
+
+    @Override
+    public String getColumnName(int col) {
+        return MEDICATIONCOLUMNNAMES[col];
     }
 
     @Override
@@ -105,7 +112,6 @@ public class MedicationDBTableModel extends AbstractTableModel {
         }
 
         fireTableCellUpdated(row, col);
-        //data.get(row).setUpdate(true);
     }
 
     @Override
@@ -123,7 +129,7 @@ public class MedicationDBTableModel extends AbstractTableModel {
             case 4:
                 return data.get(row).getNumberOfUnits();
         }
-        // What kind of exception to catch here?
+
         return null;
     }
 
@@ -134,7 +140,8 @@ public class MedicationDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        boolean retVal = true;
+        //Temporarily setting this value to false as editing is not yet a feature.
+        boolean retVal = false;
 
         if (col == 0) {
             retVal = false;

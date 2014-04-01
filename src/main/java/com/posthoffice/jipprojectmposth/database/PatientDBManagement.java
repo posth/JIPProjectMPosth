@@ -73,6 +73,12 @@ public class PatientDBManagement {
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
+    /**
+     * Is called to read all Patient Data from the database and fills 
+     * the PatientDBTableModel class with all the currently stored Patient data.
+     * @param criteria
+     * @return 
+     */
     public boolean fillTableModel(String criteria) {
 
         boolean retVal = true;
@@ -104,6 +110,7 @@ public class PatientDBManagement {
         return retVal;
     }
 
+    //Currently not used as editing is not a feature of this program yet.
     public void updateDB() {
 
         PatientBean patient;
@@ -141,6 +148,13 @@ public class PatientDBManagement {
 
     }
 
+    /**
+     * It receives a Patient Bean to create and auto generates the PATIENTID
+     * primary key for each new Patient it receives.
+     * @param patient
+     * @return
+     * @throws SQLException 
+     */
     public int createPatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -174,6 +188,13 @@ public class PatientDBManagement {
         return result;
     }
 
+    /**
+     * Reads all Patient data from the database and returns an ArrayList of
+     * Patient Beans.  This method also populates children data (Inpatient, 
+     * Medication, and Surgical) into the Patient Bean.
+     * @return ArrayList<PatientBean>
+     * @throws SQLException 
+     */
     public ArrayList<PatientBean> readPatient() throws SQLException {
 
         String preparedQuery = "SELECT * FROM PATIENT";
@@ -212,6 +233,7 @@ public class PatientDBManagement {
 
     }
 
+    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
     public int updatePatient(PatientBean patient) throws SQLException {
 
         int result;
@@ -241,6 +263,13 @@ public class PatientDBManagement {
         return result;
     }
 
+    /**
+     * Receives a Patient Bean to delete.  This method also deletes all connected
+     * children data (Inpatient, Medication, and Surgical) when called.
+     * @param patientBean
+     * @return
+     * @throws SQLException 
+     */
     public int deletePatient(PatientBean patientBean) throws SQLException {
         
         int result = 0;        

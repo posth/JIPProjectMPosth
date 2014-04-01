@@ -52,6 +52,13 @@ public class InpatientDBManagement {
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
+    /**
+     * Reading all the Inpatient Data for one Patient based on the patientID
+     * which is the Patient's primary key.
+     * @param patientID
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM INPATIENT WHERE PATIENTID = ?";
@@ -84,6 +91,14 @@ public class InpatientDBManagement {
         return inpatientList;
     }
 
+    /**
+     * Creating new Inpatient data by receiving an Inpatient Bean.  
+     * It is linked to the Patient through the PATIENTID.
+     * However, the primary key for the Inpatient is ID.
+     * @param inpatient
+     * @return
+     * @throws SQLException 
+     */
     public int createInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
@@ -118,7 +133,7 @@ public class InpatientDBManagement {
         return result;
     }
 
-    //WILL HAVE TO BE CHANGED TO WORK WITH THE ID AND NOT PATIENT ID
+    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
     public int updateInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
@@ -141,6 +156,13 @@ public class InpatientDBManagement {
         return result;
     }
 
+    /**
+     * Deleting Inpatient Data using its primary ID key, ID.  
+     * It receives an Inpatient Bean and extracts its ID.
+     * @param inpatient
+     * @return
+     * @throws SQLException 
+     */
     public int deleteInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;

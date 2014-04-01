@@ -49,6 +49,13 @@ public class SurgicalDBManagement {
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
+    /**
+     * Reading all the Surgical Data for one Patient based on the patientID
+     * which is the Patient's primary key.
+     * @param patientID
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM SURGICAL WHERE PATIENTID = ?";
@@ -80,6 +87,14 @@ public class SurgicalDBManagement {
         return surgicalList;
     }
 
+    /**
+     * Creating new Surgical data by receiving a Surgical Bean.
+     * It is linked to the Patient through the PATIENTID.
+     * However, the primary key for the Surgical data is ID.
+     * @param surgical
+     * @return
+     * @throws SQLException 
+     */
     public int createSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;
@@ -114,6 +129,7 @@ public class SurgicalDBManagement {
         return result;
     }
 
+    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
     public int updateSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;
@@ -136,6 +152,13 @@ public class SurgicalDBManagement {
         return result;
     }
 
+    /**
+     * Deleting Surgical Data using its primary ID key, ID.
+     * It receives a Surgical Bean and extracts its ID.
+     * @param surgical
+     * @return
+     * @throws SQLException 
+     */
     public int deleteSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;

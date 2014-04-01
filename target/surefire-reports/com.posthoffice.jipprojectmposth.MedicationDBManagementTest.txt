@@ -1,32 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.MedicationDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.39 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
-updateMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.078 sec  <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.359 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.MedicationDBManagementTest
+updateMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.062 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:65)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.updateMedicationTest(MedicationDBManagementTest.java:64)
 
-readMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.125 sec  <<< ERROR!
+readMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.094 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:65)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.readMedicationTest(MedicationDBManagementTest.java:29)
 
-createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.093 sec  <<< ERROR!
+createMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.109 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:92)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:106)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.createMedicationTest(MedicationDBManagementTest.java:39)
 
 deleteMedicationTest(com.posthoffice.jipprojectmposth.MedicationDBManagementTest)  Time elapsed: 0.094 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.deleteMedication(MedicationDBManagement.java:145)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.deleteMedication(MedicationDBManagement.java:167)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.deleteMedicationTest(MedicationDBManagementTest.java:49)
 

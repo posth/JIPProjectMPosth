@@ -11,6 +11,11 @@ public class PatientDBInit {
     private static final String user = "root";
     private static final String password = "Johnny23";
 
+    /**
+     * This class and its method is used to add test Patient data into the database
+     * to ensure the program is running correctly.
+     * @throws SQLException 
+     */
     public static void initDB() throws SQLException {
 
         try (Connection connection = DriverManager.getConnection(url, user, password);
@@ -31,14 +36,6 @@ public class PatientDBInit {
 
         }
     }
-
-//    public static void main(String args[]) {
-//        try {
-//            initDB();
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
 
     static final String dropPatientDB = "DROP DATABASE PATIENTDB";
     static final String createPatientDB = "CREATE DATABASE PATIENTDB";

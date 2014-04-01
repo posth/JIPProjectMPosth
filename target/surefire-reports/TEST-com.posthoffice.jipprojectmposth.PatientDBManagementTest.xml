@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.443" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.406" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,11 +59,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.109">
+  <testcase name="updatePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.094">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:183)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:204)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.updatePatientTest(PatientDBManagementTest.java:57)
 </error>
     <system-err><![CDATA[log4j:WARN No appenders could be found for logger (com.posthoffice.jipprojectmposth.model.InpatientDBTableModel).
@@ -71,27 +71,27 @@ log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
 ]]></system-err>
   </testcase>
-  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.117">
+  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.093">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:183)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:204)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.readPatientTest(PatientDBManagementTest.java:27)
 </error>
   </testcase>
-  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.089">
+  <testcase name="deletePatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.109">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:250)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:279)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 </error>
   </testcase>
-  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.128">
+  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.11">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:152)
+	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.createPatient(PatientDBManagement.java:166)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.createPatientTest(PatientDBManagementTest.java:35)
 </error>
   </testcase>

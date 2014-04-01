@@ -13,7 +13,6 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<InpatientBean> data = new ArrayList<>();
-
     private String[] INPATIENTCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofstay"), Messages.getString("roomnumber"),
         Messages.getString("dailyrate"), Messages.getString("supplies"), Messages.getString("services")};
 
@@ -25,21 +24,6 @@ public class InpatientDBTableModel extends AbstractTableModel {
     public void addInpatientBean(InpatientBean p) {
         data.add(p);
         this.fireTableDataChanged();
-    }
-
-    @Override
-    public int getRowCount() {
-        return data.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return INPATIENTCOLUMNNAMES.length;
-    }
-
-    @Override
-    public String getColumnName(int col) {
-        return INPATIENTCOLUMNNAMES[col];
     }
 
     public boolean getUpdateStatus(int row) {
@@ -58,14 +42,19 @@ public class InpatientDBTableModel extends AbstractTableModel {
         data.remove(selectedRow);
         this.fireTableDataChanged();
     }
-    
+
     public void deleteAllRows() {
-        
         data.clear();
-        
         this.fireTableDataChanged();
     }
 
+    /**
+     * Receives an ArrayList of Inpatient Beans which it uses to populate the
+     * Inpatient Models data ArrayList. This then populates the InpatientTable.
+     * This method is called from the PatientDBTableModel class.
+     *
+     * @param inpatientList
+     */
     public void loadInpatientList(ArrayList<InpatientBean> inpatientList) {
 
         int inpatientListLength = inpatientList.size();
@@ -78,7 +67,21 @@ public class InpatientDBTableModel extends AbstractTableModel {
         }
 
         this.fireTableDataChanged();
+    }
 
+    @Override
+    public int getRowCount() {
+        return data.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return INPATIENTCOLUMNNAMES.length;
+    }
+
+    @Override
+    public String getColumnName(int col) {
+        return INPATIENTCOLUMNNAMES[col];
     }
 
     @Override
@@ -106,7 +109,6 @@ public class InpatientDBTableModel extends AbstractTableModel {
         }
 
         fireTableCellUpdated(row, col);
-        //data.get(row).setUpdate(true);
     }
 
     @Override
@@ -126,7 +128,7 @@ public class InpatientDBTableModel extends AbstractTableModel {
             case 5:
                 return data.get(row).getRoomServices();
         }
-        // What kind of exception to catch here?
+
         return null;
     }
 
@@ -137,7 +139,8 @@ public class InpatientDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        boolean retVal = true;
+        //Temporarily setting this value to false as editing is not yet a feature.
+        boolean retVal = false;
 
         if (col == 0) {
             retVal = false;

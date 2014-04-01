@@ -13,7 +13,6 @@ public class SurgicalDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private ArrayList<SurgicalBean> data = new ArrayList<>();
-
     private String[] SURGICALCOLUMNNAMES = {Messages.getString("patientid"), Messages.getString("dateofsurgery"), Messages.getString("surgery"),
         Messages.getString("roomfee"), Messages.getString("surgeonsfee"), Messages.getString("supplies")};
 
@@ -25,21 +24,6 @@ public class SurgicalDBTableModel extends AbstractTableModel {
     public void addSurgicalBean(SurgicalBean s) {
         data.add(s);
         this.fireTableDataChanged();
-    }
-
-    @Override
-    public int getRowCount() {
-        return data.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return SURGICALCOLUMNNAMES.length;
-    }
-
-    @Override
-    public String getColumnName(int col) {
-        return SURGICALCOLUMNNAMES[col];
     }
 
     public boolean getUpdateStatus(int row) {
@@ -56,17 +40,21 @@ public class SurgicalDBTableModel extends AbstractTableModel {
 
     public void deleteRow(int selectedRow) {
         data.remove(selectedRow);
-
         this.fireTableDataChanged();
     }
 
     public void deleteAllRows() {
-
         data.clear();
-        
         this.fireTableDataChanged();
     }
 
+    /**
+     * Receives an ArrayList of Surgical Beans which it uses to populate the
+     * SurgicalDBTableModel's data ArrayList which in turn populates the
+     * SurgicalTable. This method is called from the PatientDBTableModel class.
+     *
+     * @param surgicalList
+     */
     public void loadSurgicalList(ArrayList<SurgicalBean> surgicalList) {
 
         int surgicalListLength = surgicalList.size();
@@ -79,7 +67,21 @@ public class SurgicalDBTableModel extends AbstractTableModel {
         }
 
         this.fireTableDataChanged();
+    }
 
+    @Override
+    public int getRowCount() {
+        return data.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return SURGICALCOLUMNNAMES.length;
+    }
+
+    @Override
+    public String getColumnName(int col) {
+        return SURGICALCOLUMNNAMES[col];
     }
 
     @Override
@@ -107,7 +109,6 @@ public class SurgicalDBTableModel extends AbstractTableModel {
         }
 
         fireTableCellUpdated(row, col);
-        //data.get(row).setUpdate(true);
     }
 
     @Override
@@ -127,7 +128,7 @@ public class SurgicalDBTableModel extends AbstractTableModel {
             case 5:
                 return data.get(row).getSupplies();
         }
-        // What kind of exception to catch here?
+
         return null;
     }
 
@@ -138,12 +139,12 @@ public class SurgicalDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        boolean retVal = true;
+        //Temporarily setting this value to false as editing is not yet a feature.
+        boolean retVal = false;
 
         if (col == 0) {
             retVal = false;
         }
         return retVal;
     }
-
 }

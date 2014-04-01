@@ -17,7 +17,6 @@ import com.posthoffice.jipprojectmposth.model.ReceiptTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import com.posthoffice.jipprojectmposth.properties.DBConnectionBean;
 import com.posthoffice.jipprojectmposth.properties.PropertiesManager;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
@@ -117,6 +116,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         });
     }
 
+    /**
+     * Placing ActionCommands and ActionListeners to
+     * the JMenuItems in the MenuBar
+     * @return 
+     */
     public JMenuBar createMenuBar() {
 
         JMenuBar menuBar;
@@ -258,6 +262,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
 
+    /**
+     * Adding buttons to the ToolBar for Creating and Deleting Patients,
+     * Inpatient, Medication, and Surgical data
+     * @return 
+     */
     private JToolBar createToolBar() {
 
         JToolBar toolBar = new JToolBar();
@@ -369,6 +378,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
 
+    /**
+     * Method which is called from the ToolBar or MenuBar to Print a Patient's 
+     * information.
+     */
     public void printForm() {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -405,6 +418,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to display a form
+     * to add a new Patient to the database.
+     */
     public void createPatientForm() {
 
         JFrame patientFormFrame = new JFrame(Messages.getString("newPatient"));
@@ -419,6 +436,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to delete Inpatient Data
+     * from a specific Patient selected from the PatientTable.
+     * @throws SQLException 
+     */
     public void deletePatientForm() throws SQLException {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -452,6 +474,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to add Inpatient Data
+     * to a specific Patient selected from the PatientTable.
+     */
     public void createInpatientForm() {
 
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
@@ -477,6 +503,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to delete Inpatient Data
+     * from a specific Patient selected from the PatientTable.
+     * @throws SQLException 
+     */
     public void deleteInpatientForm() throws SQLException {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -514,6 +545,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to add Medication Data
+     * to a specific Patient selected from the PatientTable.
+     */
     public void createMedicationForm() {
 
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
@@ -539,6 +574,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to delete Medication Data
+     * from a specific Patient selected from the PatientTable.
+     * @throws SQLException 
+     */
     public void deleteMedicationForm() throws SQLException {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
@@ -576,6 +616,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to add Surgical Data
+     * to a specific Patient selected from the PatientTable.
+     */
     public void createSurgicalForm() {
 
         PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
@@ -600,6 +644,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         }
     }
 
+    /**
+     * Method that is called from the ToolBar or MenuBar to delete Surgical Data
+     * from a specific Patient selected from the PatientTable.
+     * @throws SQLException 
+     */
     public void deleteSurgicalForm() throws SQLException {
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {

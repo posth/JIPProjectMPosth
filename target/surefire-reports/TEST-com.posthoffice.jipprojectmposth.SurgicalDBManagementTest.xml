@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.393" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.39" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,27 +59,27 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.081">
+  <testcase name="createSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.078">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:91)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.createSurgical(SurgicalDBManagement.java:106)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.createSurgicalTest(SurgicalDBManagementTest.java:39)
 </error>
   </testcase>
-  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.094">
+  <testcase name="readSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.109">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:65)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.readSurgicalTest(SurgicalDBManagementTest.java:29)
 </error>
   </testcase>
-  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.109">
+  <testcase name="deleteSurgicalTest" classname="com.posthoffice.jipprojectmposth.SurgicalDBManagementTest" time="0.094">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.deleteSurgical(SurgicalDBManagement.java:145)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.deleteSurgical(SurgicalDBManagement.java:168)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.deleteSurgicalTest(SurgicalDBManagementTest.java:49)
 </error>
   </testcase>
@@ -87,7 +87,7 @@
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:58)
+	at com.posthoffice.jipprojectmposth.database.SurgicalDBManagement.readSurgical(SurgicalDBManagement.java:65)
 	at com.posthoffice.jipprojectmposth.SurgicalDBManagementTest.updateSurgicalTest(SurgicalDBManagementTest.java:64)
 </error>
   </testcase>

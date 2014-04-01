@@ -18,7 +18,6 @@ public class ReceiptTableModel extends AbstractTableModel {
     private PatientBean patientBean;
     private String[] RECEIPTCOLUMNS = {Messages.getString("category"), Messages.getString("admissiondate"), Messages.getString("price")};
     private ArrayList<ReceiptDataBean> data = new ArrayList<>();
-    
     private BigDecimal inpatientSum = BigDecimal.ZERO;
     private BigDecimal medicationSum = BigDecimal.ZERO;
     private BigDecimal surgicalSum = BigDecimal.ZERO;
@@ -28,6 +27,12 @@ public class ReceiptTableModel extends AbstractTableModel {
         this.patientBean = new PatientBean();
     }
 
+    /**
+     * This constructor is called from the Frame. It loads all the relevant
+     * financial data from each Patient using ReceiptDataBeans.
+     *
+     * @param selectedPatient
+     */
     public ReceiptTableModel(PatientBean selectedPatient) {
         super();
         this.patientBean = selectedPatient;
@@ -36,7 +41,7 @@ public class ReceiptTableModel extends AbstractTableModel {
         loadInpatientData();
         loadMedicationData();
         loadSurgicalData();
-        
+
         loadTotalSum();
 
     }
@@ -46,24 +51,36 @@ public class ReceiptTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
+    /**
+     * Used for aesthetic purposes on the receipt, separating Inpatient,
+     * Medication, and Surgical financial statements.
+     */
     public void addBlankRow() {
         ReceiptDataBean blank = new ReceiptDataBean("", "", "");
         addReceiptDataBean(blank);
     }
-    
+
+    /**
+     * Adding the total BigDecimal sum of what an individual patient owes the
+     * hospital.
+     */
     public void loadTotalSum() {
-        
+
         addBlankRow();
 
         BigDecimal totalSum = surgicalSum.add(inpatientSum.add(medicationSum));
-        
+
         BigDecimal totalSumRounded = totalSum.setScale(2, BigDecimal.ROUND_HALF_UP);
-        
+
         ReceiptDataBean totalSumRow = new ReceiptDataBean("", Messages.getString("patient") + " total " + Messages.getString("price"), "$" + totalSumRounded + "");
-        
+
         addReceiptDataBean(totalSumRow);
     }
 
+    /**
+     * Places patient information at the top of the receipt. Places the Name,
+     * ID, and time spent in the hospital.
+     */
     public void loadPatientData() {
 
         ReceiptDataBean patientColumnTitles = new ReceiptDataBean(Messages.getString("patient"), Messages.getString("admissiondate"), Messages.getString("releaseDate"));
@@ -85,6 +102,11 @@ public class ReceiptTableModel extends AbstractTableModel {
         addBlankRow();
     }
 
+    /**
+     * Places all the financial Inpatient data onto the receipt. It also
+     * calculates the total Inpatient sum from the Daily Rate, Services, and
+     * Supplies owed to the hospital.
+     */
     public void loadInpatientData() {
 
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
@@ -92,7 +114,7 @@ public class ReceiptTableModel extends AbstractTableModel {
         ReceiptDataBean inpatientColumnTitles = new ReceiptDataBean(Messages.getString("inpatient"), Messages.getString("dateofstay"), Messages.getString("price"));
         addReceiptDataBean(inpatientColumnTitles);
 
-        for (int i = 0; i <= inpatientList.size() - 1; i++) { 
+        for (int i = 0; i <= inpatientList.size() - 1; i++) {
 
             InpatientBean temp = inpatientList.get(i);
 
@@ -108,7 +130,7 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(dailyRate, date, dailyRateprice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal dailyRateBD = temp.getDailyRate();
             inpatientSum = inpatientSum.add(dailyRateBD);
 
@@ -129,7 +151,7 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomSupplies, date, roomSuppliesPrice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal suppliesBD = temp.getRoomSupplies();
             inpatientSum = inpatientSum.add(suppliesBD);
         }
@@ -150,18 +172,23 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomServices, date, roomServicesPrice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal servicesBD = temp.getRoomServices();
             inpatientSum = inpatientSum.add(servicesBD);
         }
 
         ReceiptDataBean totalInpatientPrice = new ReceiptDataBean("", "", "Total: $" + inpatientSum + "");
         addReceiptDataBean(totalInpatientPrice);
-        
+
         addBlankRow();
 
     }
 
+    /**
+     * Places all the financial Medication data onto the receipt. 
+     * It also places the financial sum of the medication data owed by multiplying 
+     * the Units by Unit Cost.
+     */
     public void loadMedicationData() {
 
         ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
@@ -190,7 +217,7 @@ public class ReceiptTableModel extends AbstractTableModel {
 
             BigDecimal unitNumberBD = temp.getNumberOfUnits();
             BigDecimal unitPriceBD = temp.getCostPerUnit();
-            
+
             medicationSum = unitNumberBD.multiply(unitPriceBD);
             BigDecimal medicationSumRounded = medicationSum.setScale(2, BigDecimal.ROUND_HALF_UP);
 
@@ -206,6 +233,11 @@ public class ReceiptTableModel extends AbstractTableModel {
 
     }
 
+    /**
+     * Places all the financial Surgical data onto the receipt. It also
+     * calculates the total Surgical sum by adding the Room Fee, Surgeon's Fee,
+     * and Supplies.
+     */
     public void loadSurgicalData() {
 
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
@@ -229,7 +261,7 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(roomFee, date, roomFeeprice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal roomFeeBD = temp.getRoomFee();
             surgicalSum = surgicalSum.add(roomFeeBD);
 
@@ -250,7 +282,7 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(surgeonsFee, date, surgeonsFeePrice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal surgeonsFeeBD = temp.getSurgeonsFee();
             surgicalSum = surgicalSum.add(surgeonsFeeBD);
         }
@@ -270,11 +302,11 @@ public class ReceiptTableModel extends AbstractTableModel {
             ReceiptDataBean tempReceipt = new ReceiptDataBean(supplies, date, suppliesPrice);
 
             addReceiptDataBean(tempReceipt);
-            
+
             BigDecimal suppliesBD = temp.getSupplies();
             surgicalSum = surgicalSum.add(suppliesBD);
         }
-        
+
         ReceiptDataBean totalSurgicalPrice = new ReceiptDataBean("", "", "Total: $" + surgicalSum + "");
         addReceiptDataBean(totalSurgicalPrice);
 
@@ -307,8 +339,7 @@ public class ReceiptTableModel extends AbstractTableModel {
             case 2:
                 return data.get(row).getPrice();
         }
-        // What kind of exception to catch here?
+        
         return null;
-    }   
-  
+    }
 }

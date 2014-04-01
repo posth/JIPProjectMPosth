@@ -49,6 +49,13 @@ public class MedicationDBManagement {
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
+    /**
+     * Reading all the Medication Data for one Patient based on the patientID
+     * which is the Patient's primary key.
+     * @param patientID
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {
 
         String preparedQuery = "SELECT * FROM MEDICATION WHERE PATIENTID = ?";
@@ -80,7 +87,14 @@ public class MedicationDBManagement {
         return medicationList;
     }
 
-    //works
+    /**
+     * Creating new Medication data by receiving a Medication Bean.  It is linked 
+     * to the Patient through the PATIENTID.
+     * However, the primary key for the Medication is ID.
+     * @param medication
+     * @return
+     * @throws SQLException 
+     */
     public int createMedication(MedicationBean medication) throws SQLException {
 
         int result;
@@ -115,6 +129,7 @@ public class MedicationDBManagement {
         return result;
     }
 
+    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
     public int updateMedication(MedicationBean medication) throws SQLException {
 
         int result;
@@ -136,6 +151,13 @@ public class MedicationDBManagement {
         return result;
     }
 
+    /**
+     * Deleting Medication Data using its primary ID key, ID.
+     * It receives a Medication Bean and extracts its ID.
+     * @param medication
+     * @return
+     * @throws SQLException 
+     */
     public int deleteMedication(MedicationBean medication) throws SQLException {
 
         int result;

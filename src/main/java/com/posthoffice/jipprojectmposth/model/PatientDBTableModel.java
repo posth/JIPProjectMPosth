@@ -18,42 +18,53 @@ import org.slf4j.LoggerFactory;
 public class PatientDBTableModel extends AbstractTableModel {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
-
     private final ArrayList<String> columnNames = new ArrayList<>();
     private final ArrayList<PatientBean> data = new ArrayList<>();
-
     private InpatientDBTableModel inpatientModel;
     private MedicationDBTableModel medicationModel;
-    private SurgicalDBTableModel surgicalModel; 
-
+    private SurgicalDBTableModel surgicalModel;
     private final String[] patientColumnNames = {Messages.getString("idnumber"), Messages.getString("lastname"), Messages.getString("firstname"), Messages.getString("diagnosis"),
         Messages.getString("admissiondate")};
 
     public PatientDBTableModel() {
-        
+
         super();
-        
+
         this.inpatientModel = new InpatientDBTableModel();
         this.medicationModel = new MedicationDBTableModel();
         this.surgicalModel = new SurgicalDBTableModel();
     }
-    
-    
+
+    /**
+     * The constructor is created in the Frame of the program and receives all
+     * the children's models.
+     *
+     * @param inpatientModel
+     * @param medicationModel
+     * @param surgicalModel
+     */
     public PatientDBTableModel(InpatientDBTableModel inpatientModel, MedicationDBTableModel medicationModel, SurgicalDBTableModel surgicalModel) {
-        
+
         super();
-        
+
         this.inpatientModel = inpatientModel;
         this.medicationModel = medicationModel;
         this.surgicalModel = surgicalModel;
-        
+
         logger.info("Patient Database Table Model Instantiated");
     }
 
+    /**
+     * Direct access to the database to populate the column names of the Patient
+     * model and in turn, the Patient Table.
+     *
+     * @param rsmd
+     * @return
+     */
     public int loadColumnNames(ResultSetMetaData rsmd) {
 
         int colCount = 0;
-        
+
         try {
             colCount = rsmd.getColumnCount() - 1;
 
@@ -68,17 +79,24 @@ public class PatientDBTableModel extends AbstractTableModel {
     }
 
     public void addPatientBean(PatientBean p) {
-        
+
         data.add(p);
         this.fireTableDataChanged();
     }
-    
+
     public void deletePatientBean(PatientBean p) {
-        
+
         data.remove(p);
         this.fireTableDataChanged();
     }
 
+    /**
+     * Receives an ArrayList of Patient Beans which it uses to populate the
+     * PatientDBTableModel's data ArrayList which in turn populates the
+     * PatientTable.
+     *
+     * @param patientList
+     */
     public void loadData(ArrayList<PatientBean> patientList) {
 
         int patientListSize = patientList.size();
@@ -88,45 +106,34 @@ public class PatientDBTableModel extends AbstractTableModel {
             PatientBean temp = patientList.get(i);
 
             data.add(temp);
-
         }
-
     }
 
+    /**
+     * Grabbing the children data from the Patient Bean that is currently
+     * selected in the Patient Table. It extracts the ArrayLists of beans of
+     * each (Inpatient, Medication, and Surgical) and sends them to their
+     * respective models to populate their tables.
+     *
+     * @param selectedRow
+     */
     public void setChildrenTableModels(int selectedRow) {
 
         PatientBean patientBean = getPatientData(selectedRow);
 
         logger.info("The Patient Bean taken from the Patient Model upon user selection" + patientBean);
 
-        //getting the list of each child bean from the patient bean to send them to each children's table model
+        //Getting the list of each child bean from the patient bean to send them to each children's table model
         ArrayList<InpatientBean> inpatientList = patientBean.getInpatientList();
         ArrayList<MedicationBean> medicationList = patientBean.getMedicationList();
         ArrayList<SurgicalBean> surgicalList = patientBean.getSurgicalList();
 
         logger.info("The Inpatient List as taken from the Patient Model class" + inpatientList);
 
-        //sending arraylists to the seperate children table models 
+        //Sending arraylists to the seperate children table models 
         inpatientModel.loadInpatientList(inpatientList);
         medicationModel.loadMedicationList(medicationList);
         surgicalModel.loadSurgicalList(surgicalList);
-        
-        //System.out.println("The inpatient bean list from table model selection is " + inpatientList);
-    }
-
-    @Override
-    public int getRowCount() {
-        return data.size();
-    }
-
-    @Override
-    public int getColumnCount() {
-        return columnNames.size();
-    }
-
-    @Override
-    public String getColumnName(int col) {
-        return patientColumnNames[col];
     }
 
     public boolean getUpdateStatus(int row) {
@@ -152,6 +159,21 @@ public class PatientDBTableModel extends AbstractTableModel {
         data.add(newPatient);
 
         this.fireTableDataChanged();
+    }
+
+    @Override
+    public int getRowCount() {
+        return data.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columnNames.size();
+    }
+
+    @Override
+    public String getColumnName(int col) {
+        return patientColumnNames[col];
     }
 
     @Override
@@ -199,7 +221,7 @@ public class PatientDBTableModel extends AbstractTableModel {
             case 5:
                 return data.get(row).getReleaseDate();
         }
-        // What kind of exception to catch here?
+
         return null;
     }
 
@@ -210,7 +232,8 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        boolean retVal = true;
+        //Temporarily setting this value to false as editing is not yet a feature.
+        boolean retVal = false;
 
         if (col == 0) {
             retVal = false;
