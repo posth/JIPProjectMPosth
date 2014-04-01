@@ -15,6 +15,13 @@ public class PropertiesManager {
         super();
     }
 
+    /**
+     * Gets the database connection details and places them within a 
+     * DBConnectionBean.  Relevant connection variable values can then be 
+     * extracted from the bean.
+     * @return
+     * @throws IOException 
+     */
     public DBConnectionBean loadProperties() throws IOException {
 
         Properties prop = new Properties();

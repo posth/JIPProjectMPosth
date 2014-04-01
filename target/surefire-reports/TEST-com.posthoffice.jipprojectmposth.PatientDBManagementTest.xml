@@ -71,7 +71,7 @@ log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
 ]]></system-err>
   </testcase>
-  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.093">
+  <testcase name="readPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.109">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -87,7 +87,7 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 </error>
   </testcase>
-  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.11">
+  <testcase name="createPatientTest" classname="com.posthoffice.jipprojectmposth.PatientDBManagementTest" time="0.094">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)

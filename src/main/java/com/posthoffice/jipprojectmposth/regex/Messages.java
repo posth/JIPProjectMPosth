@@ -14,6 +14,11 @@ public class Messages {
         checkIfFrenchLocale();
     }
 
+    /**
+     * The only other language internationalized by the program is French.  
+     * This method checks if it is a French set-up computer. If not, it defaults
+     * to the eng_US.
+     */
     public void checkIfFrenchLocale() {
 
         Locale currentLocale = Locale.getDefault();

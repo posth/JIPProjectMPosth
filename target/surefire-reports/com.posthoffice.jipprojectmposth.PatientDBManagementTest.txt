@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.406 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.422 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
 updatePatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.094 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
@@ -9,7 +9,7 @@ java.sql.SQLException: No suitable driver found for
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.readPatient(PatientDBManagement.java:204)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.updatePatientTest(PatientDBManagementTest.java:57)
 
-readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.093 sec  <<< ERROR!
+readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.109 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -23,7 +23,7 @@ java.sql.SQLException: No suitable driver found for
 	at com.posthoffice.jipprojectmposth.database.PatientDBManagement.deletePatient(PatientDBManagement.java:279)
 	at com.posthoffice.jipprojectmposth.PatientDBManagementTest.deletePatientTest(PatientDBManagementTest.java:46)
 
-createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.11 sec  <<< ERROR!
+createPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.094 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
