@@ -21,10 +21,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -93,7 +95,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         jMenuBar1 = createMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Patient Management System");
+        setTitle(Messages.getString("title"));
 
         jToolBar.setRollover(true);
         getContentPane().add(jToolBar, java.awt.BorderLayout.PAGE_START);
@@ -278,21 +280,21 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
         JToolBar toolBar = new JToolBar();
 
-        JButton newPatientButton = makeToolBarButton(Messages.getString("newPatient"), "NewPatient", Messages.getString("newPatientMessage"));
-        JButton deletePatientButton = makeToolBarButton(Messages.getString("deletePatient"), "DeletePatient", Messages.getString("deletePatientMessage"));
+        JButton newPatientButton = makeToolBarButton("new_patient", Messages.getString("newPatient"), "NewPatient", Messages.getString("newPatientMessage"));
+        JButton deletePatientButton = makeToolBarButton("delete_patient", Messages.getString("deletePatient"), "DeletePatient", Messages.getString("deletePatientMessage"));
 
-        JButton newInpatientButton = makeToolBarButton(Messages.getString("newInpatient"), "NewInpatient", Messages.getString("newInpatientMessage"));
-        JButton deleteInpatientButton = makeToolBarButton(Messages.getString("deleteInpatient"), "DeleteInpatient", Messages.getString("deleteInpatientMessage"));
+        JButton newInpatientButton = makeToolBarButton("new_inpatient", Messages.getString("newInpatient"), "NewInpatient", Messages.getString("newInpatientMessage"));
+        JButton deleteInpatientButton = makeToolBarButton("delete_inpatient", Messages.getString("deleteInpatient"), "DeleteInpatient", Messages.getString("deleteInpatientMessage"));
 
-        JButton newMedicationButton = makeToolBarButton(Messages.getString("newMedication"), "NewMedication", Messages.getString("newMedicationMessage"));
-        JButton deleteMedicationButton = makeToolBarButton(Messages.getString("deleteMedication"), "DeleteMedication", Messages.getString("deleteMedicationMessage"));
+        JButton newMedicationButton = makeToolBarButton("new_medication", Messages.getString("newMedication"), "NewMedication", Messages.getString("newMedicationMessage"));
+        JButton deleteMedicationButton = makeToolBarButton("delete_medication", Messages.getString("deleteMedication"), "DeleteMedication", Messages.getString("deleteMedicationMessage"));
 
-        JButton newSurgicalButton = makeToolBarButton(Messages.getString("newSurgical"), "NewSurgical", Messages.getString("newSurgicalMessage"));
-        JButton deleteSurgicalButton = makeToolBarButton(Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
+        JButton newSurgicalButton = makeToolBarButton("new_surgical", Messages.getString("newSurgical"), "NewSurgical", Messages.getString("newSurgicalMessage"));
+        JButton deleteSurgicalButton = makeToolBarButton("delete_surgical", Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
 
-        JButton newPrintButton = makeToolBarButton(Messages.getString("print"), "Print", Messages.getString("printMessage"));
+        JButton newPrintButton = makeToolBarButton("print", Messages.getString("print"), "Print", Messages.getString("printMessage"));
         
-        JButton newSaveButton = makeToolBarButton(Messages.getString("save"), "Save", Messages.getString("save"));
+        JButton newSaveButton = makeToolBarButton("save", Messages.getString("save"), "Save", Messages.getString("save"));
         
 
         toolBar.add(newPatientButton);
@@ -311,16 +313,26 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         return toolBar;
     }
 
-    private JButton makeToolBarButton(String buttonName, String actionCommand, String toolTipText) {
+    private JButton makeToolBarButton(String imageName, String buttonName, String actionCommand, String toolTipText) {
 
         ToolBarEventHandler toolBarEventHandler = new ToolBarEventHandler();
+        
+        String imgLocation = "/images/" + imageName + "_48.png";
+        URL imageURL = JIPFramePresentation.class.getResource(imgLocation);
 
         JButton button = new JButton();
 
-        button.setText(buttonName);
+        //button.setText(buttonName);
         button.setActionCommand(actionCommand);
         button.setToolTipText(toolTipText);
         button.addActionListener(toolBarEventHandler);
+        
+        if (imageURL != null) {
+            button.setIcon(new ImageIcon(imageURL, buttonName));
+        } else {
+            button.setText(buttonName);
+            System.err.println("Resource not found: " + imgLocation);
+        }
 
         return button;
     }
