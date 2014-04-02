@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.375" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.425" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,35 +59,35 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="updateMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.063">
+  <testcase name="updateMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.093">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:65)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:109)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.updateMedicationTest(MedicationDBManagementTest.java:64)
 </error>
   </testcase>
-  <testcase name="readMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.109">
+  <testcase name="readMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.108">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:65)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.readMedication(MedicationDBManagement.java:109)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.readMedicationTest(MedicationDBManagementTest.java:29)
 </error>
   </testcase>
-  <testcase name="createMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.109">
+  <testcase name="createMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.135">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:106)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.createMedication(MedicationDBManagement.java:151)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.createMedicationTest(MedicationDBManagementTest.java:39)
 </error>
   </testcase>
-  <testcase name="deleteMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.094">
+  <testcase name="deleteMedicationTest" classname="com.posthoffice.jipprojectmposth.MedicationDBManagementTest" time="0.089">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
-	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.deleteMedication(MedicationDBManagement.java:167)
+	at com.posthoffice.jipprojectmposth.database.MedicationDBManagement.deleteMedication(MedicationDBManagement.java:220)
 	at com.posthoffice.jipprojectmposth.MedicationDBManagementTest.deleteMedicationTest(MedicationDBManagementTest.java:49)
 </error>
   </testcase>

@@ -110,7 +110,10 @@ public class PatientDBManagement {
         return retVal;
     }
 
-    //Currently not used as editing is not a feature of this program yet.
+    /**
+     * Method is called when the Save button from the frame is called.  Any information changed
+     * in the Patient table will be recorded.
+     */
     public void updateDB() {
 
         PatientBean patient;
@@ -233,7 +236,12 @@ public class PatientDBManagement {
 
     }
 
-    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
+    /**
+     * Receives a Patient Bean to add to the database.
+     * @param patient
+     * @return
+     * @throws SQLException 
+     */
     public int updatePatient(PatientBean patient) throws SQLException {
 
         int result;

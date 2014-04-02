@@ -15,10 +15,10 @@ import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import java.sql.Statement;
 
-
 public class InpatientDBManagement {
 
     private InpatientDBTableModel inpatientDBTableModel = null;
+    
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
     
@@ -29,35 +29,77 @@ public class InpatientDBManagement {
     private String PASSWORD;
 
     public InpatientDBManagement() {
-        
+
         super();
-        
+
         this.liveDataBean = new LiveDataBean();
-        
+
         this.URL = "";
         this.USER = "";
         this.PASSWORD = "";
     }
 
     public InpatientDBManagement(InpatientDBTableModel inpatientDBTableModel, LiveDataBean liveDataBean) {
-        
+
         super();
-        
-        this.inpatientDBTableModel = inpatientDBTableModel; 
-                
+
+        this.inpatientDBTableModel = inpatientDBTableModel;
+
         this.liveDataBean = liveDataBean;
-        
+
         this.URL = liveDataBean.getURL();
         this.USER = liveDataBean.getUSER();
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     /**
+     * Method is called when the Save button from the frame is called.  Any information changed
+     * in the Inpatient table will be recorded.
+     */
+    public void updateDB() {
+
+        InpatientBean inpatient;
+
+        int result = 0;
+
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);) {
+
+            for (int theRows = 0; theRows < inpatientDBTableModel.getRowCount(); ++theRows) {
+                if (inpatientDBTableModel.getUpdateStatus(theRows)) {
+                    inpatient = inpatientDBTableModel.getinPatientData(theRows);
+                    if (DEBUG) {
+                        System.out.println("Updating row: " + theRows);
+                    }
+                    if (inpatient.getiD() > 0) {
+                        result = updateInpatient(inpatient);
+                    } else {
+                        result = createInpatient(inpatient);
+                    }
+                }
+                if (DEBUG) {
+                    if (result == 1) {
+                        System.out.println("\nUpdate successful\n");
+                    } else {
+                        System.out.println("\nUpdate UNsuccessful\n");
+                    }
+                }
+
+                inpatientDBTableModel.clearUpdate(theRows);
+            }
+        } catch (SQLException sqlex) {
+            logger.error("Error updating database", sqlex);
+        }
+
+    }
+
+    /**
      * Reading all the Inpatient Data for one Patient based on the patientID
      * which is the Patient's primary key.
+     *
      * @param patientID
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ArrayList<InpatientBean> readInpatient(int patientID) throws SQLException {
 
@@ -92,12 +134,13 @@ public class InpatientDBManagement {
     }
 
     /**
-     * Creating new Inpatient data by receiving an Inpatient Bean.  
-     * It is linked to the Patient through the PATIENTID.
-     * However, the primary key for the Inpatient is ID.
+     * Creating new Inpatient data by receiving an Inpatient Bean. It is linked
+     * to the Patient through the PATIENTID. However, the primary key for the
+     * Inpatient is ID.
+     *
      * @param inpatient
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int createInpatient(InpatientBean inpatient) throws SQLException {
 
@@ -133,12 +176,17 @@ public class InpatientDBManagement {
         return result;
     }
 
-    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
+    /**
+     * Receives an Inpatient Bean to add to the database.
+     * @param inpatient
+     * @return
+     * @throws SQLException 
+     */
     public int updateInpatient(InpatientBean inpatient) throws SQLException {
 
         int result;
 
-        String preparedQuery = "UPDATE INPATIENT SET DATEOFSTAY = ?, ROOMNUMBER = ?, DAILYRATE = ?, SUPPLIES = ?, SERVICES = ? WHERE PATIENTID = ?";
+        String preparedQuery = "UPDATE INPATIENT SET DATEOFSTAY = ?, ROOMNUMBER = ?, DAILYRATE = ?, SUPPLIES = ?, SERVICES = ?, PATIENTID = ? WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
@@ -149,6 +197,7 @@ public class InpatientDBManagement {
             ps.setBigDecimal(4, inpatient.getRoomSupplies());
             ps.setBigDecimal(5, inpatient.getRoomServices());
             ps.setInt(6, inpatient.getPatientID());
+            ps.setInt(7, inpatient.getiD());
 
             result = ps.executeUpdate();
         }
@@ -157,11 +206,12 @@ public class InpatientDBManagement {
     }
 
     /**
-     * Deleting Inpatient Data using its primary ID key, ID.  
-     * It receives an Inpatient Bean and extracts its ID.
+     * Deleting Inpatient Data using its primary ID key, ID. It receives an
+     * Inpatient Bean and extracts its ID.
+     *
      * @param inpatient
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int deleteInpatient(InpatientBean inpatient) throws SQLException {
 

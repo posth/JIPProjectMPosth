@@ -18,6 +18,8 @@ import java.sql.Statement;
 public class MedicationDBManagement {
 
     private MedicationDBTableModel medicationDBTableModel = null;
+    
+    private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(MedicationDBManagement.class);
     
     private LiveDataBean liveDataBean;
@@ -28,33 +30,75 @@ public class MedicationDBManagement {
 
     public MedicationDBManagement() {
         super();
-        
+
         this.liveDataBean = new LiveDataBean();
-        
+
         this.URL = "";
         this.USER = "";
         this.PASSWORD = "";
     }
-    
+
     public MedicationDBManagement(MedicationDBTableModel medicationDBTableModel, LiveDataBean liveDataBean) {
-        
+
         super();
-        
+
         this.medicationDBTableModel = medicationDBTableModel;
-                
+
         this.liveDataBean = liveDataBean;
-        
+
         this.URL = liveDataBean.getURL();
         this.USER = liveDataBean.getUSER();
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     /**
+     * Method is called when the Save button from the frame is called. Any
+     * information changed in the Medication table will be recorded.
+     */
+    public void updateDB() {
+
+        MedicationBean medication;
+
+        int result = 0;
+
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);) {
+
+            for (int theRows = 0; theRows < medicationDBTableModel.getRowCount(); ++theRows) {
+                if (medicationDBTableModel.getUpdateStatus(theRows)) {
+                    medication = medicationDBTableModel.getMedicationData(theRows);
+                    if (DEBUG) {
+                        System.out.println("Updating row: " + theRows);
+                    }
+                    if (medication.getiD() > 0) {
+                        result = updateMedication(medication);
+                    } else {
+                        result = createMedication(medication);
+                    }
+                }
+                if (DEBUG) {
+                    if (result == 1) {
+                        System.out.println("\nUpdate successful\n");
+                    } else {
+                        System.out.println("\nUpdate UNsuccessful\n");
+                    }
+                }
+
+                medicationDBTableModel.clearUpdate(theRows);
+            }
+        } catch (SQLException sqlex) {
+            logger.error("Error updating database", sqlex);
+        }
+
+    }
+
+    /**
      * Reading all the Medication Data for one Patient based on the patientID
      * which is the Patient's primary key.
+     *
      * @param patientID
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ArrayList<MedicationBean> readMedication(int patientID) throws SQLException {
 
@@ -88,12 +132,13 @@ public class MedicationDBManagement {
     }
 
     /**
-     * Creating new Medication data by receiving a Medication Bean.  It is linked 
-     * to the Patient through the PATIENTID.
-     * However, the primary key for the Medication is ID.
+     * Creating new Medication data by receiving a Medication Bean. It is linked
+     * to the Patient through the PATIENTID. However, the primary key for the
+     * Medication is ID.
+     *
      * @param medication
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int createMedication(MedicationBean medication) throws SQLException {
 
@@ -119,7 +164,7 @@ public class MedicationDBManagement {
                 if (rs.next()) {
                     long key = rs.getLong(1);
                     medication.setiD((int) key);
-                    //temporary fix of casting to int,
+
                 }
 
                 medicationDBTableModel.addMedicationBean(medication);
@@ -129,12 +174,18 @@ public class MedicationDBManagement {
         return result;
     }
 
-    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
+    /**
+     * Receives a Medication Bean to add to the database.
+     *
+     * @param medication
+     * @return
+     * @throws SQLException
+     */
     public int updateMedication(MedicationBean medication) throws SQLException {
 
         int result;
 
-        String preparedQuery = "UPDATE MEDICATION SET DATEOFMED = ?, MED = ?, UNITCOST = ?, UNITS = ? WHERE PATIENTID = ?";
+        String preparedQuery = "UPDATE MEDICATION SET DATEOFMED = ?, MED = ?, UNITCOST = ?, UNITS = ?, PATIENTID = ? WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
@@ -144,6 +195,7 @@ public class MedicationDBManagement {
             ps.setBigDecimal(3, medication.getCostPerUnit());
             ps.setBigDecimal(4, medication.getNumberOfUnits());
             ps.setInt(5, medication.getPatientID());
+            ps.setInt(6, medication.getiD());
 
             result = ps.executeUpdate();
         }
@@ -152,11 +204,12 @@ public class MedicationDBManagement {
     }
 
     /**
-     * Deleting Medication Data using its primary ID key, ID.
-     * It receives a Medication Bean and extracts its ID.
+     * Deleting Medication Data using its primary ID key, ID. It receives a
+     * Medication Bean and extracts its ID.
+     *
      * @param medication
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int deleteMedication(MedicationBean medication) throws SQLException {
 
@@ -173,5 +226,4 @@ public class MedicationDBManagement {
 
         return result;
     }
-
 }

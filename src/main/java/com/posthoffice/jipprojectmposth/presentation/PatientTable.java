@@ -36,7 +36,7 @@ public class PatientTable extends javax.swing.JPanel {
         this.liveDataBean = liveDataBean;
 
         patientDBManager.fillTableModel(null);
-
+        
         initComponents();
     }
 
@@ -70,7 +70,7 @@ public class PatientTable extends javax.swing.JPanel {
 
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
             if (!lsm.isSelectionEmpty()) {
-                selectedRow = lsm.getMinSelectionIndex();
+                selectedRow = lsm.getMinSelectionIndex();              
             }
 
             patientModel.setChildrenTableModels(selectedRow);

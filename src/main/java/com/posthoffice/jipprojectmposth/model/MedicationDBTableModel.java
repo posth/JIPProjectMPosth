@@ -112,6 +112,7 @@ public class MedicationDBTableModel extends AbstractTableModel {
         }
 
         fireTableCellUpdated(row, col);
+        data.get(row).setUpdate(true);
     }
 
     @Override
@@ -140,8 +141,8 @@ public class MedicationDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        //Temporarily setting this value to false as editing is not yet a feature.
-        boolean retVal = false;
+        
+        boolean retVal = true;
 
         if (col == 0) {
             retVal = false;

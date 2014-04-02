@@ -18,43 +18,84 @@ import java.sql.Statement;
 public class SurgicalDBManagement {
 
     private SurgicalDBTableModel surgicalDBTableModel = null;
+    private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(SurgicalDBManagement.class);
-    
     private LiveDataBean liveDataBean;
-    
     private String URL;
     private String USER;
     private String PASSWORD;
 
     public SurgicalDBManagement() {
         super();
-        
+
         this.liveDataBean = new LiveDataBean();
-        
+
         this.URL = "";
         this.USER = "";
         this.PASSWORD = "";
     }
-    
+
     public SurgicalDBManagement(SurgicalDBTableModel surgicalDBTableModel, LiveDataBean liveDataBean) {
-        
+
         super();
-        
+
         this.surgicalDBTableModel = surgicalDBTableModel;
-                
+
         this.liveDataBean = liveDataBean;
-        
+
         this.URL = liveDataBean.getURL();
         this.USER = liveDataBean.getUSER();
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     /**
+     * Method is called when the Save button from the frame is called. Any
+     * information changed in the Surgical table will be recorded.
+     */
+    public void updateDB() {
+
+        SurgicalBean surgical;
+
+        int result = 0;
+
+        try (Connection connection = DriverManager.getConnection(URL, USER,
+                PASSWORD);) {
+
+            for (int theRows = 0; theRows < surgicalDBTableModel.getRowCount(); ++theRows) {
+                if (surgicalDBTableModel.getUpdateStatus(theRows)) {
+                    surgical = surgicalDBTableModel.getSurgicalData(theRows);
+                    if (DEBUG) {
+                        System.out.println("Updating row: " + theRows);
+                    }
+                    if (surgical.getiD() > 0) {
+                        result = updateSurgical(surgical);
+                    } else {
+                        result = createSurgical(surgical);
+                    }
+                }
+                if (DEBUG) {
+                    if (result == 1) {
+                        System.out.println("\nUpdate successful\n");
+                    } else {
+                        System.out.println("\nUpdate UNsuccessful\n");
+                    }
+                }
+
+                surgicalDBTableModel.clearUpdate(theRows);
+            }
+        } catch (SQLException sqlex) {
+            logger.error("Error updating database", sqlex);
+        }
+
+    }
+
+    /**
      * Reading all the Surgical Data for one Patient based on the patientID
      * which is the Patient's primary key.
+     *
      * @param patientID
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ArrayList<SurgicalBean> readSurgical(int patientID) throws SQLException {
 
@@ -88,12 +129,13 @@ public class SurgicalDBManagement {
     }
 
     /**
-     * Creating new Surgical data by receiving a Surgical Bean.
-     * It is linked to the Patient through the PATIENTID.
-     * However, the primary key for the Surgical data is ID.
+     * Creating new Surgical data by receiving a Surgical Bean. It is linked to
+     * the Patient through the PATIENTID. However, the primary key for the
+     * Surgical data is ID.
+     *
      * @param surgical
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int createSurgical(SurgicalBean surgical) throws SQLException {
 
@@ -129,12 +171,18 @@ public class SurgicalDBManagement {
         return result;
     }
 
-    //Editing is not yet a feature of this program, Javadocs will not be finalized yet.
+    /**
+     * Receives a Surgical Bean to add to the database.
+     *
+     * @param surgical
+     * @return
+     * @throws SQLException
+     */
     public int updateSurgical(SurgicalBean surgical) throws SQLException {
 
         int result;
 
-        String preparedQuery = "UPDATE SURGICAL SET DATEOFSURGERY = ?, SURGERY = ?, ROOMFEE = ?, SURGEONFEE = ?, SUPPLIES = ? WHERE PATIENTID = ?";
+        String preparedQuery = "UPDATE SURGICAL SET DATEOFSURGERY = ?, SURGERY = ?, ROOMFEE = ?, SURGEONFEE = ?, SUPPLIES = ?, PATIENTID = ? WHERE ID = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER,
                 PASSWORD); PreparedStatement ps = connection.prepareStatement(preparedQuery);) {
@@ -145,6 +193,7 @@ public class SurgicalDBManagement {
             ps.setBigDecimal(4, surgical.getSurgeonsFee());
             ps.setBigDecimal(5, surgical.getSupplies());
             ps.setInt(6, surgical.getPatientID());
+            ps.setInt(7, surgical.getiD());
 
             result = ps.executeUpdate();
         }
@@ -153,11 +202,12 @@ public class SurgicalDBManagement {
     }
 
     /**
-     * Deleting Surgical Data using its primary ID key, ID.
-     * It receives a Surgical Bean and extracts its ID.
+     * Deleting Surgical Data using its primary ID key, ID. It receives a
+     * Surgical Bean and extracts its ID.
+     *
      * @param surgical
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int deleteSurgical(SurgicalBean surgical) throws SQLException {
 

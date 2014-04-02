@@ -127,7 +127,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JMenu menuMain, menuNew, menuDelete;
         JMenuItem newPatient, newInpatient, newMedication, newSurgical,
                 deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
-                itemExit, itemPrint;
+                itemExit, itemPrint, save;
 
         menuBar = new JMenuBar();
 
@@ -187,12 +187,16 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         itemExit = new JMenuItem(Messages.getString("exit"));
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
+        
+        save = new JMenuItem(Messages.getString("save"));
+        save.setActionCommand("Save");
+        save.addActionListener(this);
 
         menuMain.add(menuNew);
         menuMain.add(menuDelete);
         menuMain.add(itemPrint);
+        menuMain.add(save);
         menuMain.add(itemExit);
-
         return menuBar;
     }
 
@@ -257,7 +261,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             case "Exit":
                 JIPFramePresentation.this.dispose();
                 break;
-
+                
+            case "Save":
+                saveEditedData();
+                break;
 
         }
     }
@@ -284,6 +291,9 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JButton deleteSurgicalButton = makeToolBarButton(Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
 
         JButton newPrintButton = makeToolBarButton(Messages.getString("print"), "Print", Messages.getString("printMessage"));
+        
+        JButton newSaveButton = makeToolBarButton(Messages.getString("save"), "Save", Messages.getString("save"));
+        
 
         toolBar.add(newPatientButton);
         toolBar.add(deletePatientButton);
@@ -294,6 +304,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         toolBar.add(newSurgicalButton);
         toolBar.add(deleteSurgicalButton);
         toolBar.add(newPrintButton);
+        toolBar.add(newSaveButton);
 
         toolBar.setFloatable(true);
 
@@ -373,9 +384,24 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 case "Print":
                     printForm();
                     break;
+                    
+                case "Save":
+                    saveEditedData();
+                    break;
             }
 
         }
+    }
+    
+    /**
+     * The save button.  Primarily used when editing a cell.  When pushed, it 
+     * updates the database with whichever new values have been added.
+     */
+    public void saveEditedData() {
+        patientDBManager.updateDB();
+        inpatientDBManager.updateDB();
+        medicationDBManager.updateDB();
+        surgicalDBManager.updateDB();
     }
 
     /**

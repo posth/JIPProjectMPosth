@@ -150,7 +150,6 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     public void deleteRow(int selectedRow) {
         data.remove(selectedRow);
-
         this.fireTableDataChanged();
     }
 
@@ -232,8 +231,8 @@ public class PatientDBTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-        //Temporarily setting this value to false as editing is not yet a feature.
-        boolean retVal = false;
+        
+        boolean retVal = true;
 
         if (col == 0) {
             retVal = false;
