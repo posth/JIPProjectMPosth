@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="1.288" tests="4" errors="4" skipped="0" failures="0">
+<testsuite name="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.706" tests="4" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -59,7 +59,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="readInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.641">
+  <testcase name="readInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.385">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -67,7 +67,7 @@
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.readInpatientTest(InpatientDBManagementTest.java:28)
 </error>
   </testcase>
-  <testcase name="createInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.22">
+  <testcase name="createInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.102">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -75,7 +75,7 @@
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.createInpatientTest(InpatientDBManagementTest.java:36)
 </error>
   </testcase>
-  <testcase name="deleteInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.148">
+  <testcase name="deleteInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.113">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
@@ -83,7 +83,7 @@
 	at com.posthoffice.jipprojectmposth.InpatientDBManagementTest.deleteInpatientTest(InpatientDBManagementTest.java:46)
 </error>
   </testcase>
-  <testcase name="updateInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.279">
+  <testcase name="updateInpatientTest" classname="com.posthoffice.jipprojectmposth.InpatientDBManagementTest" time="0.106">
     <error message="No suitable driver found for " type="java.sql.SQLException">java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
