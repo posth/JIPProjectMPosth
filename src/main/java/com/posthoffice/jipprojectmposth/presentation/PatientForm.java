@@ -18,16 +18,15 @@ import javax.swing.text.MaskFormatter;
 
 public class PatientForm extends javax.swing.JPanel {
 
-    private String nameRegEx = ".+";   
+    private String nameRegEx = ".+";
     private LiveDataBean liveDataBean;
     private JFrame patientFormFrame;
-    
     private PatientDBManagement patientDBManager;
 
     public PatientForm() {
         initComponents();
     }
-    
+
     public PatientForm(PatientDBManagement patientDBManager, JFrame patientFormFrame) {
         this.patientDBManager = patientDBManager;
         this.patientFormFrame = patientFormFrame;
@@ -49,6 +48,7 @@ public class PatientForm extends javax.swing.JPanel {
         firstNameTextField = new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx));
         releaseDateTextField = new javax.swing.JFormattedTextField(new SimpleDateFormat("yyyy/MM/dd"));
         diagnosisTextField = new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx));
+        saveButton1 = new javax.swing.JButton();
 
         lastNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lastNameLabel.setMaximumSize(new java.awt.Dimension(80, 20));
@@ -104,39 +104,47 @@ public class PatientForm extends javax.swing.JPanel {
 
         releaseDateTextField.setToolTipText("yyyy/mm/dd");
 
+        saveButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveButton1.setText("Cancel");
+        saveButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(admissionDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(admissionDateTextField))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(diagnosisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(diagnosisTextField))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(FirstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(firstNameTextField))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lastNameTextField))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(releaseDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(releaseDateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(releaseDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(releaseDateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(admissionDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(admissionDateTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(diagnosisLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(diagnosisTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(FirstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(firstNameTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lastNameTextField))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,9 +169,11 @@ public class PatientForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(releaseDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(releaseDateTextField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,14 +192,14 @@ public class PatientForm extends javax.swing.JPanel {
 
         Date releaseDate = (Date) releaseDateTextField.getValue();
         Timestamp releaseDateTimestamp = new Timestamp(releaseDate.getTime());
-        
+
         //placing the values in the bean itself
         tempPatient.setLastName(lastName);
         tempPatient.setFirstName(firstName);
         tempPatient.setDiagnosis(diagnosis);
         tempPatient.setAdmissionDate(admissionDateTimestamp);
-        tempPatient.setReleaseDate(releaseDateTimestamp);             
-        
+        tempPatient.setReleaseDate(releaseDateTimestamp);
+
         try {
             patientDBManager.createPatient(tempPatient);
         } catch (SQLException ex) {
@@ -197,11 +207,10 @@ public class PatientForm extends javax.swing.JPanel {
         }
 
         patientFormFrame.dispose();
-        
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
-
     }//GEN-LAST:event_lastNameTextFieldActionPerformed
 
     private void admissionDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admissionDateTextFieldActionPerformed
@@ -211,6 +220,10 @@ public class PatientForm extends javax.swing.JPanel {
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTextFieldActionPerformed
+
+    private void saveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
+        patientFormFrame.dispose();
+    }//GEN-LAST:event_saveButton1ActionPerformed
 
     private MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
@@ -222,7 +235,6 @@ public class PatientForm extends javax.swing.JPanel {
         }
         return formatter;
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FirstNameLabel;
     private javax.swing.JLabel admissionDateLabel;
@@ -235,5 +247,6 @@ public class PatientForm extends javax.swing.JPanel {
     private javax.swing.JLabel releaseDateLabel;
     private javax.swing.JFormattedTextField releaseDateTextField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveButton1;
     // End of variables declaration//GEN-END:variables
 }

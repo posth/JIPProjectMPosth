@@ -31,7 +31,7 @@ public class SplashScreen extends JWindow {
 
         JLabel label = new JLabel(createImageIcon(image));
         JLabel copy = new JLabel(Messages.getString("splash"), JLabel.CENTER);
-        copy.setFont(new Font("Sans-Serif", Font.BOLD, 24));
+        copy.setFont(new Font("Sans-Serif", Font.TRUETYPE_FONT, 20));
         
         add(label, BorderLayout.CENTER);
         add(copy, BorderLayout.SOUTH);
