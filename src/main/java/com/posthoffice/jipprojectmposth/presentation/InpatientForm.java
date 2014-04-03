@@ -4,7 +4,6 @@ import com.posthoffice.jipprojectmposth.beans.InpatientBean;
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.database.InpatientDBManagement;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
-import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import com.posthoffice.jipprojectmposth.regex.RegexFormatter;
 import java.math.BigDecimal;

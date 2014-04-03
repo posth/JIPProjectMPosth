@@ -72,9 +72,15 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         surgicalDBManager = new SurgicalDBManagement(surgicalModel, liveDataBean);
         patientDBManager = new PatientDBManagement(patientModel, inpatientDBManager, medicationDBManager, surgicalDBManager, liveDataBean);
 
+        setIcon();
+        
         initComponents();
     }
 
+    /**
+     * Getting the database connection details from the properties file.
+     * @throws IOException 
+     */
     public void getConnectionDetails() throws IOException {
 
         PropertiesManager prop = new PropertiesManager();
@@ -83,6 +89,17 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         liveDataBean.setURL(dBBean.getUrl());
         liveDataBean.setUSER(dBBean.getUser());
         liveDataBean.setPASSWORD(dBBean.getPassword());
+    }
+    
+    /**
+     * Setting an icon to the JFrame.
+     */
+    public void setIcon() {
+        
+        URL iconURL = getClass().getResource("/images/icon.png");
+        
+        ImageIcon frameIcon = new ImageIcon(iconURL);
+        this.setIconImage(frameIcon.getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -458,6 +475,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JFrame patientFormFrame = new JFrame(Messages.getString("newPatient"));
         PatientForm patientForm = new PatientForm(patientDBManager, patientFormFrame);
         JScrollPane patientFormScroll = new JScrollPane(patientForm);
+        
+        URL iconURL = getClass().getResource("/images/new_patient_48.png");       
+        ImageIcon frameIcon = new ImageIcon(iconURL);
+        patientFormFrame.setIconImage(frameIcon.getImage());
 
         patientFormFrame.getContentPane().add(patientFormScroll);
         patientFormFrame.pack();
@@ -511,7 +532,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
      */
     public void createInpatientForm() {
 
-        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
+        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();       
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
@@ -520,6 +541,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             InpatientForm inpatientForm = new InpatientForm(patientDBManager, inpatientDBManager, liveDataBean, inpatientFormFrame);
             JScrollPane inpatientFormScroll = new JScrollPane(inpatientForm);
+            
+            URL iconURL = getClass().getResource("/images/new_inpatient_48.png");       
+            ImageIcon frameIcon = new ImageIcon(iconURL);
+            inpatientFormFrame.setIconImage(frameIcon.getImage());
 
             inpatientFormFrame.getContentPane().add(inpatientFormScroll);
             inpatientFormFrame.pack();
@@ -591,6 +616,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             MedicationForm medicationForm = new MedicationForm(patientDBManager, medicationDBManager, liveDataBean, medicationFormFrame);
             JScrollPane medicationFormScroll = new JScrollPane(medicationForm);
+            
+            URL iconURL = getClass().getResource("/images/new_medication_48.png");       
+            ImageIcon frameIcon = new ImageIcon(iconURL);
+            medicationFormFrame.setIconImage(frameIcon.getImage());
 
             medicationFormFrame.getContentPane().add(medicationFormScroll);
             medicationFormFrame.pack();
@@ -662,6 +691,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             SurgicalForm surgicalForm = new SurgicalForm(patientDBManager, surgicalDBManager, liveDataBean, surgicalFormFrame);
             JScrollPane surgicalFormScroll = new JScrollPane(surgicalForm);
+            
+            URL iconURL = getClass().getResource("/images/new_surgical_48.png");       
+            ImageIcon frameIcon = new ImageIcon(iconURL);
+            surgicalFormFrame.setIconImage(frameIcon.getImage());
 
             surgicalFormFrame.getContentPane().add(surgicalFormScroll);
             surgicalFormFrame.pack();
