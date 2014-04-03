@@ -58,9 +58,8 @@ public class SurgicalTable extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        surgicalTable = new javax.swing.JTable();
+        surgicalTable = new SurgicalCustomTable(surgicalModel);
 
-        surgicalTable.setModel(surgicalModel);
         surgicalTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel rowSM = surgicalTable.getSelectionModel();
         rowSM.addListSelectionListener(new RowListener());

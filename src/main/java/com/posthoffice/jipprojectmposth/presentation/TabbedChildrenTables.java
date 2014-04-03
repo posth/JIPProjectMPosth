@@ -1,9 +1,12 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
+import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
+import com.posthoffice.jipprojectmposth.regex.Messages;
+import java.awt.Font;
 
 public class TabbedChildrenTables extends javax.swing.JPanel {
 
@@ -19,7 +22,7 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
         this.liveDataBean = liveDataBean;
         initComponents();
     }
-    
+
     public TabbedChildrenTables() {
         this.inpatientModel = new InpatientDBTableModel();
         this.medicationModel = new MedicationDBTableModel();
@@ -36,12 +39,12 @@ public class TabbedChildrenTables extends javax.swing.JPanel {
         medicationTable1 = new com.posthoffice.jipprojectmposth.presentation.MedicationTable(medicationModel, liveDataBean);
         surgicalTable1 = new com.posthoffice.jipprojectmposth.presentation.SurgicalTable(surgicalModel, liveDataBean);
 
-        jTabbedPane1.addTab("Inpatient Data", inpatientTable2);
-
-        jTabbedPane1.addTab("Medication Data", medicationTable1);
+        jTabbedPane1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+        jTabbedPane1.addTab(Messages.getString("inpatient"), inpatientTable2);
+        jTabbedPane1.addTab(Messages.getString("medication"), medicationTable1);
         medicationTable1.getAccessibleContext().setAccessibleParent(jTabbedPane1);
 
-        jTabbedPane1.addTab("Surgical Data", surgicalTable1);
+        jTabbedPane1.addTab(Messages.getString("surgical"), surgicalTable1);
         surgicalTable1.getAccessibleContext().setAccessibleParent(surgicalTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -58,9 +58,8 @@ public class InpatientTable extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        inpatientTable = new javax.swing.JTable();
+        inpatientTable = new InpatientCustomTable(inpatientModel);
 
-        inpatientTable.setModel(inpatientModel);
         inpatientTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel rowSM = inpatientTable.getSelectionModel();
         rowSM.addListSelectionListener(new RowListener());

@@ -57,11 +57,10 @@ public class MedicationTable extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        medicationTable = new javax.swing.JTable();
+        medicationTable = new MedicationCustomTable(medicationModel);
 
         setLayout(new java.awt.BorderLayout());
 
-        medicationTable.setModel(medicationModel);
         medicationTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListSelectionModel rowSM = medicationTable.getSelectionModel();
         rowSM.addListSelectionListener(new RowListener());
