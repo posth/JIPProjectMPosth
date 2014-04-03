@@ -4,8 +4,9 @@
   <Properties>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder justification="2" position="3" title="Patient Data">
-          <Font PropertyName="font" name="Tahoma" size="18" style="0"/>
+        <TitledBorder justification="2" position="3" title="&lt;User Code&gt;">
+          <Connection PropertyName="titleX" code="Messages.getString(&quot;patient&quot;)" type="code"/>
+          <Font PropertyName="font" name="Tahoma" size="24" style="1"/>
         </TitledBorder>
       </Border>
     </Property>
@@ -39,16 +40,13 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="patientTable">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="patientModel" type="code"/>
-            </Property>
             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
               <JTableSelectionModel selectionMode="0"/>
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ListSelectionModel rowSM = patientTable.getSelectionModel();&#xa;rowSM.addListSelectionListener(new RowListener());"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PatientCustomTable(patientModel)"/>
           </AuxValues>
         </Component>
       </SubComponents>
