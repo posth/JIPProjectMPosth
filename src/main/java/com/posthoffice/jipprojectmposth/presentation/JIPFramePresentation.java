@@ -105,18 +105,6 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-
-                JIPFramePresentation jipPresentation = new JIPFramePresentation();
-                jipPresentation.setVisible(true);
-                jipPresentation.setExtendedState(jipPresentation.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-            }
-        });
-    }
 
     /**
      * Placing ActionCommands and ActionListeners to
@@ -126,15 +114,18 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     public JMenuBar createMenuBar() {
 
         JMenuBar menuBar;
-        JMenu menuMain, menuNew, menuDelete;
+        JMenu menuMain, menuEdit, menuNew, menuDelete;
         JMenuItem newPatient, newInpatient, newMedication, newSurgical,
                 deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
                 itemExit, itemPrint, save;
 
-        menuBar = new JMenuBar();
+        menuBar = new JMenuBar();   
 
         menuMain = new JMenu(Messages.getString("file"));
         menuBar.add(menuMain);
+        
+        menuEdit = new JMenu(Messages.getString("edit"));
+        menuBar.add(menuEdit);
 
         menuNew = new JMenu(Messages.getString("new"));
 
@@ -194,11 +185,13 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         save.setActionCommand("Save");
         save.addActionListener(this);
 
-        menuMain.add(menuNew);
-        menuMain.add(menuDelete);
+        menuEdit.add(menuNew);
+        menuEdit.add(menuDelete);
+        
         menuMain.add(itemPrint);
         menuMain.add(save);
         menuMain.add(itemExit);
+        
         return menuBar;
     }
 

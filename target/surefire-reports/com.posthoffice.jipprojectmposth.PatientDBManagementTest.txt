@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PatientDBManagementTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.093 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
-readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.091 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.153 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PatientDBManagementTest
+readPatientTest(com.posthoffice.jipprojectmposth.PatientDBManagementTest)  Time elapsed: 0.152 sec  <<< ERROR!
 java.sql.SQLException: No suitable driver found for 
 	at java.sql.DriverManager.getConnection(DriverManager.java:596)
 	at java.sql.DriverManager.getConnection(DriverManager.java:215)
