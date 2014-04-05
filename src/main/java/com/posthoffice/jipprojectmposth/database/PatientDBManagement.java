@@ -22,16 +22,12 @@ import org.slf4j.LoggerFactory;
 public class PatientDBManagement {
 
     private PatientDBTableModel patientDBTableModel;
-
     private InpatientDBManagement inpatientDBManager;
     private MedicationDBManagement medicationDBManager;
     private SurgicalDBManagement surgicalDBManager;
-
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(PatientDBManagement.class);
-    
     private LiveDataBean liveDataBean;
-    
     private String URL;
     private String USER;
     private String PASSWORD;
@@ -45,9 +41,9 @@ public class PatientDBManagement {
         this.inpatientDBManager = new InpatientDBManagement();
         this.medicationDBManager = new MedicationDBManagement();
         this.surgicalDBManager = new SurgicalDBManagement();
-        
+
         this.liveDataBean = new LiveDataBean();
-        
+
         this.URL = "";
         this.USER = "";
         this.PASSWORD = "";
@@ -65,26 +61,44 @@ public class PatientDBManagement {
         this.inpatientDBManager = inpatientDBManager;
         this.medicationDBManager = medicationDBManager;
         this.surgicalDBManager = surgicalDBManager;
-        
+
         this.liveDataBean = liveDataBean;
-        
+
+        this.URL = liveDataBean.getURL();
+        this.USER = liveDataBean.getUSER();
+        this.PASSWORD = liveDataBean.getPASSWORD();
+    }
+
+    public PatientDBManagement(LiveDataBean liveDataBean) {
+
+        super();
+
+        this.patientDBTableModel = new PatientDBTableModel();
+
+        this.inpatientDBManager = new InpatientDBManagement();
+        this.medicationDBManager = new MedicationDBManagement();
+        this.surgicalDBManager = new SurgicalDBManagement();
+
+        this.liveDataBean = liveDataBean;
+
         this.URL = liveDataBean.getURL();
         this.USER = liveDataBean.getUSER();
         this.PASSWORD = liveDataBean.getPASSWORD();
     }
 
     /**
-     * Is called to read all Patient Data from the database and fills 
-     * the PatientDBTableModel class with all the currently stored Patient data.
+     * Is called to read all Patient Data from the database and fills the
+     * PatientDBTableModel class with all the currently stored Patient data.
+     *
      * @param criteria
-     * @return 
+     * @return
      */
     public boolean fillTableModel(String criteria) {
 
         boolean retVal = true;
-        
+
         String sql = "SELECT * FROM PATIENT";
-        
+
         if (criteria != null) {
             sql += criteria;
         }
@@ -111,52 +125,48 @@ public class PatientDBManagement {
     }
 
     /**
-     * Method is called when the Save button from the frame is called.  Any information changed
-     * in the Patient table will be recorded.
+     * Method is called when the Save button from the frame is called. Any
+     * information changed in the Patient table will be recorded.
      */
-    public void updateDB() {
+    public void updateDB() throws SQLException {
 
         PatientBean patient;
-        
+
         int result = 0;
 
-        try (Connection connection = DriverManager.getConnection(URL, USER,
-                PASSWORD);) {
-
-            for (int theRows = 0; theRows < patientDBTableModel.getRowCount(); ++theRows) {
-                if (patientDBTableModel.getUpdateStatus(theRows)) {
-                    patient = patientDBTableModel.getPatientData(theRows);
-                    if (DEBUG) {
-                        System.out.println("Updating row: " + theRows);
-                    }
-                    if (patient.getPatientID() > 0) {
-                        result = updatePatient(patient);
-                    } else {
-                        result = createPatient(patient);
-                    }
-                }
+        for (int theRows = 0; theRows < patientDBTableModel.getRowCount(); ++theRows) {
+            if (patientDBTableModel.getUpdateStatus(theRows)) {
+                patient = patientDBTableModel.getPatientData(theRows);
                 if (DEBUG) {
-                    if (result == 1) {
-                        System.out.println("\nUpdate successful\n");
-                    } else {
-                        System.out.println("\nUpdate UNsuccessful\n");
-                    }
+                    System.out.println("Updating row: " + theRows);
                 }
-
-                patientDBTableModel.clearUpdate(theRows);
+                if (patient.getPatientID() > 0) {
+                    result = updatePatient(patient);
+                } else {
+                    result = createPatient(patient);
+                }
             }
-        } catch (SQLException sqlex) {
-            logger.error("Error updating database", sqlex);
+            if (DEBUG) {
+                if (result == 1) {
+                    System.out.println("\nUpdate successful\n");
+                } else {
+                    System.out.println("\nUpdate UNsuccessful\n");
+                }
+            }
+
+            patientDBTableModel.clearUpdate(theRows);
         }
+
 
     }
 
     /**
      * It receives a Patient Bean to create and auto generates the PATIENTID
      * primary key for each new Patient it receives.
+     *
      * @param patient
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int createPatient(PatientBean patient) throws SQLException {
 
@@ -193,10 +203,11 @@ public class PatientDBManagement {
 
     /**
      * Reads all Patient data from the database and returns an ArrayList of
-     * Patient Beans.  This method also populates children data (Inpatient, 
+     * Patient Beans. This method also populates children data (Inpatient,
      * Medication, and Surgical) into the Patient Bean.
+     *
      * @return ArrayList<PatientBean>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ArrayList<PatientBean> readPatient() throws SQLException {
 
@@ -238,9 +249,10 @@ public class PatientDBManagement {
 
     /**
      * Receives a Patient Bean to add to the database.
+     *
      * @param patient
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int updatePatient(PatientBean patient) throws SQLException {
 
@@ -272,15 +284,16 @@ public class PatientDBManagement {
     }
 
     /**
-     * Receives a Patient Bean to delete.  This method also deletes all connected
+     * Receives a Patient Bean to delete. This method also deletes all connected
      * children data (Inpatient, Medication, and Surgical) when called.
+     *
      * @param patientBean
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int deletePatient(PatientBean patientBean) throws SQLException {
-        
-        int result = 0;        
+
+        int result = 0;
 
         String preparedQuery = "DELETE FROM PATIENT WHERE PATIENTID = ?";
 

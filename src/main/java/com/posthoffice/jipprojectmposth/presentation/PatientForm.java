@@ -48,7 +48,7 @@ public class PatientForm extends javax.swing.JPanel {
         firstNameTextField = new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx));
         releaseDateTextField = new javax.swing.JFormattedTextField(new SimpleDateFormat("yyyy/MM/dd"));
         diagnosisTextField = new javax.swing.JFormattedTextField(new RegexFormatter(nameRegEx));
-        saveButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         lastNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lastNameLabel.setMaximumSize(new java.awt.Dimension(80, 20));
@@ -104,11 +104,11 @@ public class PatientForm extends javax.swing.JPanel {
 
         releaseDateTextField.setToolTipText("yyyy/mm/dd");
 
-        saveButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        saveButton1.setText("Cancel");
-        saveButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButton1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -143,7 +143,7 @@ public class PatientForm extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,7 +171,7 @@ public class PatientForm extends javax.swing.JPanel {
                     .addComponent(releaseDateTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -221,9 +221,9 @@ public class PatientForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
-    private void saveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         patientFormFrame.dispose();
-    }//GEN-LAST:event_saveButton1ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
@@ -239,6 +239,7 @@ public class PatientForm extends javax.swing.JPanel {
     private javax.swing.JLabel FirstNameLabel;
     private javax.swing.JLabel admissionDateLabel;
     private javax.swing.JFormattedTextField admissionDateTextField;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel diagnosisLabel;
     private javax.swing.JFormattedTextField diagnosisTextField;
     private javax.swing.JFormattedTextField firstNameTextField;
@@ -247,6 +248,5 @@ public class PatientForm extends javax.swing.JPanel {
     private javax.swing.JLabel releaseDateLabel;
     private javax.swing.JFormattedTextField releaseDateTextField;
     private javax.swing.JButton saveButton;
-    private javax.swing.JButton saveButton1;
     // End of variables declaration//GEN-END:variables
 }

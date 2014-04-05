@@ -102,7 +102,7 @@ public class SurgicalForm extends javax.swing.JPanel {
             }
         });
 
-        dateOfSurgeryTextField.setToolTipText("yyyy/mm/dd");
+        dateOfSurgeryTextField.setToolTipText("yyyy/MM/dd");
 
         roomFeeTextField.setToolTipText("$ #,###.##");
 

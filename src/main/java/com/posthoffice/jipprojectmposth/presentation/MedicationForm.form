@@ -173,7 +173,9 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="dateOfMedTextField">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="yyyy/mm/dd"/>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;yyyy/MM/dd&quot;" type="code"/>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(new SimpleDateFormat(&quot;yyyy/mm/dd&quot;))"/>

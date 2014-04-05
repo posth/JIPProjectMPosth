@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.posthoffice.jipprojectmposth.PropertiesAccessTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec - in com.posthoffice.jipprojectmposth.PropertiesAccessTest
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0 sec <<< FAILURE! - in com.posthoffice.jipprojectmposth.PropertiesAccessTest
+checkUSER(com.posthoffice.jipprojectmposth.PropertiesAccessTest)  Time elapsed: 0 sec  <<< FAILURE!
+junit.framework.ComparisonFailure: expected:<[TheUser]> but was:<[root]>
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at com.posthoffice.jipprojectmposth.PropertiesAccessTest.checkUSER(PropertiesAccessTest.java:29)
+

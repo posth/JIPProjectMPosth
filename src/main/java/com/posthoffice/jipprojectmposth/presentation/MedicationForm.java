@@ -96,7 +96,7 @@ public class MedicationForm extends javax.swing.JPanel {
             }
         });
 
-        dateOfMedTextField.setToolTipText("yyyy/mm/dd");
+        dateOfMedTextField.setToolTipText("yyyy/MM/dd");
 
         costPerUnitTextField.setToolTipText("$ #,###.##");
 

@@ -73,13 +73,14 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         patientDBManager = new PatientDBManagement(patientModel, inpatientDBManager, medicationDBManager, surgicalDBManager, liveDataBean);
 
         setIcon();
-        
+
         initComponents();
     }
 
     /**
      * Getting the database connection details from the properties file.
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     public void getConnectionDetails() throws IOException {
 
@@ -90,14 +91,14 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         liveDataBean.setUSER(dBBean.getUser());
         liveDataBean.setPASSWORD(dBBean.getPassword());
     }
-    
+
     /**
      * Setting an icon to the JFrame.
      */
     public void setIcon() {
-        
+
         URL iconURL = getClass().getResource("/images/icon.png");
-        
+
         ImageIcon frameIcon = new ImageIcon(iconURL);
         this.setIconImage(frameIcon.getImage());
     }
@@ -122,11 +123,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     /**
-     * Placing ActionCommands and ActionListeners to
-     * the JMenuItems in the MenuBar
-     * @return 
+     * Placing ActionCommands and ActionListeners to the JMenuItems in the
+     * MenuBar
+     *
+     * @return
      */
     public JMenuBar createMenuBar() {
 
@@ -136,11 +137,11 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 deletePatient, deleteInpatient, deleteMedication, deleteSurgical,
                 itemExit, itemPrint, save;
 
-        menuBar = new JMenuBar();   
+        menuBar = new JMenuBar();
 
         menuMain = new JMenu(Messages.getString("file"));
         menuBar.add(menuMain);
-        
+
         menuEdit = new JMenu(Messages.getString("edit"));
         menuBar.add(menuEdit);
 
@@ -197,18 +198,18 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         itemExit = new JMenuItem(Messages.getString("exit"));
         itemExit.setActionCommand("Exit");
         itemExit.addActionListener(this);
-        
+
         save = new JMenuItem(Messages.getString("save"));
         save.setActionCommand("Save");
         save.addActionListener(this);
 
         menuEdit.add(menuNew);
         menuEdit.add(menuDelete);
-        
+
         menuMain.add(itemPrint);
         menuMain.add(save);
         menuMain.add(itemExit);
-        
+
         return menuBar;
     }
 
@@ -273,9 +274,13 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             case "Exit":
                 JIPFramePresentation.this.dispose();
                 break;
-                
+
             case "Save":
-                saveEditedData();
+                try {
+                    saveEditedData();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
 
         }
@@ -284,7 +289,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     /**
      * Adding buttons to the ToolBar for Creating and Deleting Patients,
      * Inpatient, Medication, and Surgical data
-     * @return 
+     *
+     * @return
      */
     private JToolBar createToolBar() {
 
@@ -303,9 +309,9 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         JButton deleteSurgicalButton = makeToolBarButton("delete_surgical", Messages.getString("deleteSurgical"), "DeleteSurgical", Messages.getString("deleteSurgicalMessage"));
 
         JButton newPrintButton = makeToolBarButton("print", Messages.getString("print"), "Print", Messages.getString("printMessage"));
-        
+
         JButton newSaveButton = makeToolBarButton("save", Messages.getString("save"), "Save", Messages.getString("save"));
-        
+
 
         toolBar.add(newPatientButton);
         toolBar.add(deletePatientButton);
@@ -326,7 +332,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     private JButton makeToolBarButton(String imageName, String buttonName, String actionCommand, String toolTipText) {
 
         ToolBarEventHandler toolBarEventHandler = new ToolBarEventHandler();
-        
+
         String imgLocation = "/images/" + imageName + "_48.png";
         URL imageURL = JIPFramePresentation.class.getResource(imgLocation);
 
@@ -336,7 +342,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
         button.setActionCommand(actionCommand);
         button.setToolTipText(toolTipText);
         button.addActionListener(toolBarEventHandler);
-        
+
         if (imageURL != null) {
             button.setIcon(new ImageIcon(imageURL, buttonName));
         } else {
@@ -406,20 +412,24 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
                 case "Print":
                     printForm();
                     break;
-                    
+
                 case "Save":
-                    saveEditedData();
+                    try {
+                        saveEditedData();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JIPFramePresentation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
             }
 
         }
     }
-    
+
     /**
-     * The save button.  Primarily used when editing a cell.  When pushed, it 
+     * The save button. Primarily used when editing a cell. When pushed, it
      * updates the database with whichever new values have been added.
      */
-    public void saveEditedData() {
+    public void saveEditedData() throws SQLException {
         patientDBManager.updateDB();
         inpatientDBManager.updateDB();
         medicationDBManager.updateDB();
@@ -427,7 +437,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method which is called from the ToolBar or MenuBar to Print a Patient's 
+     * Method which is called from the ToolBar or MenuBar to Print a Patient's
      * information.
      */
     public void printForm() {
@@ -442,14 +452,14 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
             ReceiptTableModel receiptModel = new ReceiptTableModel(selectedBean);
 
             JTable receiptTable = new ReceiptTable(receiptModel);
-            
+
             TableColumn column = receiptTable.getColumnModel().getColumn(0);
             TableColumn column1 = receiptTable.getColumnModel().getColumn(1);
             TableColumn column2 = receiptTable.getColumnModel().getColumn(2);
             column.setMinWidth(150);
             column1.setMinWidth(125);
             column2.setMinWidth(125);
-            
+
             receiptTable.setSize(receiptTable.getPreferredSize());
 
             try {
@@ -467,16 +477,16 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method that is called from the ToolBar or MenuBar to display a form
-     * to add a new Patient to the database.
+     * Method that is called from the ToolBar or MenuBar to display a form to
+     * add a new Patient to the database.
      */
     public void createPatientForm() {
 
         JFrame patientFormFrame = new JFrame(Messages.getString("newPatient"));
         PatientForm patientForm = new PatientForm(patientDBManager, patientFormFrame);
         JScrollPane patientFormScroll = new JScrollPane(patientForm);
-        
-        URL iconURL = getClass().getResource("/images/new_patient_48.png");       
+
+        URL iconURL = getClass().getResource("/images/new_patient_48.png");
         ImageIcon frameIcon = new ImageIcon(iconURL);
         patientFormFrame.setIconImage(frameIcon.getImage());
 
@@ -489,9 +499,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method that is called from the ToolBar or MenuBar to delete Inpatient Data
-     * from a specific Patient selected from the PatientTable.
-     * @throws SQLException 
+     * Method that is called from the ToolBar or MenuBar to delete Inpatient
+     * Data from a specific Patient selected from the PatientTable.
+     *
+     * @throws SQLException
      */
     public void deletePatientForm() throws SQLException {
 
@@ -532,7 +543,7 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
      */
     public void createInpatientForm() {
 
-        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();       
+        PatientBean tempPatient = liveDataBean.getSelectedPatientBean();
 
         if (!(liveDataBean.getSelectedPatientRow() == -1)) {
 
@@ -541,8 +552,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             InpatientForm inpatientForm = new InpatientForm(patientDBManager, inpatientDBManager, liveDataBean, inpatientFormFrame);
             JScrollPane inpatientFormScroll = new JScrollPane(inpatientForm);
-            
-            URL iconURL = getClass().getResource("/images/new_inpatient_48.png");       
+
+            URL iconURL = getClass().getResource("/images/new_inpatient_48.png");
             ImageIcon frameIcon = new ImageIcon(iconURL);
             inpatientFormFrame.setIconImage(frameIcon.getImage());
 
@@ -560,9 +571,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method that is called from the ToolBar or MenuBar to delete Inpatient Data
-     * from a specific Patient selected from the PatientTable.
-     * @throws SQLException 
+     * Method that is called from the ToolBar or MenuBar to delete Inpatient
+     * Data from a specific Patient selected from the PatientTable.
+     *
+     * @throws SQLException
      */
     public void deleteInpatientForm() throws SQLException {
 
@@ -616,8 +628,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             MedicationForm medicationForm = new MedicationForm(patientDBManager, medicationDBManager, liveDataBean, medicationFormFrame);
             JScrollPane medicationFormScroll = new JScrollPane(medicationForm);
-            
-            URL iconURL = getClass().getResource("/images/new_medication_48.png");       
+
+            URL iconURL = getClass().getResource("/images/new_medication_48.png");
             ImageIcon frameIcon = new ImageIcon(iconURL);
             medicationFormFrame.setIconImage(frameIcon.getImage());
 
@@ -635,9 +647,10 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method that is called from the ToolBar or MenuBar to delete Medication Data
-     * from a specific Patient selected from the PatientTable.
-     * @throws SQLException 
+     * Method that is called from the ToolBar or MenuBar to delete Medication
+     * Data from a specific Patient selected from the PatientTable.
+     *
+     * @throws SQLException
      */
     public void deleteMedicationForm() throws SQLException {
 
@@ -677,8 +690,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     }
 
     /**
-     * Method that is called from the ToolBar or MenuBar to add Surgical Data
-     * to a specific Patient selected from the PatientTable.
+     * Method that is called from the ToolBar or MenuBar to add Surgical Data to
+     * a specific Patient selected from the PatientTable.
      */
     public void createSurgicalForm() {
 
@@ -691,8 +704,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
 
             SurgicalForm surgicalForm = new SurgicalForm(patientDBManager, surgicalDBManager, liveDataBean, surgicalFormFrame);
             JScrollPane surgicalFormScroll = new JScrollPane(surgicalForm);
-            
-            URL iconURL = getClass().getResource("/images/new_surgical_48.png");       
+
+            URL iconURL = getClass().getResource("/images/new_surgical_48.png");
             ImageIcon frameIcon = new ImageIcon(iconURL);
             surgicalFormFrame.setIconImage(frameIcon.getImage());
 
@@ -711,7 +724,8 @@ public class JIPFramePresentation extends javax.swing.JFrame implements ActionLi
     /**
      * Method that is called from the ToolBar or MenuBar to delete Surgical Data
      * from a specific Patient selected from the PatientTable.
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public void deleteSurgicalForm() throws SQLException {
 

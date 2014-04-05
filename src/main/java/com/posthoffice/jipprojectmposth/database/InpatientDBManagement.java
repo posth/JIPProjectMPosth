@@ -18,12 +18,9 @@ import java.sql.Statement;
 public class InpatientDBManagement {
 
     private InpatientDBTableModel inpatientDBTableModel = null;
-    
     private final boolean DEBUG = false;
     final Logger logger = LoggerFactory.getLogger(InpatientDBManagement.class);
-    
     private LiveDataBean liveDataBean;
-    
     private String URL;
     private String USER;
     private String PASSWORD;
@@ -53,43 +50,39 @@ public class InpatientDBManagement {
     }
 
     /**
-     * Method is called when the Save button from the frame is called.  Any information changed
-     * in the Inpatient table will be recorded.
+     * Method is called when the Save button from the frame is called. Any
+     * information changed in the Inpatient table will be recorded.
      */
-    public void updateDB() {
+    public void updateDB() throws SQLException {
 
         InpatientBean inpatient;
 
         int result = 0;
 
-        try (Connection connection = DriverManager.getConnection(URL, USER,
-                PASSWORD);) {
 
-            for (int theRows = 0; theRows < inpatientDBTableModel.getRowCount(); ++theRows) {
-                if (inpatientDBTableModel.getUpdateStatus(theRows)) {
-                    inpatient = inpatientDBTableModel.getinPatientData(theRows);
-                    if (DEBUG) {
-                        System.out.println("Updating row: " + theRows);
-                    }
-                    if (inpatient.getiD() > 0) {
-                        result = updateInpatient(inpatient);
-                    } else {
-                        result = createInpatient(inpatient);
-                    }
-                }
+        for (int theRows = 0; theRows < inpatientDBTableModel.getRowCount(); ++theRows) {
+            if (inpatientDBTableModel.getUpdateStatus(theRows)) {
+                inpatient = inpatientDBTableModel.getinPatientData(theRows);
                 if (DEBUG) {
-                    if (result == 1) {
-                        System.out.println("\nUpdate successful\n");
-                    } else {
-                        System.out.println("\nUpdate UNsuccessful\n");
-                    }
+                    System.out.println("Updating row: " + theRows);
                 }
-
-                inpatientDBTableModel.clearUpdate(theRows);
+                if (inpatient.getiD() > 0) {
+                    result = updateInpatient(inpatient);
+                } else {
+                    result = createInpatient(inpatient);
+                }
             }
-        } catch (SQLException sqlex) {
-            logger.error("Error updating database", sqlex);
+            if (DEBUG) {
+                if (result == 1) {
+                    System.out.println("\nUpdate successful\n");
+                } else {
+                    System.out.println("\nUpdate UNsuccessful\n");
+                }
+            }
+
+            inpatientDBTableModel.clearUpdate(theRows);
         }
+
 
     }
 
@@ -178,9 +171,10 @@ public class InpatientDBManagement {
 
     /**
      * Receives an Inpatient Bean to add to the database.
+     *
      * @param inpatient
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public int updateInpatient(InpatientBean inpatient) throws SQLException {
 

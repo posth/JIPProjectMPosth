@@ -52,40 +52,35 @@ public class SurgicalDBManagement {
      * Method is called when the Save button from the frame is called. Any
      * information changed in the Surgical table will be recorded.
      */
-    public void updateDB() {
+    public void updateDB() throws SQLException {
 
         SurgicalBean surgical;
 
         int result = 0;
 
-        try (Connection connection = DriverManager.getConnection(URL, USER,
-                PASSWORD);) {
-
-            for (int theRows = 0; theRows < surgicalDBTableModel.getRowCount(); ++theRows) {
-                if (surgicalDBTableModel.getUpdateStatus(theRows)) {
-                    surgical = surgicalDBTableModel.getSurgicalData(theRows);
-                    if (DEBUG) {
-                        System.out.println("Updating row: " + theRows);
-                    }
-                    if (surgical.getiD() > 0) {
-                        result = updateSurgical(surgical);
-                    } else {
-                        result = createSurgical(surgical);
-                    }
-                }
+        for (int theRows = 0; theRows < surgicalDBTableModel.getRowCount(); ++theRows) {
+            if (surgicalDBTableModel.getUpdateStatus(theRows)) {
+                surgical = surgicalDBTableModel.getSurgicalData(theRows);
                 if (DEBUG) {
-                    if (result == 1) {
-                        System.out.println("\nUpdate successful\n");
-                    } else {
-                        System.out.println("\nUpdate UNsuccessful\n");
-                    }
+                    System.out.println("Updating row: " + theRows);
                 }
-
-                surgicalDBTableModel.clearUpdate(theRows);
+                if (surgical.getiD() > 0) {
+                    result = updateSurgical(surgical);
+                } else {
+                    result = createSurgical(surgical);
+                }
             }
-        } catch (SQLException sqlex) {
-            logger.error("Error updating database", sqlex);
+            if (DEBUG) {
+                if (result == 1) {
+                    System.out.println("\nUpdate successful\n");
+                } else {
+                    System.out.println("\nUpdate UNsuccessful\n");
+                }
+            }
+
+            surgicalDBTableModel.clearUpdate(theRows);
         }
+
 
     }
 
