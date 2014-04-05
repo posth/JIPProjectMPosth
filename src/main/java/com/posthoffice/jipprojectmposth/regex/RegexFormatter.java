@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.text.DefaultFormatter;
 
+@SuppressWarnings("serial")
 public class RegexFormatter extends DefaultFormatter {
 
     private Pattern pattern;

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class ReceiptTableModel extends AbstractTableModel {
 
     private PatientBean patientBean;

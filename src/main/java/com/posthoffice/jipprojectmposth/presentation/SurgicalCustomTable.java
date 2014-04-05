@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class SurgicalCustomTable extends JTable {
 
     private final Font tableFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);

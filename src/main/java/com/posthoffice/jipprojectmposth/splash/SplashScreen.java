@@ -14,6 +14,7 @@ import javax.swing.JWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("serial")
 public class SplashScreen extends JWindow {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());

@@ -5,13 +5,11 @@ import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.database.PatientDBManagement;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.regex.Messages;
-import java.awt.Color;
-import java.awt.Component;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class PatientTable extends javax.swing.JPanel{
 
     private PatientDBTableModel patientModel;

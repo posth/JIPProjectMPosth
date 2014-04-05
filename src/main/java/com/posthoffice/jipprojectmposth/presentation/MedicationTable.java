@@ -6,6 +6,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+@SuppressWarnings("serial")
 public class MedicationTable extends javax.swing.JPanel {
 
     private MedicationDBTableModel medicationModel;

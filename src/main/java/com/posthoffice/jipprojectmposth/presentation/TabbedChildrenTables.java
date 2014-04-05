@@ -1,13 +1,13 @@
 package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
-import com.posthoffice.jipprojectmposth.beans.PatientBean;
 import com.posthoffice.jipprojectmposth.model.InpatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 import com.posthoffice.jipprojectmposth.regex.Messages;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class TabbedChildrenTables extends javax.swing.JPanel {
 
     private InpatientDBTableModel inpatientModel;

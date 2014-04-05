@@ -2,11 +2,11 @@ package com.posthoffice.jipprojectmposth.presentation;
 
 import com.posthoffice.jipprojectmposth.beans.LiveDataBean;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
-import com.posthoffice.jipprojectmposth.presentation.PatientTable.RowListener;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+@SuppressWarnings("serial")
 public class SurgicalTable extends javax.swing.JPanel {
 
     private SurgicalDBTableModel surgicalModel;

@@ -39,6 +39,7 @@ import javax.swing.JToolBar;
 import javax.swing.table.TableColumn;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("serial")
 public class JIPFramePresentation extends javax.swing.JFrame implements ActionListener {
 
     private PatientDBTableModel patientModel;

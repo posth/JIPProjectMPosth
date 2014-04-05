@@ -26,7 +26,7 @@ public class Messages {
         Locale frLocale = new Locale("fr");
 
         if (currentLocale.equals(frLocale)) {
-            this.BUNDLE_NAME = "messages_fr";
+            Messages.BUNDLE_NAME = "messages_fr";
         }
     }
 

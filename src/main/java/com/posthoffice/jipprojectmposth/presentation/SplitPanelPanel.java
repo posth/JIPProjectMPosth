@@ -10,6 +10,7 @@ import com.posthoffice.jipprojectmposth.model.MedicationDBTableModel;
 import com.posthoffice.jipprojectmposth.model.PatientDBTableModel;
 import com.posthoffice.jipprojectmposth.model.SurgicalDBTableModel;
 
+@SuppressWarnings("serial")
 public class SplitPanelPanel extends javax.swing.JPanel {
 
     private PatientDBTableModel patientModel;

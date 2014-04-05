@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class InpatientForm extends javax.swing.JPanel {
 
     private String nameRegEx = ".+";

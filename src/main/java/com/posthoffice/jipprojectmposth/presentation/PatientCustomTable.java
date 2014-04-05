@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class PatientCustomTable extends JTable {
 
     private final Font tableFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
