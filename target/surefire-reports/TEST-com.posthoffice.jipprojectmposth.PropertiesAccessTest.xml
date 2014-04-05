@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0" tests="3" errors="0" skipped="0" failures="1">
+<testsuite name="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -60,12 +60,6 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase name="checkPASSWORD" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0"/>
-  <testcase name="checkUSER" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0">
-    <failure message="expected:&lt;[TheUser]&gt; but was:&lt;[root]&gt;" type="junit.framework.ComparisonFailure"><![CDATA[junit.framework.ComparisonFailure: expected:<[TheUser]> but was:<[root]>
-	at junit.framework.Assert.assertEquals(Assert.java:100)
-	at junit.framework.Assert.assertEquals(Assert.java:107)
-	at com.posthoffice.jipprojectmposth.PropertiesAccessTest.checkUSER(PropertiesAccessTest.java:29)
-]]></failure>
-  </testcase>
+  <testcase name="checkUSER" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0"/>
   <testcase name="checkURL" classname="com.posthoffice.jipprojectmposth.PropertiesAccessTest" time="0"/>
 </testsuite>
